@@ -49,6 +49,7 @@ function App() {
       <footer>
         <p>Name: Pari K. Shah</p>
         <p>Grace Setzler</p>
+        <p>Connor Vitz</p>
       </footer>
     </div>
   );
