@@ -48,6 +48,7 @@ function App() {
       </Form>
       <footer>
         <p>Name: Pari K. Shah</p>
+        <p>Grace Setzler</p>
       </footer>
     </div>
   );
