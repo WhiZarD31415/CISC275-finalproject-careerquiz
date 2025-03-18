@@ -47,7 +47,7 @@ function App() {
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       <footer>
-        <p>Contributor: Pari K. Shah</p>
+        <p>Name: Pari K. Shah</p>
       </footer>
     </div>
   );
