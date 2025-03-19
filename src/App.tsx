@@ -50,6 +50,7 @@ function App() {
         <p>Name: Pari K. Shah</p>
         <p>Grace Setzler</p>
         <p>Connor Vitz</p>
+        <p>Andre Babik</p>
       </footer>
     </div>
   );
