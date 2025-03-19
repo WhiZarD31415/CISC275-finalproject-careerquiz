@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
 
@@ -13,7 +12,22 @@ if (prevKey !== null) {
 
 function App() {
   const [key, setKey] = useState<string>(keyData); //for api key input
+  const [currentPage, setCurrentPage] = useState<string>('home'); //controls what page renders
   
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <div>Home Page</div>;
+      case 'about':
+        return <div>About Page</div>;
+      case 'contact':
+        return <div>Contact Page</div>;
+      default:
+        return <div>404 Page Not Found</div>;
+    }
+  }; //switch to control which page renders
+
+
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
@@ -26,20 +40,10 @@ function App() {
   }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav>
+        <button onClick={() => setCurrentPage('home')}>Home</button>
+      </nav>
+      {renderPage()}
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
