@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+import DetailedCareer from './DetailedCareer';
+import BasicCareer from './BasicCareer';
 
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -22,12 +24,14 @@ function App() {
         return <div>About Page</div>;
       case 'contact':
         return <div>Contact Page</div>;
+        case 'detailed-career':
+          return <DetailedCareer />;
+          case 'basic-career':
+            return <BasicCareer />;
       default:
         return <div>404 Page Not Found</div>;
     }
   }; //switch to control which page renders
-
-
   //sets the local storage item to the api key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
@@ -40,10 +44,19 @@ function App() {
   }
   return (
     <div className="App">
-      <nav>
-        <button onClick={() => setCurrentPage('home')}>Home</button>
-      </nav>
-      {renderPage()}
+        <header style={{ display: 'flex', gap: '10px', position: 'absolute', top: '10px', left: '10px', zIndex: 10 }}>
+            {currentPage !== 'home' && (
+              <button onClick={() => setCurrentPage('home')}>🏠</button>
+        )}
+        
+        {currentPage === 'home' && (
+            <>
+               <button onClick={() => setCurrentPage('detailed-career')}>Detailed Career Assessment</button>
+               <button onClick={() => setCurrentPage('basic-career')}>Basic Career Assessment</button>
+            </>
+        )}
+            </header>
+            <div style={{ paddingTop: '50px', textAlign: 'center' }}>{renderPage()}</div>
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
@@ -51,7 +64,7 @@ function App() {
         <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
       </Form>
       <footer>
-        <p>Name: Pari K. Shah</p>
+        <p>Pari K. Shah</p>
         <p>Grace Setzler</p>
         <p>Connor Vitz</p>
         <p>Andre Babik</p>
