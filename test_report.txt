@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (38 ms)
+  ✕ renders learn react link (41 ms)
 
   ● renders learn react link
 
@@ -15,13 +15,22 @@ FAIL src/App.test.tsx
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
         [36m>[39m
-          [36m<nav>[39m
+          [36m<header[39m
+            [33mstyle[39m=[32m"display: flex; gap: 10px; position: absolute; top: 10px; left: 10px; z-index: 10;"[39m
+          [36m>[39m
             [36m<button>[39m
-              [0mHome[0m
+              [0mDetailed Career Assessment[0m
             [36m</button>[39m
-          [36m</nav>[39m
-          [36m<div>[39m
-            [0mHome Page[0m
+            [36m<button>[39m
+              [0mBasic Career Assessment[0m
+            [36m</button>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mstyle[39m=[32m"padding-top: 50px; text-align: center;"[39m
+          [36m>[39m
+            [36m<div>[39m
+              [0mHome Page[0m
+            [36m</div>[39m
           [36m</div>[39m
           [36m<form[39m
             [33mclass[39m=[32m""[39m
@@ -46,7 +55,7 @@ FAIL src/App.test.tsx
           [36m</form>[39m
           [36m<footer>[39m
             [36m<p>[39m
-              [0mName: Pari K. Shah[0m
+              [0mPari K. Shah[0m
             [36m</p>[39m
             [36m<p>[39m
               [0mGrace Setzler[0m
@@ -83,15 +92,17 @@ FAIL src/App.test.tsx
 --------------------|---------|----------|---------|---------|-------------------
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
-All files           |   34.48 |       20 |   28.57 |   34.48 |                   
- App.tsx            |   55.55 |    33.33 |      40 |   55.55 | 10,22-39,44       
+All files           |   32.43 |    31.25 |   18.18 |   32.43 |                   
+ App.tsx            |   45.45 |    41.66 |   28.57 |   45.45 | 12,24-43,49-55    
+ BasicCareer.tsx    |      50 |      100 |       0 |      50 | 4                 
+ DetailedCareer.tsx |      50 |      100 |       0 |      50 | 4                 
  index.tsx          |       0 |      100 |     100 |       0 | 7-19              
  reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
 --------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.646 s
+Time:        2.707 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
