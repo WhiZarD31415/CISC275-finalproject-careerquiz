@@ -1,53 +1,124 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Button, Form } from 'react-bootstrap';
+import DetailedCareer from './DetailedCareer';
+import { BasicCareer } from './BasicCareer';
 
-//local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData); //so it'll look like: MYKEY: <api_key_value here> in the local storage when you inspect
+const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 
 function App() {
-  const [key, setKey] = useState<string>(keyData); //for api key input
-  
-  //sets the local storage item to the api key the user inputed
+  const [key, setKey] = useState<string>(keyData);
+  const [currentPage, setCurrentPage] = useState<string>('home');
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return (
+          <div>
+            <div>Home Page</div>
+            <h1
+              style={{
+                fontWeight: 'bold',
+                fontSize: '4em',
+                color: 'white',
+                textShadow: '2px 2px 4px #00008B',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                marginTop: '60px'
+              }}
+            >
+              The Career Helpi
+            </h1>
+            <h2
+              style={{
+                fontStyle: 'italic',
+                color: 'white',
+                fontFamily: 'Helvetica, Arial, sans-serif',
+                fontSize: '1.4em'
+              }}
+            >
+              The best place to discover your dream job, today
+            </h2>
+            <p
+              style={{
+                color: 'white',
+                fontFamily: 'Helvetica, Arial, sans-serif'
+              }}
+            >
+              Developed by Pari, Connor, Grace, and Andre.
+            </p>
+            <button onClick={() => setCurrentPage('detailed-career')}>
+              Detailed Career Assessment
+            </button>
+            <button onClick={() => setCurrentPage('basic-career')}>
+              Basic Career Assessment
+            </button>
+          </div>
+        );
+      case 'about':
+        return <div>About Page</div>;
+      case 'contact':
+        return <div>Contact Page</div>;
+      case 'detailed-career':
+        return <DetailedCareer />;
+      case 'basic-career':
+        return <BasicCareer />;
+      default:
+        return <div>404 Page Not Found</div>;
+    }
+  };
+
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
-    window.location.reload(); //when making a mistake and changing the key again, I found that I have to reload the whole site before openai refreshes what it has stores for the local storage variable
+    window.location.reload();
   }
 
-  //whenever there's a change it'll store the api key in a local state called key but it won't be set in the local storage until the user clicks the submit button
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div
+      className="App"
+      style={{
+        backgroundColor: 'lightblue',
+        minHeight: '100vh',
+        textAlign: 'center'
+      }}
+    >
+      <header
+        style={{
+          display: 'flex',
+          gap: '10px',
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          zIndex: 10
+        }}
+      >
+        {currentPage !== 'home' && (
+          <button onClick={() => setCurrentPage('home')}>🏠</button>
+        )}
       </header>
+      <div style={{ paddingTop: '50px' }}>{renderPage()}</div>
       <Form>
         <Form.Label>API Key:</Form.Label>
-        <Form.Control type="password" placeholder="Insert API Key Here" onChange={changeKey}></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>Submit</Button>
+        <Form.Control
+          type="password"
+          placeholder="Insert API Key Here"
+          onChange={changeKey}
+        />
+        <br />
+        <Button className="Submit-Button" onClick={handleSubmit}>
+          Submit
+        </Button>
       </Form>
       <footer>
-        <p>Name: Pari K. Shah</p>
+        <p>Pari K. Shah</p>
         <p>Grace Setzler</p>
         <p>Connor Vitz</p>
         <p>Andre Babik</p>
