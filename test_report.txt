@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (41 ms)
+  ✕ renders learn react link (44 ms)
 
   ● renders learn react link
 
@@ -14,22 +14,39 @@ FAIL src/App.test.tsx
       [36m<div>[39m
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
+          [33mstyle[39m=[32m"background-color: lightblue; min-height: 100vh; text-align: center;"[39m
         [36m>[39m
           [36m<header[39m
             [33mstyle[39m=[32m"display: flex; gap: 10px; position: absolute; top: 10px; left: 10px; z-index: 10;"[39m
-          [36m>[39m
-            [36m<button>[39m
-              [0mDetailed Career Assessment[0m
-            [36m</button>[39m
-            [36m<button>[39m
-              [0mBasic Career Assessment[0m
-            [36m</button>[39m
-          [36m</header>[39m
+          [36m/>[39m
           [36m<div[39m
-            [33mstyle[39m=[32m"padding-top: 50px; text-align: center;"[39m
+            [33mstyle[39m=[32m"padding-top: 50px;"[39m
           [36m>[39m
             [36m<div>[39m
-              [0mHome Page[0m
+              [36m<div>[39m
+                [0mHome Page[0m
+              [36m</div>[39m
+              [36m<h1[39m
+                [33mstyle[39m=[32m"font-weight: bold; font-size: 4em; color: white; text-shadow: 2px 2px 4px #00008B; font-family: Helvetica, Arial, sans-serif; margin-top: 60px;"[39m
+              [36m>[39m
+                [0mThe Career Helpi[0m
+              [36m</h1>[39m
+              [36m<h2[39m
+                [33mstyle[39m=[32m"font-style: italic; color: white; font-family: Helvetica, Arial, sans-serif; font-size: 1.4em;"[39m
+              [36m>[39m
+                [0mThe best place to discover your dream job, today[0m
+              [36m</h2>[39m
+              [36m<p[39m
+                [33mstyle[39m=[32m"color: white; font-family: Helvetica, Arial, sans-serif;"[39m
+              [36m>[39m
+                [0mDeveloped by Pari, Connor, Grace, and Andre.[0m
+              [36m</p>[39m
+              [36m<button>[39m
+                [0mDetailed Career Assessment[0m
+              [36m</button>[39m
+              [36m<button>[39m
+                [0mBasic Career Assessment[0m
+              [36m</button>[39m
             [36m</div>[39m
           [36m</div>[39m
           [36m<form[39m
@@ -92,9 +109,9 @@ FAIL src/App.test.tsx
 --------------------|---------|----------|---------|---------|-------------------
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
-All files           |   32.43 |    31.25 |   18.18 |   32.43 |                   
- App.tsx            |   45.45 |    41.66 |   28.57 |   45.45 | 12,24-43,49-55    
- BasicCareer.tsx    |      50 |      100 |       0 |      50 | 4                 
+All files           |      20 |    16.66 |    9.52 |   20.75 |                   
+ App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 11,54-83,107      
+ BasicCareer.tsx    |       0 |        0 |       0 |       0 | 16-88             
  DetailedCareer.tsx |      50 |      100 |       0 |      50 | 4                 
  index.tsx          |       0 |      100 |     100 |       0 | 7-19              
  reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
@@ -102,7 +119,7 @@ All files           |   32.43 |    31.25 |   18.18 |   32.43 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.707 s
+Time:        2.825 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
