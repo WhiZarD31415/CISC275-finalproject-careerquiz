@@ -59,19 +59,21 @@ function App() {
             </button>
           </div>
         );
+
       case 'about':
         return <div>About Page</div>;
       case 'contact':
         return <div>Contact Page</div>;
-      case 'detailed-career':
-        return <DetailedCareer />;
-      case 'basic-career':
-        return <BasicCareer />;
+
+        case 'detailed-career':
+          return <DetailedCareer />;
+          case 'basic-career':
+            return <BasicCareer />;
       default:
         return <div>404 Page Not Found</div>;
     }
-  };
-
+  }; //switch to control which page renders
+  //sets the local storage item to the api key the user inputed
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
     window.location.reload();
@@ -82,6 +84,7 @@ function App() {
   }
 
   return (
+
     <div
       className="App"
       style={{
@@ -105,6 +108,7 @@ function App() {
         )}
       </header>
       <div style={{ paddingTop: '50px' }}>{renderPage()}</div>
+
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control
