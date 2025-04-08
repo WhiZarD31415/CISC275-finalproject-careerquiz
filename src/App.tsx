@@ -19,44 +19,70 @@ function App() {
     switch (currentPage) {
       case 'home':
         return (
-          <div>
-            <div>Home Page</div>
-            <h1
+          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+            {/* Use an <img> pointing to the external URL */}
+            <img
+              src="https://th.bing.com/th/id/OIG4.2ylqExNv2m_KA.uzB7MY?w=1024&h=1024&rs=1&pid=ImgDetMain"
+              alt="Sphinx"
               style={{
-                fontWeight: 'bold',
-                fontSize: '4em',
-                color: 'white',
-                textShadow: '2px 2px 4px #00008B',
-                fontFamily: 'Helvetica, Arial, sans-serif',
-                marginTop: '60px'
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                height: '66vh'
+              }}
+            />
+
+            <div
+              style={{
+                textAlign: 'right',
+                marginRight: '5%',
+                marginTop: '5%'
               }}
             >
-              The Career Helpi
-            </h1>
-            <h2
-              style={{
-                fontStyle: 'italic',
-                color: 'white',
-                fontFamily: 'Helvetica, Arial, sans-serif',
-                fontSize: '1.4em'
-              }}
-            >
-              The best place to discover your dream job, today
-            </h2>
-            <p
-              style={{
-                color: 'white',
-                fontFamily: 'Helvetica, Arial, sans-serif'
-              }}
-            >
-              Developed by Pari, Connor, Grace, and Andre.
-            </p>
-            <button onClick={() => setCurrentPage('detailed-career')}>
-              Detailed Career Assessment
-            </button>
-            <button onClick={() => setCurrentPage('basic-career')}>
-              Basic Career Assessment
-            </button>
+              {/* Existing "Home Page" text retained */}
+              <div style={{ color: 'white' }}>Home Page</div>
+
+              {/* Main title changed to ALL CAPS & bold Helvetica */}
+              <h1
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: '3em',
+                  color: 'white',
+                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  marginTop: '20px'
+                }}
+              >
+                THE SPHINX CAREER QUIZ
+              </h1>
+
+              {/* Subtitle still included; adjust or remove as needed */}
+              <h2
+                style={{
+                  fontStyle: 'italic',
+                  color: 'white',
+                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  fontSize: '1.4em'
+                }}
+              >
+                The best place to discover your dream job, today
+              </h2>
+
+              <p
+                style={{
+                  color: 'white',
+                  fontFamily: 'Helvetica, Arial, sans-serif'
+                }}
+              >
+                Developed by Pari, Connor, Grace, and Andre.
+              </p>
+
+              <button onClick={() => setCurrentPage('detailed-career')}>
+                Detailed Career Assessment
+              </button>
+              <button onClick={() => setCurrentPage('basic-career')}>
+                Basic Career Assessment
+              </button>
+            </div>
           </div>
         );
 
@@ -88,9 +114,9 @@ function App() {
     <div
       className="App"
       style={{
-        backgroundColor: 'lightblue',
+        backgroundColor: '#021C31',
         minHeight: '100vh',
-        textAlign: 'center'
+        position: 'relative'
       }}
     >
       <header
@@ -107,10 +133,11 @@ function App() {
           <button onClick={() => setCurrentPage('home')}>🏠</button>
         )}
       </header>
+
       <div style={{ paddingTop: '50px' }}>{renderPage()}</div>
 
       <Form>
-        <Form.Label>API Key:</Form.Label>
+        <Form.Label style={{ color: 'white' }}>API Key:</Form.Label>
         <Form.Control
           type="password"
           placeholder="Insert API Key Here"
@@ -121,11 +148,12 @@ function App() {
           Submit
         </Button>
       </Form>
+
       <footer>
-        <p>Pari K. Shah</p>
-        <p>Grace Setzler</p>
-        <p>Connor Vitz</p>
-        <p>Andre Babik</p>
+        <p style={{ color: 'white' }}>Pari K. Shah</p>
+        <p style={{ color: 'white' }}>Grace Setzler</p>
+        <p style={{ color: 'white' }}>Connor Vitz</p>
+        <p style={{ color: 'white' }}>Andre Babik</p>
       </footer>
     </div>
   );
