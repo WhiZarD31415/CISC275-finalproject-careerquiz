@@ -64,7 +64,7 @@ function App() {
                   fontSize: '1.4em'
                 }}
               >
-                The best place to discover your dream job, today
+                The best place to discover your dream job, today!
               </h2>
 
               <p
