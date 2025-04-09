@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (45 ms)
+  ✕ renders learn react link (66 ms)
 
   ● renders learn react link
 
@@ -14,76 +14,76 @@ FAIL src/App.test.tsx
       [36m<div>[39m
         [36m<div[39m
           [33mclass[39m=[32m"App"[39m
-          [33mstyle[39m=[32m"background-color: lightblue; min-height: 100vh; text-align: center;"[39m
+          [33mstyle[39m=[32m"margin: 0px; padding: 0px; background-color: rgb(11, 26, 46); min-height: 100vh; position: relative;"[39m
         [36m>[39m
           [36m<header[39m
-            [33mstyle[39m=[32m"display: flex; gap: 10px; position: absolute; top: 10px; left: 10px; z-index: 10;"[39m
-          [36m/>[39m
-          [36m<div[39m
-            [33mstyle[39m=[32m"padding-top: 50px;"[39m
+            [33mstyle[39m=[32m"display: flex; gap: 10px; position: absolute; top: 10px; left: 10px; z-index: 10; align-items: center;"[39m
           [36m>[39m
-            [36m<div>[39m
-              [36m<div>[39m
-                [0mHome Page[0m
+            [36m<form[39m
+              [33mclass[39m=[32m""[39m
+              [33mstyle[39m=[32m"display: flex; align-items: center; margin-left: 10px;"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"form-label"[39m
+                [33mstyle[39m=[32m"color: white; margin-right: 5px;"[39m
+              [36m>[39m
+                [0mAPI Key:[0m
+              [36m</label>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"form-control"[39m
+                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                [33mstyle[39m=[32m"max-width: 200px; margin-right: 5px;"[39m
+                [33mtype[39m=[32m"password"[39m
+              [36m/>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mSubmit[0m
+              [36m</button>[39m
+            [36m</form>[39m
+          [36m</header>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mstyle[39m=[32m"position: relative; width: 100%; min-height: 100vh; margin: 0px; padding: 0px;"[39m
+            [36m>[39m
+              [36m<img[39m
+                [33malt[39m=[32m"Sphinx"[39m
+                [33msrc[39m=[32m"sphinx.jpg"[39m
+                [33mstyle[39m=[32m"position: absolute; bottom: 0px; left: 0px; height: 90vh;"[39m
+              [36m/>[39m
+              [36m<div[39m
+                [33mstyle[39m=[32m"text-align: right; margin-right: 5%; margin-top: 5%;"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mstyle[39m=[32m"color: white;"[39m
+                [36m>[39m
+                  [0mHome Page[0m
+                [36m</div>[39m
+                [36m<h1[39m
+                  [33mstyle[39m=[32m"font-weight: bold; font-size: 3em; color: white; font-family: Helvetica, Arial, sans-serif; margin-top: 20px;"[39m
+                [36m>[39m
+                  [0mSPHINX CAREER QUIZ[0m
+                [36m</h1>[39m
+                [36m<h2[39m
+                  [33mstyle[39m=[32m"font-style: italic; color: white; font-family: Helvetica, Arial, sans-serif; font-size: 1.4em;"[39m
+                [36m>[39m
+                  [0mThe best place to discover your dream job, today[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mstyle[39m=[32m"color: white; font-family: Helvetica, Arial, sans-serif;"[39m
+                [36m>[39m
+                  [0mDeveloped by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.[0m
+                [36m</p>[39m
+                [36m<button>[39m
+                  [0mDetailed Career Assessment[0m
+                [36m</button>[39m
+                [36m<button>[39m
+                  [0mBasic Career Assessment[0m
+                [36m</button>[39m
               [36m</div>[39m
-              [36m<h1[39m
-                [33mstyle[39m=[32m"font-weight: bold; font-size: 4em; color: white; text-shadow: 2px 2px 4px #00008B; font-family: Helvetica, Arial, sans-serif; margin-top: 60px;"[39m
-              [36m>[39m
-                [0mThe Career Helpi[0m
-              [36m</h1>[39m
-              [36m<h2[39m
-                [33mstyle[39m=[32m"font-style: italic; color: white; font-family: Helvetica, Arial, sans-serif; font-size: 1.4em;"[39m
-              [36m>[39m
-                [0mThe best place to discover your dream job, today[0m
-              [36m</h2>[39m
-              [36m<p[39m
-                [33mstyle[39m=[32m"color: white; font-family: Helvetica, Arial, sans-serif;"[39m
-              [36m>[39m
-                [0mDeveloped by Pari, Connor, Grace, and Andre.[0m
-              [36m</p>[39m
-              [36m<button>[39m
-                [0mDetailed Career Assessment[0m
-              [36m</button>[39m
-              [36m<button>[39m
-                [0mBasic Career Assessment[0m
-              [36m</button>[39m
             [36m</div>[39m
           [36m</div>[39m
-          [36m<form[39m
-            [33mclass[39m=[32m""[39m
-          [36m>[39m
-            [36m<label[39m
-              [33mclass[39m=[32m"form-label"[39m
-            [36m>[39m
-              [0mAPI Key:[0m
-            [36m</label>[39m
-            [36m<input[39m
-              [33mclass[39m=[32m"form-control"[39m
-              [33mplaceholder[39m=[32m"Insert API Key Here"[39m
-              [33mtype[39m=[32m"password"[39m
-            [36m/>[39m
-            [36m<br />[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mSubmit[0m
-            [36m</button>[39m
-          [36m</form>[39m
-          [36m<footer>[39m
-            [36m<p>[39m
-              [0mPari K. Shah[0m
-            [36m</p>[39m
-            [36m<p>[39m
-              [0mGrace Setzler[0m
-            [36m</p>[39m
-            [36m<p>[39m
-              [0mConnor Vitz[0m
-            [36m</p>[39m
-            [36m<p>[39m
-              [0mAndre Babik[0m
-            [36m</p>[39m
-          [36m</footer>[39m
         [36m</div>[39m
       [36m</div>[39m
     [36m</body>[39m
@@ -110,7 +110,7 @@ FAIL src/App.test.tsx
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
 All files           |   15.94 |    16.66 |    6.45 |   16.66 |                   
- App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 11,54-83,107      
+ App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 12,79-107,133     
  BasicCareer.tsx    |       0 |        0 |       0 |       0 | 16-88             
  DetailedCareer.tsx |    6.25 |      100 |       0 |    6.66 | 6-155             
  index.tsx          |       0 |      100 |     100 |       0 | 7-19              
@@ -119,7 +119,7 @@ All files           |   15.94 |    16.66 |    6.45 |   16.66 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.938 s
+Time:        2.919 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without

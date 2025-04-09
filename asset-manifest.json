@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/CISC275-finalproject-careerquiz/static/css/main.f855e6bc.css",
-    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.7249abb4.js",
+    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.ef4c5d42.js",
     "static/js/453.bad6c33a.chunk.js": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js",
+    "static/media/sphinx.jpg": "/CISC275-finalproject-careerquiz/static/media/sphinx.5ebbc232d38869a95f72.jpg",
     "index.html": "/CISC275-finalproject-careerquiz/index.html",
     "main.f855e6bc.css.map": "/CISC275-finalproject-careerquiz/static/css/main.f855e6bc.css.map",
-    "main.7249abb4.js.map": "/CISC275-finalproject-careerquiz/static/js/main.7249abb4.js.map",
+    "main.ef4c5d42.js.map": "/CISC275-finalproject-careerquiz/static/js/main.ef4c5d42.js.map",
     "453.bad6c33a.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.7249abb4.js"
+    "static/js/main.ef4c5d42.js"
   ]
 }
