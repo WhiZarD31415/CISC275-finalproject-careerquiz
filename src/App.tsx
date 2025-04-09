@@ -3,6 +3,7 @@ import './App.css';
 import { Button, Form } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
+import sphinxImage from './assets/sphinx.jpg';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -19,19 +20,25 @@ function App() {
     switch (currentPage) {
       case 'home':
         return (
-          <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-            {/* Use an <img> pointing to the external URL */}
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              minHeight: '100vh',
+              margin: 0,
+              padding: 0
+            }}
+          >
             <img
-              src="https://th.bing.com/th/id/OIG4.2ylqExNv2m_KA.uzB7MY?w=1024&h=1024&rs=1&pid=ImgDetMain"
+              src={sphinxImage}
               alt="Sphinx"
               style={{
                 position: 'absolute',
                 bottom: 0,
                 left: 0,
-                height: '66vh'
+                height: '90vh'
               }}
             />
-
             <div
               style={{
                 textAlign: 'right',
@@ -39,10 +46,7 @@ function App() {
                 marginTop: '5%'
               }}
             >
-              {/* Existing "Home Page" text retained */}
               <div style={{ color: 'white' }}>Home Page</div>
-
-              {/* Main title changed to ALL CAPS & bold Helvetica */}
               <h1
                 style={{
                   fontWeight: 'bold',
@@ -52,10 +56,8 @@ function App() {
                   marginTop: '20px'
                 }}
               >
-                THE SPHINX CAREER QUIZ
+                SPHINX CAREER QUIZ
               </h1>
-
-              {/* Subtitle still included; adjust or remove as needed */}
               <h2
                 style={{
                   fontStyle: 'italic',
@@ -64,18 +66,16 @@ function App() {
                   fontSize: '1.4em'
                 }}
               >
-                The best place to discover your dream job, today!
+                The best place to discover your dream job, today
               </h2>
-
               <p
                 style={{
                   color: 'white',
                   fontFamily: 'Helvetica, Arial, sans-serif'
                 }}
               >
-                Developed by Pari, Connor, Grace, and Andre.
+                Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
-
               <button onClick={() => setCurrentPage('detailed-career')}>
                 Detailed Career Assessment
               </button>
@@ -85,21 +85,19 @@ function App() {
             </div>
           </div>
         );
-
       case 'about':
         return <div>About Page</div>;
       case 'contact':
         return <div>Contact Page</div>;
-
-        case 'detailed-career':
-          return <DetailedCareer />;
-          case 'basic-career':
-            return <BasicCareer />;
+      case 'detailed-career':
+        return <DetailedCareer />;
+      case 'basic-career':
+        return <BasicCareer />;
       default:
         return <div>404 Page Not Found</div>;
     }
-  }; //switch to control which page renders
-  //sets the local storage item to the api key the user inputed
+  };
+
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
     window.location.reload();
@@ -110,11 +108,12 @@ function App() {
   }
 
   return (
-
     <div
       className="App"
       style={{
-        backgroundColor: '#021C31',
+        margin: 0,
+        padding: 0,
+        backgroundColor: '#0b1a2e',
         minHeight: '100vh',
         position: 'relative'
       }}
@@ -126,35 +125,28 @@ function App() {
           position: 'absolute',
           top: '10px',
           left: '10px',
-          zIndex: 10
+          zIndex: 10,
+          alignItems: 'center'
         }}
       >
         {currentPage !== 'home' && (
           <button onClick={() => setCurrentPage('home')}>🏠</button>
         )}
+        <Form style={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
+          <Form.Label style={{ color: 'white', marginRight: '5px' }}>API Key:</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Insert API Key Here"
+            onChange={changeKey}
+            style={{ maxWidth: '200px', marginRight: '5px' }}
+          />
+          <Button className="Submit-Button" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Form>
       </header>
 
-      <div style={{ paddingTop: '50px' }}>{renderPage()}</div>
-
-      <Form>
-        <Form.Label style={{ color: 'white' }}>API Key:</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Insert API Key Here"
-          onChange={changeKey}
-        />
-        <br />
-        <Button className="Submit-Button" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
-
-      <footer>
-        <p style={{ color: 'white' }}>Pari K. Shah</p>
-        <p style={{ color: 'white' }}>Grace Setzler</p>
-        <p style={{ color: 'white' }}>Connor Vitz</p>
-        <p style={{ color: 'white' }}>Andre Babik</p>
-      </footer>
+      <div>{renderPage()}</div>
     </div>
   );
 }
