@@ -1,27 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
+import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 
-interface Slider {
-    option: string,
-    value: string
-}
 
-interface BasicQuestionType {
-    description: string,
-    sliders: Slider[]
-};
 
 export function BasicCareer(): React.JSX.Element {
-    const init_sliders: Slider[] = [
-        { option: 'a', value: "0" },
-        { option: 'b', value: "0" },
-        { option: 'c', value: "0" },
-        { option: 'd', value: "0" }
-    ]
-    const init_question: BasicQuestionType = {description: "A, B, C, or D?", sliders: init_sliders};
-    const [question1, setQuestion1] = useState<BasicQuestionType>(init_question);
-    const [question2, setQuestion2] = useState<BasicQuestionType>(init_question);
+    const [questionBank, setQuestionBank] = useState<BasicQuestionType[]>(BasicQuestionSet);
+    const [question1, setQuestion1] = useState<BasicQuestionType>(questionBank[0]);
+    const [question2, setQuestion2] = useState<BasicQuestionType>(questionBank[1]);
 
     function updateQuestion1(option: string, event: React.ChangeEvent<HTMLInputElement>) {
         const new_sliders1: Slider[] = question1.sliders.map((slider: Slider): Slider => (slider.option === option) ? {option: slider.option, value: event.target.value} : slider);
