@@ -11,6 +11,13 @@ const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+//Color Pallet:
+// #062C43
+// #054569
+// #5591A9
+// #9CCDDC
+// #CED7E0
+
 
 function App() {
   const [key, setKey] = useState<string>(keyData);
@@ -30,10 +37,10 @@ function App() {
             }}
           >
             <img
-              src={sphinxImage}
-              alt="Sphinx"
+              src='/.moon.png'
+              alt="moon"
               style={{
-                position: 'absolute',
+                //position: 'absolute',
                 bottom: 0,
                 left: 0,
                 height: '90vh'
@@ -113,7 +120,7 @@ function App() {
       style={{
         margin: 0,
         padding: 0,
-        backgroundColor: '#0b1a2e',
+        backgroundColor: '#062C43',
         minHeight: '100vh',
         position: 'relative'
       }}

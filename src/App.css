@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+#questionHeader {
+  background-color: #5591A9;
+  text-align: left;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+}
+
+#detailQuestText {
+  color:white;
+  text-align: left;
+  padding-left:50;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
