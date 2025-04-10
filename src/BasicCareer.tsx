@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 
 interface Slider {
     option: string,
@@ -73,7 +73,6 @@ export function BasicCareer(): React.JSX.Element {
                                     width: "300px",
                                     height:"40px",
                                     padding:"10px",
-                                    outlineColor:'red',
                                     verticalAlign:'middle',
                                     paddingLeft:"20px"}}
                                 />
@@ -99,7 +98,6 @@ export function BasicCareer(): React.JSX.Element {
                                     width: "300px",
                                     height:"40px",
                                     padding:"10px",
-                                    outlineColor:'red',
                                     verticalAlign:'middle',
                                     paddingLeft:"20px"
                                     
@@ -113,6 +111,21 @@ export function BasicCareer(): React.JSX.Element {
                 </div>
             </div>
             <Button id="PageButton" onClick={()=>{newQuestions()}}>Submit Answer</Button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <div hidden={false}>
+                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily:'Garamond, serif'}}>
+                        <br></br>
+                        <h3 style={{fontWeight:'bold'}}>Results</h3>
+                        <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
+
+                        <p>Some results here. </p>
+                    </Card>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+            </div>
         </div>
     );
 };

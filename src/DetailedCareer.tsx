@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form, Row, Col} from 'react-bootstrap'
+import {Button, Form, Row, Col, Card} from 'react-bootstrap'
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
@@ -200,6 +200,19 @@ const DetailedCareer =() => {
             <br></br>
             <br></br>
             <br></br>
+
+            <div hidden={false}>
+                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily:'Garamond, serif'}}>
+                        <br></br>
+                        <h3 style={{fontWeight:'bold'}}>Results</h3>
+                        <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
+
+                        <p>Some results here. </p>
+                    </Card>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+            </div>
         </div>
     );
 };

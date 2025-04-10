@@ -43,7 +43,8 @@
 #questionHeader {
   background-color: #5591A9;
   text-align: left;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family:'Times', serif;
+  font-weight: bold;
   color: white;
 }
 
@@ -51,7 +52,6 @@
   color:white;
   text-align: left;
   padding-left:50px;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -64,6 +64,17 @@
   border-color: #062C43;
   height: 6vh;
   width: 35vh;
+  align-self: center;
+}
+
+#APIKeyButton {
+  color:white;
+  background-color: #5591A9;
+  outline-color: #61dafb;
+  outline-width: 0.5vh;
+  outline-style:inset;
+  border-color: #062C43;
+
   align-self: center;
 }
 

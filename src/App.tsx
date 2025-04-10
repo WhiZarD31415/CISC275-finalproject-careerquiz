@@ -4,7 +4,7 @@ import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
-import sphinxIcon from './assets/sphinxIcon.png';
+//import sphinxIcon from './assets/sphinxIcon.png';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -47,8 +47,7 @@ function App() {
                 top: 'absolute',
                 bottom: 0,
                 left: 0,
-                //height: '30vh',
-                width:'220vh'
+                width:'218vh'
               }}
             />
           <Row>
@@ -60,7 +59,7 @@ function App() {
               }}
             ></div>
               <Col>
-              <div style={{ color: 'white' }}>Home Page</div>
+              <div style={{ color: 'white' }}></div>
               
               <h1
                 style={{
@@ -80,7 +79,7 @@ function App() {
                 style={{
                   fontStyle: 'italic',
                   color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  fontFamily: 'Franklin Gothic, Arial, sans-serif',
                   fontSize: '1.4em'
                 }}
               >
@@ -111,9 +110,7 @@ function App() {
                 Text of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
                 <br></br>
                 <br></br>
-                Take the Basic Quiz now!:
-                <br></br>
-                <br></br>
+                <p style={{fontWeight:'bolder'}}>Take the Basic Quiz now!:</p>
               <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
                 Basic Career Assessment
               </Button>
@@ -124,9 +121,8 @@ function App() {
                 Text of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
                 <br></br>
                 <br></br>
-                Take the Detailed Quiz now!:
-                <br></br>
-                <br></br>
+                <p style={{fontWeight:'bolder'}}>Take the Detailed Quiz now!:</p>
+
               <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
                 Detailed Career Assessment
               </Button>
@@ -199,7 +195,7 @@ function App() {
             onChange={changeKey}
             style={{ maxWidth: '200px', marginRight: '5px' }}
           />
-          <Button className="Submit-Button" onClick={handleSubmit}>
+          <Button className="Submit-Button" onClick={handleSubmit} id='APIKeyButton'>
             Submit
           </Button>
         </Form>
