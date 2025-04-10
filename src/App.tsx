@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
-import sphinxImage from './assets/sphinx.jpg';
+import moon from './assets/moon.png';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -27,6 +27,7 @@ function App() {
     switch (currentPage) {
       case 'home':
         return (
+          
           <div
             style={{
               position: 'relative',
@@ -36,35 +37,43 @@ function App() {
               padding: 0
             }}
           >
+            
+           
             <img
-              src='/.moon.png'
+              src={moon}
               alt="moon"
               style={{
-                //position: 'absolute',
+                top: 'absolute',
                 bottom: 0,
                 left: 0,
-                height: '90vh'
+                //height: '30vh',
+                width:'220vh'
               }}
             />
+          <Row>
             <div
               style={{
-                textAlign: 'right',
+                //textAlign: 'right',
                 marginRight: '5%',
                 marginTop: '5%'
               }}
-            >
+            ></div>
+              <Col>
               <div style={{ color: 'white' }}>Home Page</div>
+              
               <h1
                 style={{
                   fontWeight: 'bold',
                   fontSize: '3em',
                   color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  fontFamily: 'Garamond',
+                  textShadow: '2px 2px 2px black',
                   marginTop: '20px'
                 }}
               >
                 SPHINX CAREER QUIZ
               </h1>
+              <hr style={{color:'white', margin:30}}></hr>
               <h2
                 style={{
                   fontStyle: 'italic',
@@ -83,14 +92,44 @@ function App() {
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
-              <button onClick={() => setCurrentPage('detailed-career')}>
-                Detailed Career Assessment
-              </button>
-              <button onClick={() => setCurrentPage('basic-career')}>
+              </Col>
+              <Col>
+              <Row>
+              <Col style={{color:'white'}}>
+              <Card id='QuizCard'>
+                Text of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                <br></br>
+                <br></br>
+                Take the Basic Quiz now!:
+                <br></br>
+                <br></br>
+              <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
                 Basic Career Assessment
-              </button>
-            </div>
+              </Button>
+              </Card>
+              </Col>
+                <Col style={{color:'white'}}>
+                <Card id='QuizCard'>
+                Text of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                <br></br>
+                <br></br>
+                Take the Detailed Quiz now!:
+                <br></br>
+                <br></br>
+              <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
+                Detailed Career Assessment
+              </Button>
+              </Card>
+              </Col>
+                
+              </Row>
+              </Col>
+            
+            
+            </Row>
           </div>
+          
+      
         );
       case 'about':
         return <div>About Page</div>;
@@ -104,6 +143,7 @@ function App() {
         return <div>404 Page Not Found</div>;
     }
   };
+  
 
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));

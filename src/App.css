@@ -1,3 +1,6 @@
+
+
+
 .App {
   text-align: center;
 }
@@ -49,4 +52,27 @@
   text-align: left;
   padding-left:50;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#PageButton {
+  color:white;
+  background-color: #5591A9;
+  outline-color: #61dafb;
+  outline-width: 1vh;
+  outline-style:inset;
+  border-color: #062C43;
+  height: 6vh;
+  width: 35vh;
+  align-self: center;
+}
+
+#QuizCard {
+  color:white;
+  background-color:#054569;
+  height: 50vh;
+  width: 40vh;
+  padding: 5%;
+  border: #5591A9;
+  border-width: 1vh;
+  border-style: inset;
 }
