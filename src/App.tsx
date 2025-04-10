@@ -31,7 +31,7 @@ function App() {
           
           <div
             style={{
-              position: 'relative',
+              //position: 'relative',
               width: '100%',
               minHeight: '100vh',
               margin: 0,

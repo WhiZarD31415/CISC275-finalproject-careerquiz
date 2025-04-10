@@ -57,7 +57,7 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </div>
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
-                <div id="question" style={{padding: "10px", paddingRight:"200px", color:'white'}}>
+                <div id="question" style={{padding: "10px", paddingRight:"200px", color:'white', fontFamily:'Franklin Gothic, sans-serif'}}>
                     <h3>{question1.description}</h3>
                     <div>
                         {question1.sliders.map((slider: Slider) => (
@@ -81,7 +81,7 @@ export function BasicCareer(): React.JSX.Element {
                     </div>
                 </div>
                 
-                <div id="question" style={{padding: "10px", paddingLeft:"200px", color:"white"}}>
+                <div id="question" style={{padding: "10px", paddingLeft:"200px", color:"white",fontFamily:'Franklin Gothic, sans-serif'}}>
                     <h3>{question2.description}</h3>
                     <div>
                         {question2.sliders.map((slider: Slider) => (

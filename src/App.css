@@ -3,6 +3,9 @@
 
 .App {
   text-align: center;
+  /*To fix: This got rid of the vertical and horizontal scrollbars,
+   but now there's a white bar on the left side*/
+  max-width: 1520px;
 }
 
 .App-logo {
@@ -43,9 +46,12 @@
 #questionHeader {
   background-color: #5591A9;
   text-align: left;
-  font-family:'Times', serif;
+  font-family:'Franklin Gothic', sans-serif;
   font-weight: bold;
   color: white;
+  outline-style: outset;
+  outline-color: #062C43;
+  outline-width: 1vh;
 }
 
 #detailQuestText {
@@ -60,11 +66,12 @@
   background-color: #5591A9;
   outline-color: #61dafb;
   outline-width: 1vh;
-  outline-style:inset;
+  outline-style:outset;
   border-color: #062C43;
   height: 6vh;
   width: 35vh;
   align-self: center;
+  font-family:'Franklin Gothic', sans-serif
 }
 
 #APIKeyButton {
@@ -72,7 +79,7 @@
   background-color: #5591A9;
   outline-color: #61dafb;
   outline-width: 0.5vh;
-  outline-style:inset;
+  outline-style:outset;
   border-color: #062C43;
 
   align-self: center;
