@@ -202,9 +202,9 @@ const DetailedCareer =() => {
             <br></br>
 
             <div hidden={false}>
-                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily:'Garamond, serif'}}>
+                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily: 'Helvetica, sans-serif'}}>
                         <br></br>
-                        <h3 style={{fontWeight:'bold'}}>Results</h3>
+                        <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
                         <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
 
                         <p>Some results here. </p>

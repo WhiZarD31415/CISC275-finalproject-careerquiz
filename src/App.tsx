@@ -93,15 +93,7 @@ function App() {
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
-              {/* <img
-              src={sphinxIcon}
-              alt="sphinx"
-              style={{
-                height:'40vh',
-                width:'39vh',
-                
 
-              }}></img> */}
               </Col>
               <Col>
               <Row>
@@ -110,7 +102,7 @@ function App() {
                 Text of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
                 <br></br>
                 <br></br>
-                <p style={{fontWeight:'bolder'}}>Take the Basic Quiz now!:</p>
+                <p style={{fontWeight:'bolder'}}>Take the Basic Quiz now! :</p>
               <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
                 Basic Career Assessment
               </Button>
@@ -121,7 +113,7 @@ function App() {
                 Text of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
                 <br></br>
                 <br></br>
-                <p style={{fontWeight:'bolder'}}>Take the Detailed Quiz now!:</p>
+                <p style={{fontWeight:'bolder'}}>Take the Detailed Quiz now! :</p>
 
               <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
                 Detailed Career Assessment
