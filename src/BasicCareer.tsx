@@ -46,7 +46,16 @@ export function BasicCareer(): React.JSX.Element {
 
     return (
         <div>
+            <div style={{
+                backgroundColor:'#054569', 
+                color: 'white', 
+                fontFamily:'Garamond, serif',
+                textShadow: '2px 2px 2px black',}}>
+            <br></br>
             <h1>Basic Career Assessment</h1>
+            <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
+            <br></br>
+            </div>
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
                 <div id="question" style={{padding: "10px"}}>
                     <h3>{question1.description}</h3>
@@ -85,7 +94,7 @@ export function BasicCareer(): React.JSX.Element {
                     </div>
                 </div>
             </div>
-            <Button onClick={()=>{newQuestions()}}>Submit Answer</Button>
+            <Button id="PageButton" onClick={()=>{newQuestions()}}>Submit Answer</Button>
         </div>
     );
 };

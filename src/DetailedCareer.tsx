@@ -28,28 +28,42 @@ const DetailedCareer =() => {
         //TEMPORARY: All the answers are listed at the bottom for testing purposes
         //TEMPORARY: The 'Get Results' button doesn't do anything yet, but it is disabled if not all questions are answered
         <div>
-            <div style={{backgroundColor:'#054569', color: 'white'}}>
-            <br></br>
-            {' '}
-            <h1>Detailed Career Assessment</h1>
-            <br></br>
+            <div style={{
+                backgroundColor:'#054569', 
+                color: 'white', 
+                verticalAlign:'center', 
+                fontFamily:'Garamond, serif',
+                textShadow: '2px 2px 2px black',}}>
+                <br></br>
+                <h1>Detailed Career Assessment</h1>
+                <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
+                <br></br> 
             </div>
+            <div style={{color:'white'}}>
             <br></br>
             <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
             <br></br>
             <br></br>
                 Progress: {detailedProgess}/8
-                <br></br>
-                <br></br>
-                <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            </div>
             <Form.Group controlID="formDQuestions12" as={Row} >
             
                 <Row>
                     <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 1</h5>
+                    <div id="questionHeader" 
+                    style={{
+                        marginLeft:30, 
+                        marginRight: 120}}>
+                    <h5 style={{
+                        paddingTop:20, 
+                        paddingBottom:20, 
+                        marginLeft:10
+                        }}>Question 1</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[0]}
                         onChange = {(e)=>updateDetailed(0,e.target.value)}
@@ -60,7 +74,7 @@ const DetailedCareer =() => {
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 2</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[1]}
                         onChange = {(e)=>updateDetailed(1,e.target.value)}
@@ -70,7 +84,8 @@ const DetailedCareer =() => {
                     <div>
                         <br></br>
                         <br></br>
-                    {'   '}
+                        <br></br>
+                        <br></br>
                     </div>
                 </Row>
 
@@ -79,7 +94,7 @@ const DetailedCareer =() => {
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 3</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[2]}
                         onChange = {(e)=>updateDetailed(2,e.target.value)}
@@ -90,7 +105,7 @@ const DetailedCareer =() => {
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 4</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[3]}
                         onChange = {(e)=>updateDetailed(3,e.target.value)}
@@ -100,7 +115,8 @@ const DetailedCareer =() => {
                     <div>
                         <br></br>
                         <br></br>
-                    {'   '}
+                        <br></br>
+                        <br></br>
                     </div>
                 </Row>
 
@@ -120,7 +136,7 @@ const DetailedCareer =() => {
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 6</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[5]}
                         onChange = {(e)=>updateDetailed(5,e.target.value)}
@@ -130,7 +146,8 @@ const DetailedCareer =() => {
                     <div>
                         <br></br>
                         <br></br>
-                    {'   '}
+                        <br></br>
+                        <br></br>
                     </div>
                 </Row>
 
@@ -139,7 +156,7 @@ const DetailedCareer =() => {
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 7</h5>
                     </div>
-                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[6]}
                         onChange = {(e)=>updateDetailed(6,e.target.value)}
@@ -149,7 +166,7 @@ const DetailedCareer =() => {
                     <Col>
                     <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
                     <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 8</h5>
-                    </div>                    <p style={{textAlign:'left', paddingLeft:50}}>Question Text Here</p>
+                    </div>                    <p id="detailQuestText">Question Text Here</p>
                     <Form.Control 
                         value = {detailedQuestions[7]}
                         onChange = {(e)=>updateDetailed(7,e.target.value)}
@@ -159,13 +176,14 @@ const DetailedCareer =() => {
                     <div>
                         <br></br>
                         <br></br>
-                    {'   '}
+                        <br></br>
+                        <br></br>
                     </div>
                 </Row>
                 
                
             </Form.Group>
-            <div>
+            <div style={{color:'white'}}>
             <br></br>
             <br></br>
             <br></br>
@@ -176,6 +194,7 @@ const DetailedCareer =() => {
             <br></br>
             </div>
             <Button 
+                id="PageButton"
                 disabled = {detailedProgess!==8}
             >Get Results</Button>
             <br></br>

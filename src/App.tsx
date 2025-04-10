@@ -4,6 +4,7 @@ import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
+import sphinxIcon from './assets/sphinxIcon.png';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -66,7 +67,7 @@ function App() {
                   fontWeight: 'bold',
                   fontSize: '3em',
                   color: 'white',
-                  fontFamily: 'Garamond',
+                  fontFamily: 'Garamond, serif',
                   textShadow: '2px 2px 2px black',
                   marginTop: '20px'
                 }}
@@ -92,6 +93,15 @@ function App() {
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
+              <img
+              src={sphinxIcon}
+              alt="sphinx"
+              style={{
+                height:'40vh',
+                width:'39vh',
+                
+
+              }}></img>
               </Col>
               <Col>
               <Row>
@@ -127,6 +137,7 @@ function App() {
             
             
             </Row>
+            
           </div>
           
       
