@@ -69,7 +69,8 @@ function App() {
                   color: 'white',
                   fontFamily: 'Garamond, serif',
                   textShadow: '2px 2px 2px black',
-                  marginTop: '20px'
+                  marginTop: '20px',
+                  
                 }}
               >
                 SPHINX CAREER QUIZ
@@ -93,7 +94,7 @@ function App() {
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
-              <img
+              {/* <img
               src={sphinxIcon}
               alt="sphinx"
               style={{
@@ -101,7 +102,7 @@ function App() {
                 width:'39vh',
                 
 
-              }}></img>
+              }}></img> */}
               </Col>
               <Col>
               <Row>

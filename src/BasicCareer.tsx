@@ -57,7 +57,7 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </div>
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
-                <div id="question" style={{padding: "10px"}}>
+                <div id="question" style={{padding: "10px", paddingRight:"200px", color:'white'}}>
                     <h3>{question1.description}</h3>
                     <div>
                         {question1.sliders.map((slider: Slider) => (
@@ -69,13 +69,20 @@ export function BasicCareer(): React.JSX.Element {
                                 step="1"
                                 onChange={(event) => updateQuestion1(slider.option, event)}
                                 value={slider.value}
-                                style={{width: "200px"}}
+                                style={{
+                                    width: "300px",
+                                    height:"40px",
+                                    padding:"10px",
+                                    outlineColor:'red',
+                                    verticalAlign:'middle',
+                                    paddingLeft:"20px"}}
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
-                <div id="question" style={{padding: "10px"}}>
+                
+                <div id="question" style={{padding: "10px", paddingLeft:"200px", color:"white"}}>
                     <h3>{question2.description}</h3>
                     <div>
                         {question2.sliders.map((slider: Slider) => (
@@ -85,9 +92,20 @@ export function BasicCareer(): React.JSX.Element {
                                 min="0"
                                 max="5"
                                 step="1"
+                                
                                 onChange={(event) => updateQuestion2(slider.option, event)}
                                 value={slider.value}
-                                style={{width: "200px"}}
+                                style={{
+                                    width: "300px",
+                                    height:"40px",
+                                    padding:"10px",
+                                    outlineColor:'red',
+                                    verticalAlign:'middle',
+                                    paddingLeft:"20px"
+                                    
+                                    
+
+                                }}
                                 />
                             </div>
                         ))}
