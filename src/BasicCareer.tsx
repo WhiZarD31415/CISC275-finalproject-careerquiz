@@ -116,12 +116,12 @@ export function BasicCareer(): React.JSX.Element {
                     </div>
                 </div>
             </div>
-            <Button id="PageButton" onClick={()=>{newQuestions()}}>Submit Answer</Button>
+            <Button  onClick={()=>{newQuestions()}} variant="success">Submit Answer</Button>
             <br></br>
             <br></br>
             <br></br>
             <div hidden={false}>
-                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily:'Helvetica, sans-serif'}}>
+                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px"}}>
                         <br></br>
                         <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
                         <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>

@@ -1,220 +1,167 @@
 import React, {useState} from 'react';
-import {Button, Form, Row, Col, Card} from 'react-bootstrap'
+import {Button, Form, Card, ProgressBar} from 'react-bootstrap'
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
-    const [detailedQuestions, changeDetailed] = useState<string[]>(['','','','','','','',''])
-    //detailedProgress will keep track of how many questions have been answered
-        //This is will be used for the progress bar, as well as determining when the user can hit "Submit"
-    let detailedProgess = (detailedQuestions.filter((item:string):boolean=>item!=='')).length
-
-    //
-    function updateDetailed(index:number, change: string){
-        let changedAnswers = [...detailedQuestions]
-        changedAnswers[index] = change
-        changeDetailed(changedAnswers)
-    }
+    const [detailedQuestions, setDetailedQuestions] = useState<string[]>(['','','','','','','',''])
+    //Tracks the current question index
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
 
 
+    const questionText = [
+        "Describe a task or activity you enjoy and find deeply engaging or satisfying.",
+        "What would you consider to be your three greatest strengths and three biggest growth areas?",
+        "What is your definition of a healthy work-life balance?",
+        "If money weren't a concern, what kind of job would you pursue? What draws you to it?",
+        "What impact do you intend your career to have on society or the people around you?",
+        "Would you thrive more in stability or in new challenges? What makes that environment feel right for you?",
+        "Describe a time you faced a tough challenge. What made it difficult, and how did you work through it?",
+        "When you experience failure or setbacks, how do you typically respond?"
+    ];
+        
+    const updateAnswer = (index: number, value: string) => {
+        const updated = [...detailedQuestions];
+        updated[index] = value;
+        setDetailedQuestions(updated);
+    };
+        
+    const goToNext = () => {
+        if (currentIndex < detailedQuestions.length - 1) {
+            setCurrentIndex(currentIndex + 1);
+        }
+    };
+        
+    const goToPrev = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        }
+    };
+        
+    const allAnswered = detailedQuestions.every(answer => answer.trim() !== '');
+        
+    const handleSubmit = () => {
+        console.log("Submitted responses:", detailedQuestions);
+            // Add actual submit logic here (e.g., API call)
+    };
 
-   
+
+    const progress = (detailedQuestions.filter(ans => ans.trim() !== '').length / detailedQuestions.length) * 100;
+
 
     return (
-        //After the heading with the title, instructions, and progress, the questions are divided into 4 rows of 2
-        //Each question consists of a label, the actual text of the question, and a place for the user to put their answer
-        //Changing a text box to something other than an empty string will make detailedProgress increase by 1
-            //Similarly, changing the box back to an empty string will make detailedProgress decrease by 1
-
-        //TEMPORARY: All the answers are listed at the bottom for testing purposes
-        //TEMPORARY: The 'Get Results' button doesn't do anything yet, but it is disabled if not all questions are answered
         <div>
-            <div style={{
-                backgroundColor:'#054569', 
-                color: 'white', 
-                verticalAlign:'center', 
-                fontFamily:'Garamond, serif',
-                textShadow: '2px 2px 2px black',}}>
-                <br></br>
-                <h1>Detailed Career Assessment</h1>
-                <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
-                <br></br> 
-            </div>
-            <div style={{color:'white'}}>
+        <div style={{
+            backgroundColor:'#054569', 
+            color: 'white', 
+            verticalAlign:'center', 
+            fontFamily:'Garamond, serif',
+            textShadow: '2px 2px 2px black',}}>
             <br></br>
-            <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
-            <br></br>
-            <br></br>
-                Progress: {detailedProgess}/8
-            <br></br>
-            <br></br>
-            <br></br>
-            </div>
-            <Form.Group controlID="formDQuestions12" as={Row} >
-            
-                <Row>
-                    <Col>
-                    <div id="questionHeader" 
-                    style={{
-                        marginLeft:30, 
-                        marginRight: 120}}>
-                    <h5 style={{
-                        paddingTop:20, 
-                        paddingBottom:20, 
-                        marginLeft:10
-                        }}>Question 1</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[0]}
-                        onChange = {(e)=>updateDetailed(0,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 2</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[1]}
-                        onChange = {(e)=>updateDetailed(1,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                    </div>
-                </Row>
-
-                <Row>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 3</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[2]}
-                        onChange = {(e)=>updateDetailed(2,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 4</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[3]}
-                        onChange = {(e)=>updateDetailed(3,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                    </div>
-                </Row>
-
-                <Row>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 5</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[4]}
-                        onChange = {(e)=>updateDetailed(4,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 6</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[5]}
-                        onChange = {(e)=>updateDetailed(5,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                    </div>
-                </Row>
-
-                <Row>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 7</h5>
-                    </div>
-                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[6]}
-                        onChange = {(e)=>updateDetailed(6,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <Col>
-                    <div id="questionHeader" style={{marginLeft:30, marginRight: 120}}>
-                    <h5 style={{paddingTop:20, paddingBottom:20, marginLeft:10}}>Question 8</h5>
-                    </div>                    <p id="detailQuestText">Question Text Here</p>
-                    <Form.Control 
-                        value = {detailedQuestions[7]}
-                        onChange = {(e)=>updateDetailed(7,e.target.value)}
-                        style={{marginTop:30, marginLeft:50, width:500, height:50}}>
-                    </Form.Control>
-                    </Col>
-                    <div>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                    </div>
-                </Row>
-                
-               
-            </Form.Group>
-            <div style={{color:'white'}}>
-            <br></br>
-            <br></br>
-            <br></br>
-            {'    '}
-                Answers: {detailedQuestions.join(' ')}
-            <br></br>
-            <br></br>
-            <br></br>
-            </div>
-            <Button 
-                id="PageButton"
-                disabled = {detailedProgess!==8}
-            >Get Results</Button>
-            <br></br>
-            <br></br>
-            <br></br>
-
-            <div hidden={false}>
-                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px", backgroundColor:'#9CCDDC', color:'black', fontFamily: 'Helvetica, sans-serif'}}>
-                        <br></br>
-                        <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
-                        <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
-
-                        <p>Some results here. </p>
-                    </Card>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-            </div>
+            <h1>Detailed Career Assessment</h1>
+            <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
+            <br></br> 
         </div>
-    );
-};
+        <div style={{color:'white'}}>
+        <br></br>
+        <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
+        <br></br>
+        <br></br>
+        </div>
+        <div style={{ padding: '15px', textAlign: 'center'}}>
+          <div style={{ textAlign: 'center', 
+                        backgroundColor: '#5591A9', 
+                        marginTop: '40px', 
+                        marginBottom: '20px', 
+                        marginLeft:'300px',
+                        marginRight:'300px',
+                        padding: '30px', 
+                        outlineColor:"#054569",
+                        outlineWidth:'1vh', 
+                        outlineStyle:'inset'
+                         }}>
+            <h5 style={{fontFamily:'Franklin Gothic, sans-serif',
+                        fontSize:'24px'}}>Question {currentIndex + 1}</h5>
+          </div>
+    
+          <p style={{ textAlign: 'center', color: 'white', fontSize: '16px', marginBottom: '20px', fontFamily:'Helvetica, sans-serif' }}>
+            {questionText[currentIndex]}
+          </p>
+    
+          <Form.Control
+            as="textarea"
+            rows={4}
+            value={detailedQuestions[currentIndex]}
+            onChange={(e) => updateAnswer(currentIndex, e.target.value)}
+            style={{ width: '100%', maxWidth: '600px', marginBottom: '30px', margin: '0 auto'}}
+          />
 
+    
+          <div style={{ display: 'flex', gap: '20px', marginTop: '20px', justifyContent: 'center' }}>
+            {currentIndex > 0 && (
+              <Button variant="secondary" onClick={goToPrev} 
+              style={{
+                fontFamily:'Franklin Gothic, sans-serif',
+                outlineWidth: '0.5vh',
+                outlineStyle:'outset'
+        }}>
+                ← Back
+              </Button>
+            )}
+    
+            {currentIndex < detailedQuestions.length - 1 ? (
+              <Button
+                variant="primary"
+                onClick={goToNext}
+                disabled={detailedQuestions[currentIndex].trim() === ''}
+                style={{backgroundColor: '#5591A9',
+                        fontFamily:'Franklin Gothic, sans-serif',
+                        outlineColor: '#61dafb',
+                        outlineWidth: '0.5vh',
+                        outlineStyle:'outset'
+                }}
+                
+              >
+                Next →
+              </Button>
+            ) : (
+              <Button
+                variant="success"
+                onClick={handleSubmit}
+                disabled={!allAnswered}
+              >
+                Submit
+              </Button>
+            )}
+          </div>
+
+        <ProgressBar
+            now={progress}
+            label={`${Math.round(progress)}%`}
+            variant="info"
+            animated
+            style={{ marginTop: '30px', marginBottom: '20px', height: '20px' }}
+        />
+
+        </div>
+        <br></br>
+                    <br></br>
+                    <br></br>
+                    <div hidden={false}>
+                            <Card id="Results" style={{marginLeft:"250px",marginRight:"250px" }}>
+                                <br></br>
+                                <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
+                                <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
+        
+                                <p>Some results here. </p>
+                            </Card>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+        </div>
+        </div>
+        
+      );
+      
+    };
+    
 export default DetailedCareer;

@@ -91,7 +91,12 @@
   height: 50vh;
   width: 40vh;
   padding: 5%;
-  border: #5591A9;
+  border: #062C43;
   border-width: 1vh;
   border-style: inset;
 }
+
+#Results {
+  background-color:#9CCDDC; 
+  color:'black';
+  font-family:Helvetica, sans-serif;}
