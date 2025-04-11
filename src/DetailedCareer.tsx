@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form,  ProgressBar} from 'react-bootstrap'
+import {Button, Form, Card, ProgressBar} from 'react-bootstrap'
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
