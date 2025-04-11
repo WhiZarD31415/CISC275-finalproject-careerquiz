@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
-import sphinxImage from './assets/sphinx.jpg';
+import moon from './assets/moon.png';
+//import sphinxIcon from './assets/sphinxIcon.png';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -11,6 +12,13 @@ const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+//Color Pallet:
+// #062C43
+// #054569
+// #5591A9
+// #9CCDDC
+// #CED7E0
+
 
 function App() {
   const [key, setKey] = useState<string>(keyData);
@@ -20,49 +28,58 @@ function App() {
     switch (currentPage) {
       case 'home':
         return (
+          
           <div
             style={{
-              position: 'relative',
+              //position: 'relative',
               width: '100%',
               minHeight: '100vh',
               margin: 0,
               padding: 0
             }}
           >
+            
+           
             <img
-              src={sphinxImage}
-              alt="Sphinx"
+              src={moon}
+              alt="moon"
               style={{
-                position: 'absolute',
+                top: 'absolute',
                 bottom: 0,
                 left: 0,
-                height: '90vh'
+                width:'218vh'
               }}
             />
+          <Row>
             <div
               style={{
-                textAlign: 'right',
+                //textAlign: 'right',
                 marginRight: '5%',
                 marginTop: '5%'
               }}
-            >
-              <div style={{ color: 'white' }}>Home Page</div>
+            ></div>
+              <Col>
+              <div style={{ color: 'white' }}></div>
+              
               <h1
                 style={{
                   fontWeight: 'bold',
                   fontSize: '3em',
                   color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif',
-                  marginTop: '20px'
+                  fontFamily: 'Garamond, serif',
+                  textShadow: '2px 2px 2px black',
+                  marginTop: '20px',
+                  
                 }}
               >
                 SPHINX CAREER QUIZ
               </h1>
+              <hr style={{color:'white', margin:30}}></hr>
               <h2
                 style={{
                   fontStyle: 'italic',
                   color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  fontFamily: 'Franklin Gothic, Arial, sans-serif',
                   fontSize: '1.4em'
                 }}
               >
@@ -76,14 +93,43 @@ function App() {
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
               </p>
-              <button onClick={() => setCurrentPage('detailed-career')}>
-                Detailed Career Assessment
-              </button>
-              <button onClick={() => setCurrentPage('basic-career')}>
+
+              </Col>
+              <Col>
+              <Row>
+              <Col style={{color:'white'}}>
+              <Card id='QuizCard'>
+                Text of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                <br></br>
+                <br></br>
+                <p style={{fontWeight:'bolder'}}>Take the Basic Quiz now! :</p>
+              <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
                 Basic Career Assessment
-              </button>
-            </div>
+              </Button>
+              </Card>
+              </Col>
+                <Col style={{color:'white'}}>
+                <Card id='QuizCard'>
+                Text of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                <br></br>
+                <br></br>
+                <p style={{fontWeight:'bolder'}}>Take the Detailed Quiz now! :</p>
+
+              <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
+                Detailed Career Assessment
+              </Button>
+              </Card>
+              </Col>
+                
+              </Row>
+              </Col>
+            
+            
+            </Row>
+            
           </div>
+          
+      
         );
       case 'about':
         return <div>About Page</div>;
@@ -97,6 +143,7 @@ function App() {
         return <div>404 Page Not Found</div>;
     }
   };
+  
 
   function handleSubmit() {
     localStorage.setItem(saveKeyData, JSON.stringify(key));
@@ -113,7 +160,7 @@ function App() {
       style={{
         margin: 0,
         padding: 0,
-        backgroundColor: '#0b1a2e',
+        backgroundColor: '#062C43',
         minHeight: '100vh',
         position: 'relative'
       }}
@@ -140,7 +187,7 @@ function App() {
             onChange={changeKey}
             style={{ maxWidth: '200px', marginRight: '5px' }}
           />
-          <Button className="Submit-Button" onClick={handleSubmit}>
+          <Button className="Submit-Button" onClick={handleSubmit} id='APIKeyButton'>
             Submit
           </Button>
         </Form>

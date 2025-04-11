@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Form, ProgressBar} from 'react-bootstrap'
+import {Button, Form, Card, ProgressBar} from 'react-bootstrap'
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
@@ -49,13 +49,41 @@ const DetailedCareer =() => {
 
 
     return (
-        
+        <div>
+        <div style={{
+            backgroundColor:'#054569', 
+            color: 'white', 
+            verticalAlign:'center', 
+            fontFamily:'Garamond, serif',
+            textShadow: '2px 2px 2px black',}}>
+            <br></br>
+            <h1>Detailed Career Assessment</h1>
+            <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
+            <br></br> 
+        </div>
+        <div style={{color:'white'}}>
+        <br></br>
+        <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
+        <br></br>
+        <br></br>
+        </div>
         <div style={{ padding: '15px', textAlign: 'center'}}>
-          <div style={{ textAlign: 'center', backgroundColor: '#A4C2F4', marginTop: '40px', marginBottom: '20px', padding: '30px' }}>
-            <h5>Question {currentIndex + 1}</h5>
+          <div style={{ textAlign: 'center', 
+                        backgroundColor: '#5591A9', 
+                        marginTop: '40px', 
+                        marginBottom: '20px', 
+                        marginLeft:'300px',
+                        marginRight:'300px',
+                        padding: '30px', 
+                        outlineColor:"#054569",
+                        outlineWidth:'1vh', 
+                        outlineStyle:'inset'
+                         }}>
+            <h5 style={{fontFamily:'Franklin Gothic, sans-serif',
+                        fontSize:'24px'}}>Question {currentIndex + 1}</h5>
           </div>
     
-          <p style={{ textAlign: 'center', color: 'white', fontSize: '16px', marginBottom: '20px' }}>
+          <p style={{ textAlign: 'center', color: 'white', fontSize: '16px', marginBottom: '20px', fontFamily:'Helvetica, sans-serif' }}>
             {questionText[currentIndex]}
           </p>
     
@@ -64,13 +92,18 @@ const DetailedCareer =() => {
             rows={4}
             value={detailedQuestions[currentIndex]}
             onChange={(e) => updateAnswer(currentIndex, e.target.value)}
-            style={{ width: '100%', maxWidth: '600px', marginBottom: '30px', margin: '0 auto' }}
+            style={{ width: '100%', maxWidth: '600px', marginBottom: '30px', margin: '0 auto'}}
           />
 
     
-          <div style={{ display: 'flex', gap: '10px', marginTop: '20px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '20px', marginTop: '20px', justifyContent: 'center' }}>
             {currentIndex > 0 && (
-              <Button variant="secondary" onClick={goToPrev}>
+              <Button variant="secondary" onClick={goToPrev} 
+              style={{
+                fontFamily:'Franklin Gothic, sans-serif',
+                outlineWidth: '0.5vh',
+                outlineStyle:'outset'
+        }}>
                 ← Back
               </Button>
             )}
@@ -80,6 +113,13 @@ const DetailedCareer =() => {
                 variant="primary"
                 onClick={goToNext}
                 disabled={detailedQuestions[currentIndex].trim() === ''}
+                style={{backgroundColor: '#5591A9',
+                        fontFamily:'Franklin Gothic, sans-serif',
+                        outlineColor: '#61dafb',
+                        outlineWidth: '0.5vh',
+                        outlineStyle:'outset'
+                }}
+                
               >
                 Next →
               </Button>
@@ -97,12 +137,31 @@ const DetailedCareer =() => {
         <ProgressBar
             now={progress}
             label={`${Math.round(progress)}%`}
-            variant="Dark"
+            variant="info"
+            animated
             style={{ marginTop: '30px', marginBottom: '20px', height: '20px' }}
         />
 
         </div>
+        <br></br>
+                    <br></br>
+                    <br></br>
+                    <div hidden={false}>
+                            <Card id="Results" style={{marginLeft:"250px",marginRight:"250px" }}>
+                                <br></br>
+                                <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
+                                <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
+        
+                                <p>Some results here. </p>
+                            </Card>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+        </div>
+        </div>
+        
       );
+      
     };
     
 export default DetailedCareer;

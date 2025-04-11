@@ -1,5 +1,11 @@
+
+
+
 .App {
   text-align: center;
+  /*To fix: This got rid of the vertical and horizontal scrollbars,
+   but now there's a white bar on the left side*/
+  max-width: 1520px;
 }
 
 .App-logo {
@@ -36,3 +42,61 @@
     transform: rotate(360deg);
   }
 }
+
+#questionHeader {
+  background-color: #5591A9;
+  text-align: left;
+  font-family:'Franklin Gothic', sans-serif;
+  font-weight: bold;
+  color: white;
+  outline-style: outset;
+  outline-color: #062C43;
+  outline-width: 1vh;
+}
+
+#detailQuestText {
+  color:white;
+  text-align: left;
+  padding-left:50px;
+}
+
+
+#PageButton {
+  color:white;
+  background-color: #5591A9;
+  outline-color: #61dafb;
+  outline-width: 1vh;
+  outline-style:outset;
+  border-color: #062C43;
+  height: 6vh;
+  width: 35vh;
+  align-self: center;
+  font-family:'Franklin Gothic', sans-serif
+}
+
+#APIKeyButton {
+  color:white;
+  background-color: #5591A9;
+  outline-color: #61dafb;
+  outline-width: 0.5vh;
+  outline-style:outset;
+  border-color: #062C43;
+
+  align-self: center;
+}
+
+#QuizCard {
+  color:white;
+  background-color:#054569;
+  height: 50vh;
+  width: 40vh;
+  padding: 5%;
+  border: #062C43;
+  border-width: 1vh;
+  border-style: inset;
+}
+
+#Results {
+  background-color:#9CCDDC; 
+  color:'black';
+  font-family:Helvetica, sans-serif;}
