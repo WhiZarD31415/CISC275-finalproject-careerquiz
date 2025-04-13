@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { Form } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 
 
@@ -40,10 +40,18 @@ export function BasicCareer(): React.JSX.Element {
 
     return (
         <div>
+            <div style={{
+                backgroundColor:'#054569', 
+                color: 'white', 
+                fontFamily:'Garamond, serif',
+                textShadow: '2px 2px 2px black',}}>
+            <br></br>
             <h1>Basic Career Assessment</h1>
-            <h1>{progress}</h1>
+            <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
+            <br></br>
+            </div>
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
-                <div id="question" style={{padding: "10px"}}>
+                <div id="question" style={{padding: "10px", paddingRight:"200px", color:'white', fontFamily:'Franklin Gothic, sans-serif'}}>
                     <h3>{question1.description}</h3>
                     <div>
                         {question1.sliders.map((slider: Slider) => (
@@ -55,13 +63,22 @@ export function BasicCareer(): React.JSX.Element {
                                 step="1"
                                 onChange={(event) => updateQuestion1(slider.option, event)}
                                 value={slider.value}
-                                style={{width: "200px"}}
+                                style={{
+                                    width: "300px",
+                                    height:"40px",
+                                    padding:"20px",
+                                    margin:'20px',
+                                    verticalAlign:'middle',
+                                    paddingRight:"20px",
+                                    outlineStyle:'inset',
+                                    outlineColor:"#054569"}}
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
-                <div id="question" style={{padding: "10px"}}>
+                
+                <div id="question" style={{padding: "10px", paddingLeft:"200px", color:"white",fontFamily:'Franklin Gothic, sans-serif'}}>
                     <h3>{question2.description}</h3>
                     <div>
                         {question2.sliders.map((slider: Slider) => (
@@ -71,16 +88,44 @@ export function BasicCareer(): React.JSX.Element {
                                 min="0"
                                 max="5"
                                 step="1"
+                                
                                 onChange={(event) => updateQuestion2(slider.option, event)}
                                 value={slider.value}
-                                style={{width: "200px"}}
+                                style={{
+                                    width: "300px",
+                                    height:"40px",
+                                    padding:"20px",
+                                    margin:'20px',
+                                    verticalAlign:'middle',
+                                    paddingLeft:"20px",
+                                    outlineStyle:'inset',
+                                    outlineColor:'#054569'
+                                    
+                                    
+
+                                }}
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            <Button onClick={()=>{submitQuestions()}}>Submit Answer</Button>
+            <Button  onClick={()=>{submitQuestions()}} variant="success">Submit Answer</Button>
+            <br></br>
+            <br></br>
+            <br></br>
+            <div hidden={false}>
+                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px"}}>
+                        <br></br>
+                        <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
+                        <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
+
+                        <p>Some results here. </p>
+                    </Card>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+            </div>
         </div>
     );
 };
