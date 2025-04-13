@@ -12,8 +12,10 @@ export function BasicCareer(): React.JSX.Element {
     const [question2, setQuestion2] = useState<BasicQuestionType>(questionBank[progress+1]);
 
     useEffect(() => {
-        setQuestion1(questionBank[progress]);
-        setQuestion2(questionBank[progress+1]);
+        if (progress <= questionBank.length-1) {
+            setQuestion1(questionBank[progress]);
+            setQuestion2(questionBank[progress+1]);
+        }
     },[questionBank, progress])
 
     function updateQuestionBank() {
@@ -106,7 +108,7 @@ export function BasicCareer(): React.JSX.Element {
                     </div>
                 </div>
             </div>
-            <Button  onClick={()=>{submitQuestions()}} variant="success">Submit Answer</Button>
+            <Button  onClick={()=>{submitQuestions()}} variant="success" disabled={progress===questionBank.length}>Submit Answer</Button>
             <br></br>
             <br></br>
             <ProgressBar
