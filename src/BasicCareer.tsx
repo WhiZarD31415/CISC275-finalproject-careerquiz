@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
@@ -6,9 +6,23 @@ import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 
 
 export function BasicCareer(): React.JSX.Element {
+    const [progress, setProgress] = useState<number>(0);
     const [questionBank, setQuestionBank] = useState<BasicQuestionType[]>(BasicQuestionSet);
-    const [question1, setQuestion1] = useState<BasicQuestionType>(questionBank[0]);
-    const [question2, setQuestion2] = useState<BasicQuestionType>(questionBank[1]);
+    const [question1, setQuestion1] = useState<BasicQuestionType>(questionBank[progress]);
+    const [question2, setQuestion2] = useState<BasicQuestionType>(questionBank[progress+1]);
+
+    useEffect(() => {
+        setQuestion1(questionBank[progress]);
+        setQuestion2(questionBank[progress+1]);
+    },[questionBank, progress])
+
+    function updateQuestionBank() {
+        const newQuestionSet: BasicQuestionType[] = questionBank.map((question) =>
+            (question === questionBank[progress]) ? {...question1} : 
+            (question === questionBank[progress+1]) ? {...question2} : question
+    );
+        setQuestionBank(newQuestionSet);
+    }
 
     function updateQuestion1(option: string, event: React.ChangeEvent<HTMLInputElement>) {
         const new_sliders1: Slider[] = question1.sliders.map((slider: Slider): Slider => (slider.option === option) ? {option: slider.option, value: event.target.value} : slider);
@@ -16,24 +30,18 @@ export function BasicCareer(): React.JSX.Element {
     }
     function updateQuestion2(option: string, event: React.ChangeEvent<HTMLInputElement>) {
         const new_sliders2: Slider[] = question2.sliders.map((slider: Slider): Slider => (slider.option === option) ? {option: slider.option, value: event.target.value} : slider);
-        setQuestion2({...question1, sliders: new_sliders2}); 
+        setQuestion2({...question2, sliders: new_sliders2}); 
     }
 
-    function newQuestions() {
-        const new_sliders: Slider[] = [
-            { option: 'e', value: "0" },
-            { option: 'f', value: "0" },
-            { option: 'g', value: "0" },
-            { option: 'h', value: "0" }
-        ];
-        const new_question: BasicQuestionType = {description: "E, F, G, or H?", sliders: new_sliders};
-        setQuestion1(new_question);
-        setQuestion2(new_question);
+    function submitQuestions() {
+        updateQuestionBank();
+        setProgress(progress+2);
     }
 
     return (
         <div>
             <h1>Basic Career Assessment</h1>
+            <h1>{progress}</h1>
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
                 <div id="question" style={{padding: "10px"}}>
                     <h3>{question1.description}</h3>
@@ -72,7 +80,7 @@ export function BasicCareer(): React.JSX.Element {
                     </div>
                 </div>
             </div>
-            <Button onClick={()=>{newQuestions()}}>Submit Answer</Button>
+            <Button onClick={()=>{submitQuestions()}}>Submit Answer</Button>
         </div>
     );
 };
