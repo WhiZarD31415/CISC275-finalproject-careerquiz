@@ -99,24 +99,21 @@ function App() {
               <Row>
               <Col style={{color:'white'}}>
               <Card id='QuizCard'>
-                Text of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
                 <br></br>
                 <br></br>
-                <p style={{fontWeight:'bolder'}}>Take the Basic Quiz now! :</p>
               <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
-                Basic Career Assessment
+                Take Basic Assessment
               </Button>
               </Card>
               </Col>
                 <Col style={{color:'white'}}>
                 <Card id='QuizCard'>
-                Text of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet
+                The Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you!
                 <br></br>
                 <br></br>
-                <p style={{fontWeight:'bolder'}}>Take the Detailed Quiz now! :</p>
-
               <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
-                Detailed Career Assessment
+                Take Detailed Assessment
               </Button>
               </Card>
               </Col>
