@@ -98,20 +98,15 @@ FAIL src/App.test.tsx
                         [33mclass[39m=[32m"card"[39m
                         [33mid[39m=[32m"QuizCard"[39m
                       [36m>[39m
-                        [0mText of the description of the Basic Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet[0m
+                        [0mThe Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.[0m
                         [36m<br />[39m
                         [36m<br />[39m
-                        [36m<p[39m
-                          [33mstyle[39m=[32m"font-weight: bolder;"[39m
-                        [36m>[39m
-                          [0mTake the Basic Quiz now! :[0m
-                        [36m</p>[39m
                         [36m<button[39m
                           [33mclass[39m=[32m"btn btn-primary"[39m
                           [33mid[39m=[32m"PageButton"[39m
                           [33mtype[39m=[32m"button"[39m
                         [36m>[39m
-                          [0mBasic Career Assessment[0m
+                          [0mTake Basic Assessment[0m
                         [36m</button>[39m
                       [36m</div>[39m
                     [36m</div>[39m
@@ -123,20 +118,15 @@ FAIL src/App.test.tsx
                         [33mclass[39m=[32m"card"[39m
                         [33mid[39m=[32m"QuizCard"[39m
                       [36m>[39m
-                        [0mText of the description of the Detailed Career assesment and stuff words words lorem ipsum dolor sit amet consecutor adipiscing elit. Morbi feugiat convallis commodo. Quisque eget nisl sed sapien rutrum bibendum sit amet sit amet[0m
+                        [0mThe Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you![0m
                         [36m<br />[39m
                         [36m<br />[39m
-                        [36m<p[39m
-                          [33mstyle[39m=[32m"font-weight: bolder;"[39m
-                        [36m>[39m
-                          [0mTake the Detailed Quiz now! :[0m
-                        [36m</p>[39m
                         [36m<button[39m
                           [33mclass[39m=[32m"btn btn-primary"[39m
                           [33mid[39m=[32m"PageButton"[39m
                           [33mtype[39m=[32m"button"[39m
                         [36m>[39m
-                          [0mDetailed Career Assessment[0m
+                          [0mTake Detailed Assessment[0m
                         [36m</button>[39m
                       [36m</div>[39m
                     [36m</div>[39m
@@ -171,7 +161,7 @@ FAIL src/App.test.tsx
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
 All files           |   14.81 |     9.37 |    6.45 |   15.58 |                   
- App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 13,106-154,180    
+ App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 13,105-151,177    
  BasicCareer.tsx    |       0 |        0 |       0 |       0 | 9-111             
  BasicQuestions.ts  |     100 |      100 |     100 |     100 |                   
  DetailedCareer.tsx |    4.54 |        0 |       0 |       5 | 6-94              
@@ -181,7 +171,7 @@ All files           |   14.81 |     9.37 |    6.45 |   15.58 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.963 s
+Time:        2.926 s
 Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
