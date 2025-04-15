@@ -5,7 +5,10 @@
   text-align: center;
   /*To fix: This got rid of the vertical and horizontal scrollbars,
    but now there's a white bar on the left side*/
-  max-width: 1520px;
+  /* max-width: 1520px; */
+  overflow-y: auto;
+  overflow-x: auto;
+  width:100%
 }
 
 .App-logo {
@@ -68,10 +71,11 @@
   outline-width: 1vh;
   outline-style:outset;
   border-color: #062C43;
-  height: 6vh;
-  width: 35vh;
+  height: 13%;
+  width: 95%;
   align-self: center;
-  font-family:'Franklin Gothic', sans-serif
+  font-family:'Franklin Gothic', sans-serif;
+  font-size: 100%
 }
 
 #APIKeyButton {
@@ -81,18 +85,17 @@
   outline-width: 0.5vh;
   outline-style:outset;
   border-color: #062C43;
-
   align-self: center;
 }
 
 #QuizCard {
   color:white;
   background-color:#054569;
-  height: 50vh;
-  width: 40vh;
+  height: 110%;
+  width:90%;
   padding: 5%;
   border: #062C43;
-  border-width: 1vh;
+  border-width: 5px;
   border-style: inset;
 }
 
