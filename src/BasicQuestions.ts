@@ -77,7 +77,7 @@ export const BasicQuestionSet: BasicQuestionType[] = [
         sliders: [
             { option: 'Trying New Things', value: "0" },
             { option: 'Following a Plan', value: "0" },
-            { option: 'Epathizing with Others', value: "0" },
+            { option: 'Empathizing with Others', value: "0" },
             { option: 'Competitive Environment', value: "0" }
         ]
     },
