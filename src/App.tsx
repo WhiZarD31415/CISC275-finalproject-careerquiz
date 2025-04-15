@@ -12,6 +12,7 @@ const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+
 //Color Pallet:
 // #062C43
 // #054569
@@ -31,56 +32,54 @@ function App() {
           
           <div
             style={{
-              //position: 'relative',
+              position: 'fixed',
+              overflowX: 'auto',
               width: '100%',
-              minHeight: '100vh',
-              margin: 0,
-              padding: 0
+              height:'100%',
+              //minHeight: '100vh',   
+                        
             }}
           >
-            
            
             <img
               src={moon}
               alt="moon"
               style={{
-                top: 'absolute',
+                top: 'fixed',
                 bottom: 0,
                 left: 0,
-                width:'218vh'
+                width:'100%',
               }}
             />
+            <br></br>
+            <br></br>
+            <br></br>
           <Row>
-            <div
-              style={{
-                //textAlign: 'right',
-                marginRight: '5%',
-                marginTop: '5%'
-              }}
-            ></div>
+              
+
               <Col>
-              <div style={{ color: 'white' }}></div>
+              <div style={{ color: 'white', display:'flex'}}></div>
               
               <h1
                 style={{
                   fontWeight: 'bold',
-                  fontSize: '3em',
+                  fontSize: '3.5vw',
                   color: 'white',
                   fontFamily: 'Garamond, serif',
                   textShadow: '2px 2px 2px black',
-                  marginTop: '20px',
+                  marginTop: '10%',
                   
                 }}
               >
                 SPHINX CAREER QUIZ
               </h1>
-              <hr style={{color:'white', margin:30}}></hr>
+              <hr style={{color:'white', marginTop:30}}></hr>
               <h2
                 style={{
                   fontStyle: 'italic',
                   color: 'white',
                   fontFamily: 'Franklin Gothic, Arial, sans-serif',
-                  fontSize: '1.4em'
+                  fontSize: '1.4vw'
                 }}
               >
                 The best place to discover your dream job, today
@@ -88,7 +87,8 @@ function App() {
               <p
                 style={{
                   color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif'
+                  fontFamily: 'Helvetica, Arial, sans-serif',
+                  fontSize:'1vw'
                 }}
               >
                 Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
@@ -102,6 +102,10 @@ function App() {
                 The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
                 <br></br>
                 <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
               <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
                 Take Basic Assessment
               </Button>
@@ -112,7 +116,8 @@ function App() {
                 The Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you!
                 <br></br>
                 <br></br>
-              <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton">
+                <br></br>
+              <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton"> 
                 Take Detailed Assessment
               </Button>
               </Card>
@@ -121,7 +126,7 @@ function App() {
               </Row>
               </Col>
             
-            
+              
             </Row>
             
           </div>
@@ -155,13 +160,15 @@ function App() {
     <div
       className="App"
       style={{
-        margin: 0,
-        padding: 0,
+        margin: '0%',
+        padding: "0%",
         backgroundColor: '#062C43',
         minHeight: '100vh',
-        position: 'relative'
+        position: 'relative',
+        overflowX: 'auto'
       }}
     >
+      
       <header
         style={{
           display: 'flex',
