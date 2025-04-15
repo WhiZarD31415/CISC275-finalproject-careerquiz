@@ -34,9 +34,10 @@ function App() {
             style={{
               position: 'fixed',
               overflowX: 'auto',
-              width: '100%',
+              width: '100vw',
               height:'100%',
-              //minHeight: '100vh',   
+              //minHeight: '100vh', 
+               
                         
             }}
           >
@@ -48,17 +49,18 @@ function App() {
                 top: 'fixed',
                 bottom: 0,
                 left: 0,
-                width:'100%',
+                width:'100vw',
+               
               }}
             />
             <br></br>
             <br></br>
             <br></br>
-          <Row>
+          <Row style={{width:'100vw'}}>
               
 
               <Col>
-              <div style={{ color: 'white', display:'flex'}}></div>
+              <div style={{ color: 'white', display:'block'}}></div>
               
               <h1
                 style={{
@@ -73,7 +75,7 @@ function App() {
               >
                 SPHINX CAREER QUIZ
               </h1>
-              <hr style={{color:'white', marginTop:30}}></hr>
+              <hr style={{color:'white', marginTop:10, marginLeft:30, marginRight:30}}></hr>
               <h2
                 style={{
                   fontStyle: 'italic',
@@ -97,7 +99,7 @@ function App() {
               </Col>
               <Col>
               <Row>
-              <Col style={{color:'white'}}>
+              <Col style={{color:'white', marginLeft:'10%'}}>
               <Card id='QuizCard'>
                 The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
                 <br></br>
@@ -107,7 +109,7 @@ function App() {
                 <br></br>
                 <br></br>
               <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
-                Take Basic Assessment
+                Take Basic Quiz
               </Button>
               </Card>
               </Col>
@@ -117,8 +119,9 @@ function App() {
                 <br></br>
                 <br></br>
                 <br></br>
+                <br></br>
               <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton"> 
-                Take Detailed Assessment
+                Take Detailed Quiz
               </Button>
               </Card>
               </Col>
@@ -165,7 +168,7 @@ function App() {
         backgroundColor: '#062C43',
         minHeight: '100vh',
         position: 'relative',
-        overflowX: 'auto'
+        
       }}
     >
       
@@ -177,7 +180,7 @@ function App() {
           top: '10px',
           left: '10px',
           zIndex: 10,
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         {currentPage !== 'home' && (

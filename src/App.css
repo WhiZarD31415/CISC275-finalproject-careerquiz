@@ -7,7 +7,8 @@
    but now there's a white bar on the left side*/
   /* max-width: 1520px; */
   overflow-y: auto;
-  overflow-x: auto
+  overflow-x: auto;
+  width:100%
 }
 
 .App-logo {
@@ -74,7 +75,7 @@
   width: 95%;
   align-self: center;
   font-family:'Franklin Gothic', sans-serif;
-  font-size: 0.75em
+  font-size: 100%
 }
 
 #APIKeyButton {
@@ -91,7 +92,7 @@
   color:white;
   background-color:#054569;
   height: 110%;
-  width:80%;
+  width:90%;
   padding: 5%;
   border: #062C43;
   border-width: 5px;
