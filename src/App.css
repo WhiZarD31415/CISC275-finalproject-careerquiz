@@ -75,7 +75,8 @@
   width: 95%;
   align-self: center;
   font-family:'Franklin Gothic', sans-serif;
-  font-size: 100%
+  font-size: 100%;
+  border-radius:50%
 }
 
 #APIKeyButton {
@@ -103,3 +104,15 @@
   background-color:#9CCDDC; 
   color:'black';
   font-family:Helvetica, sans-serif;}
+
+#ResultHome {
+  background-color:#9CCDDC; 
+  color:'black';
+  font-family:'Garamond';
+  padding:5%;
+  height: 110%
+}
+
+#ResultList {
+  color: #5591A9;
+}

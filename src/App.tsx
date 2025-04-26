@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, createElement } from 'react';
 import './App.css';
-import { Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card, ListGroup, Tab, TabContainer, ListGroupItem } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
 //import sphinxIcon from './assets/sphinxIcon.png';
+import { resultList } from './resultLists';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -12,6 +13,8 @@ const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+
+export var results:string[][] = [['Career 1', 'Here be some text regarding Career 1'], ['Career 2','Here be some text regarding Career 2']]
 
 //Color Pallet:
 // #062C43
@@ -22,8 +25,10 @@ if (prevKey !== null) {
 
 
 function App() {
+
   const [key, setKey] = useState<string>(keyData);
   const [currentPage, setCurrentPage] = useState<string>('home');
+
 
   const renderPage = () => {
     switch (currentPage) {
@@ -32,10 +37,12 @@ function App() {
           
           <div
             style={{
-              position: 'fixed',
-              overflowX: 'auto',
-              width: '100vw',
+              //position: 'fixed',
+              overflowX: 'clip',
+              //overflowY:'scroll',
+              //width: '100vw',
               height:'100%',
+              maxWidth:'100vw',
               //minHeight: '100vh', 
                
                         
@@ -56,7 +63,7 @@ function App() {
             <br></br>
             <br></br>
             <br></br>
-          <Row style={{width:'100vw'}}>
+          <Row style={{marginBottom:'10%'}}>
               
 
               <Col>
@@ -128,10 +135,14 @@ function App() {
                 
               </Row>
               </Col>
-            
               
             </Row>
             
+           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
+            {resultList()}
+           </Row>
+            
+          
           </div>
           
       

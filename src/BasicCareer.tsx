@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import { Form, Card, ProgressBar } from "react-bootstrap";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 
@@ -121,12 +121,14 @@ export function BasicCareer(): React.JSX.Element {
             />
             <br></br>
             <div hidden={false}>
-                    <Card id="Results" style={{marginLeft:"250px", marginRight:"250px"}}>
+                    <div id="Results" style={{marginLeft:"250px", marginRight:"250px"}}>
                         <br></br>
                         <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
                         <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
                         <p>Some results here. </p>
-                    </Card>
+                        
+                        <br></br>
+                    </div>
                     <br></br>
                     <br></br>
                     <br></br>
