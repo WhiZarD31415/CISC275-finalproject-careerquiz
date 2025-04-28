@@ -3,183 +3,53 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (54 ms)
+  ● Test suite failed to run
 
-  ● renders learn react link
+    Jest encountered an unexpected token
 
-    TestingLibraryElementError: Unable to find an element with the text: /learn react/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
 
-    Ignored nodes: comments, script, style
-    [36m<body>[39m
-      [36m<div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"App"[39m
-          [33mstyle[39m=[32m"margin: 0%; padding: 0%; background-color: rgb(6, 44, 67); min-height: 100vh; position: relative;"[39m
-        [36m>[39m
-          [36m<header[39m
-            [33mstyle[39m=[32m"display: flex; gap: 10px; position: absolute; top: 10px; left: 10px; z-index: 10; align-items: center;"[39m
-          [36m>[39m
-            [36m<form[39m
-              [33mclass[39m=[32m""[39m
-              [33mstyle[39m=[32m"display: flex; align-items: center; margin-left: 10px;"[39m
-            [36m>[39m
-              [36m<label[39m
-                [33mclass[39m=[32m"form-label"[39m
-                [33mstyle[39m=[32m"color: white; margin-right: 5px;"[39m
-              [36m>[39m
-                [0mAPI Key:[0m
-              [36m</label>[39m
-              [36m<input[39m
-                [33mclass[39m=[32m"form-control"[39m
-                [33mplaceholder[39m=[32m"Insert API Key Here"[39m
-                [33mstyle[39m=[32m"max-width: 200px; margin-right: 5px;"[39m
-                [33mtype[39m=[32m"password"[39m
-              [36m/>[39m
-              [36m<button[39m
-                [33mclass[39m=[32m"Submit-Button btn btn-primary"[39m
-                [33mid[39m=[32m"APIKeyButton"[39m
-                [33mtype[39m=[32m"button"[39m
-              [36m>[39m
-                [0mSubmit[0m
-              [36m</button>[39m
-            [36m</form>[39m
-          [36m</header>[39m
-          [36m<div>[39m
-            [36m<div[39m
-              [33mstyle[39m=[32m"position: fixed; overflow-x: auto; width: 100vw; height: 100%;"[39m
-            [36m>[39m
-              [36m<img[39m
-                [33malt[39m=[32m"moon"[39m
-                [33msrc[39m=[32m"moon.png"[39m
-                [33mstyle[39m=[32m"bottom: 0px; left: 0px; width: 100vw;"[39m
-              [36m/>[39m
-              [36m<br />[39m
-              [36m<br />[39m
-              [36m<br />[39m
-              [36m<div[39m
-                [33mclass[39m=[32m"row"[39m
-                [33mstyle[39m=[32m"width: 100vw;"[39m
-              [36m>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"col"[39m
-                [36m>[39m
-                  [36m<div[39m
-                    [33mstyle[39m=[32m"color: white; display: block;"[39m
-                  [36m/>[39m
-                  [36m<h1[39m
-                    [33mstyle[39m=[32m"font-weight: bold; font-size: 3.5vw; color: white; font-family: Garamond, serif; text-shadow: 2px 2px 2px black; margin-top: 10%;"[39m
-                  [36m>[39m
-                    [0mSPHINX CAREER QUIZ[0m
-                  [36m</h1>[39m
-                  [36m<hr[39m
-                    [33mstyle[39m=[32m"color: white; margin-top: 10px; margin-left: 30px; margin-right: 30px;"[39m
-                  [36m/>[39m
-                  [36m<h2[39m
-                    [33mstyle[39m=[32m"font-style: italic; color: white; font-family: Franklin Gothic, Arial, sans-serif; font-size: 1.4vw;"[39m
-                  [36m>[39m
-                    [0mThe best place to discover your dream job, today[0m
-                  [36m</h2>[39m
-                  [36m<p[39m
-                    [33mstyle[39m=[32m"color: white; font-family: Helvetica, Arial, sans-serif; font-size: 1vw;"[39m
-                  [36m>[39m
-                    [0mDeveloped by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.[0m
-                  [36m</p>[39m
-                [36m</div>[39m
-                [36m<div[39m
-                  [33mclass[39m=[32m"col"[39m
-                [36m>[39m
-                  [36m<div[39m
-                    [33mclass[39m=[32m"row"[39m
-                  [36m>[39m
-                    [36m<div[39m
-                      [33mclass[39m=[32m"col"[39m
-                      [33mstyle[39m=[32m"color: white; margin-left: 10%;"[39m
-                    [36m>[39m
-                      [36m<div[39m
-                        [33mclass[39m=[32m"card"[39m
-                        [33mid[39m=[32m"QuizCard"[39m
-                      [36m>[39m
-                        [0mThe Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.[0m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<button[39m
-                          [33mclass[39m=[32m"btn btn-primary"[39m
-                          [33mid[39m=[32m"PageButton"[39m
-                          [33mtype[39m=[32m"button"[39m
-                        [36m>[39m
-                          [0mTake Basic Quiz[0m
-                        [36m</button>[39m
-                      [36m</div>[39m
-                    [36m</div>[39m
-                    [36m<div[39m
-                      [33mclass[39m=[32m"col"[39m
-                      [33mstyle[39m=[32m"color: white;"[39m
-                    [36m>[39m
-                      [36m<div[39m
-                        [33mclass[39m=[32m"card"[39m
-                        [33mid[39m=[32m"QuizCard"[39m
-                      [36m>[39m
-                        [0mThe Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you![0m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<br />[39m
-                        [36m<button[39m
-                          [33mclass[39m=[32m"btn btn-primary"[39m
-                          [33mid[39m=[32m"PageButton"[39m
-                          [33mtype[39m=[32m"button"[39m
-                        [36m>[39m
-                          [0mTake Detailed Quiz[0m
-                        [36m</button>[39m
-                      [36m</div>[39m
-                    [36m</div>[39m
-                  [36m</div>[39m
-                [36m</div>[39m
-              [36m</div>[39m
-            [36m</div>[39m
-          [36m</div>[39m
-        [36m</div>[39m
-      [36m</div>[39m
-    [36m</body>[39m
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
 
-       5 | test('renders learn react link', () => {
-       6 |   render(<App />);
-    >  7 |   const linkElement = screen.getByText(/learn react/i);
-         |                              ^
-       8 |   expect(linkElement).toBeInTheDocument();
-       9 | });
-      10 |
+    By default "node_modules" folder is ignored by transformers.
 
-      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
-      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/App.test.tsx:7:30)
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /home/runner/work/CISC275-finalproject-careerquiz/CISC275-finalproject-careerquiz/node_modules/axios/index.js:1
+    ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){import axios from './lib/axios.js';
+                                                                                      ^^^^^^
+
+    SyntaxError: Cannot use import statement outside a module
+
+      1 | // src/chatgptAPI.ts
+    > 2 | import axios from 'axios';
+        | ^
+      3 |
+      4 |
+      5 | //sends the prompt to OpenAI's ChatGPT API and returns the response
+
+      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1728:14)
+      at Object.<anonymous> (src/ChatgptAPI.ts:2:1)
+      at Object.<anonymous> (src/DetailedCareer.tsx:3:1)
+      at Object.<anonymous> (src/App.tsx:4:1)
+      at Object.<anonymous> (src/App.test.tsx:3:1)
       at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
       at runJest (node_modules/@jest/core/build/runJest.js:404:19)
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
---------------------|---------|----------|---------|---------|-------------------
-File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
---------------------|---------|----------|---------|---------|-------------------
-All files           |   14.81 |     9.37 |    6.45 |   15.58 |                   
- App.tsx            |   45.45 |       30 |   28.57 |   45.45 | 13,112-160,188    
- BasicCareer.tsx    |       0 |        0 |       0 |       0 | 9-112             
- BasicQuestions.ts  |     100 |      100 |     100 |     100 |                   
- DetailedCareer.tsx |    4.54 |        0 |       0 |       5 | 6-94              
- index.tsx          |       0 |      100 |     100 |       0 | 7-19              
- reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
---------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 1 total
-Snapshots:   0 total
-Time:        2.908 s
-Ran all test suites.
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -192,3 +62,20 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
+--------------------|---------|----------|---------|---------|-------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+--------------------|---------|----------|---------|---------|-------------------
+All files           |       0 |        0 |       0 |       0 |                   
+ App.tsx            |       0 |        0 |       0 |       0 | 9-188             
+ BasicCareer.tsx    |       0 |        0 |       0 |       0 | 12-190            
+ BasicQuestions.ts  |       0 |      100 |     100 |       0 | 11                
+ ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 7-23              
+ DetailedCareer.tsx |       0 |        0 |       0 |       0 | 6-229             
+ index.tsx          |       0 |      100 |     100 |       0 | 7-19              
+ reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
+--------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        3.605 s
+Ran all test suites.
