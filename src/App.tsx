@@ -22,6 +22,7 @@ export var results:string[][] = [['Career 1', 'Here be some text regarding Caree
 // #5591A9
 // #9CCDDC
 // #CED7E0
+//
 
 
 function App() {

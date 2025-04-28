@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Form, ProgressBar } from "react-bootstrap";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
+import { getChatGPTResponse } from "./ChatgptAPI";
+import './BasicCareer.css'
 
 
 
 export function BasicCareer(): React.JSX.Element {
+    //Tracks progress
     const [progress, setProgress] = useState<number>(0);
+    //Holds all the questions
     const [questionBank, setQuestionBank] = useState<BasicQuestionType[]>(BasicQuestionSet);
+    //Pair of questions being shown
     const [question1, setQuestion1] = useState<BasicQuestionType>(questionBank[progress]);
     const [question2, setQuestion2] = useState<BasicQuestionType>(questionBank[progress+1]);
+    //Stores career suggestions from ChatGPT
+    const [careerSuggestions, setCareerSuggestions] = useState<string[]>([]);
+    //Flipping the career suggestion cards
+    const [submitted, setSubmitted] = useState<boolean>(false);
+    const [flipped, setFlipped] = useState<boolean[]>([false, false, false]);
 
+    //When progress changes update the visable questions
     useEffect(() => {
         if (progress <= questionBank.length-1) {
             setQuestion1(questionBank[progress]);
@@ -25,7 +36,7 @@ export function BasicCareer(): React.JSX.Element {
     );
         setQuestionBank(newQuestionSet);
     }
-
+    //Changes to the sliders in the showcased questions
     function updateQuestion1(option: string, event: React.ChangeEvent<HTMLInputElement>) {
         const new_sliders1: Slider[] = question1.sliders.map((slider: Slider): Slider => (slider.option === option) ? {option: slider.option, value: event.target.value} : slider);
         setQuestion1({...question1, sliders: new_sliders1}); 
@@ -35,9 +46,65 @@ export function BasicCareer(): React.JSX.Element {
         setQuestion2({...question2, sliders: new_sliders2}); 
     }
 
-    function submitQuestions() {
+    //Handles final submissions, sends to ChatGPT and shows results
+    async function submitQuestions() {
         updateQuestionBank();
-        setProgress(progress+2);
+        //generates results once the last pair of questions are answered
+        if(progress +2 >= questionBank.length) {
+            const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+            if(!apiKey) {
+                alert("Please provide yout API key");
+                return;
+            }
+        const scores = questionBank.map((q, i) => {
+            const sliders = q.sliders.map(s => `${s.option}: ${s.value}`).join(", ");
+            return `Q${i + 1} (${q.description}): ${sliders}`;
+        }).join("\n");
+        
+        const prompt = `
+        Based on these scores from the Basic Career quiz, suggest 3 specific career paths and explain why each one is a good match. 
+        
+        Please format your response exactly like this:
+        
+        1. [Career Title]
+        Description...
+        
+        2. [Career Title]
+        Description...
+        
+        3. [Career Title]
+        Description...
+        
+        Here is the quiz data:
+        ${scores}
+        `;
+
+        try {
+            const result = await getChatGPTResponse(prompt, apiKey);
+
+            //Splits results into 3 card sections
+            const parts = result
+                .split(/\n(?=\d\.\s)/g)
+                .map((p: string) => p.trim())
+                .filter((p: string) => p.length > 0);
+
+            setCareerSuggestions(parts.slice(0, 3));
+            setFlipped([false, false, false]);
+            setSubmitted(true);
+        } catch (err) {
+            console.error("ChatGPT error:", err);
+            alert("ChatGPT error occurred.");
+        }
+        }
+
+        setProgress(progress + 2);
+    }
+
+    //To flip the cards
+    const toggleFlip = (index: number) => {
+        const updated = [...flipped];
+        updated[index] = !updated[index];
+        setFlipped(updated);
     }
 
     return (
@@ -52,64 +119,40 @@ export function BasicCareer(): React.JSX.Element {
             <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
             <br></br>
             </div>
+            
+            {!submitted ? (
+            <>
+            {/* Slider questions */}
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
-                <div id="question" style={{padding: "10px", paddingRight:"100px", color:'white', fontFamily:'Franklin Gothic, sans-serif', textAlign:'left'}}>
-                    <h3>{question1.description}</h3>
+                {[question1, question2].map((question, i) => (
+                    <div key={i} style={{padding: "10px", paddingRight:"100px", color:'white', fontFamily:'Franklin Gothic, sans-serif', textAlign:'left'}}>
+                      <h3>{question.description}</h3>
                     <div>
-                        {question1.sliders.map((slider: Slider) => (
-                            <div> {slider.option}
-                                <Form.Range
-                                id={slider.option}
-                                min="0"
-                                max="5"
-                                step="1"
-                                onChange={(event) => updateQuestion1(slider.option, event)}
-                                value={slider.value}
-                                style={{
-                                    width: "300px",
-                                    height:"40px",
-                                    padding:"20px",
-                                    margin:'20px',
-                                    verticalAlign:'middle',
-                                    paddingRight:"20px",
-                                    outlineStyle:'inset',
-                                    outlineColor:"#054569"}}
-                                />
-                            </div>
-                        ))}
+                    {question.sliders.map(slider => (
+                  <div key={slider.option}>
+                    {slider.option}
+                    <Form.Range
+                      min="0"
+                      max="5"
+                      step="1"
+                      value={slider.value}
+                      onChange={(event) => i === 0 ? updateQuestion1(slider.option, event) : updateQuestion2(slider.option, event)}
+                      style={{
+                        width: "300px",
+                        height: "40px",
+                        padding: "20px",
+                        margin: "20px",
+                        outlineStyle: 'inset',
+                        outlineColor: "#054569"
+                      }}
+                    />
+                  </div>
+                ))}
                     </div>
                 </div>
-                
-                <div id="question" style={{padding: "10px", paddingLeft:"100px", color:"white",fontFamily:'Franklin Gothic, sans-serif', textAlign:'left'}}>
-                    <h3>{question2.description}</h3>
-                    <div>
-                        {question2.sliders.map((slider: Slider) => (
-                            <div> {slider.option}
-                                <Form.Range
-                                id={slider.option}
-                                min="0"
-                                max="5"
-                                step="1"
-                                onChange={(event) => updateQuestion2(slider.option, event)}
-                                value={slider.value}
-                                style={{
-                                    width: "300px",
-                                    height:"40px",
-                                    padding:"20px",
-                                    margin:'20px',
-                                    verticalAlign:'middle',
-                                    paddingLeft:"20px",
-                                    outlineStyle:'inset',
-                                    outlineColor:'#054569',
-                                    
-                                }}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                ))}
             </div>
-            <Button  onClick={()=>{submitQuestions()}} variant="success" disabled={progress===questionBank.length}>Submit Answer</Button>
+            <Button  onClick={()=>{submitQuestions()}} variant="success" disabled={progress >= questionBank.length}>Submit Answer</Button>
             <br></br>
             <br></br>
             <ProgressBar
@@ -120,19 +163,46 @@ export function BasicCareer(): React.JSX.Element {
                 style={{ marginTop: '30px', marginBottom: '20px', height: '20px' }}
             />
             <br></br>
-            <div hidden={false}>
-                    <div id="Results" style={{marginLeft:"250px", marginRight:"250px"}}>
-                        <br></br>
-                        <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
-                        <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
-                        <p>Some results here. </p>
-                        
-                        <br></br>
+            </>
+            ) : (
+                <>
+                 {/* Career suggestion results after submission */}
+                  <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', textAlign: 'center' }}>
+                 Your Recommended Careers:
+            </h2>
+             {/* Flip card layout */}
+             <div style={{
+             display: 'flex',
+             justifyContent: 'center',
+             alignItems: 'flex-start',
+             flexWrap: 'wrap',
+             gap: '40px',
+             marginBottom: '40px'
+          }}>
+            {careerSuggestions.map((suggestion, index) => {
+              const [title, ...descLines] = suggestion.split('\n');
+              const description = descLines.join('\n').trim();
+
+              return (
+                <div
+                  key={index}
+                  className={`flip-card ${flipped[index] ? "flipped" : ""}`}
+                  onClick={() => toggleFlip(index)}
+                >
+                  <div className="flip-card-inner">
+                    <div className="flip-card-front card-face">
+                      <h5>{title}</h5>
                     </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-            </div>
-        </div>
-    );
-};
+                    <div className="flip-card-back card-face">
+                      <p>{description}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}

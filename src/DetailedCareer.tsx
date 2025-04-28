@@ -1,11 +1,20 @@
 import React, {useState} from 'react';
-import {Button, Form, Card, ProgressBar} from 'react-bootstrap'
+import {Button, Form, ProgressBar} from 'react-bootstrap'
+import { getChatGPTResponse } from './ChatgptAPI';
+import './DetailedCareer.css';
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
     const [detailedQuestions, setDetailedQuestions] = useState<string[]>(['','','','','','','',''])
     //Tracks the current question index
     const [currentIndex, setCurrentIndex] = useState<number>(0);
+    //Store the 3 career suggestions returned by ChatGPT
+    const [careerSuggestions, setCareerSuggestions] = useState<string[]>([]);
+    //Track which suggestion cards are flipped
+    const [flipped, setFlipped] = useState<boolean[]>([false, false, false]);
+    //Determine whether the answers have all been submitted
+    const [submitted, setSubmitted] = useState<boolean>(false);
+
 
 
     const questionText = [
@@ -19,6 +28,7 @@ const DetailedCareer =() => {
         "When you experience failure or setbacks, how do you typically respond?"
     ];
         
+    //Update the answers
     const updateAnswer = (index: number, value: string) => {
         const updated = [...detailedQuestions];
         updated[index] = value;
@@ -38,10 +48,59 @@ const DetailedCareer =() => {
     };
         
     const allAnswered = detailedQuestions.every(answer => answer.trim() !== '');
+    
+    
+    //Handles form submission and ChatGPT recommendations
+    const handleSubmit = async () => {
+      const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+
+      if (!apiKey) {
+        alert("Please provide your API key.");
+        return;
+      }
+
+      const prompt = `
+      Based on these scores from the Basic Career quiz, suggest 3 specific career paths and explain why each one is a good match. 
+      
+      Please format your response exactly like this:
+      
+      1. [Career Title]
+      Description...
+      
+      2. [Career Title]
+      Description...
+      
+      3. [Career Title]
+      Description...
+      
+      Here is the quiz data:
+
+      ${detailedQuestions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
+      `;
+
+      try {
+        const response = await getChatGPTResponse(prompt, apiKey);
         
-    const handleSubmit = () => {
-        console.log("Submitted responses:", detailedQuestions);
-            // Add actual submit logic here (e.g., API call)
+        // Splits the response into 3 suggestion blocks
+        const parts = response
+          .split(/\n(?=\d\.\s)/g)
+          .map((p: string) => p.trim())
+          .filter((p: string) => p.length > 0);
+  
+        setCareerSuggestions(parts.slice(0, 3));
+        setFlipped([false, false, false]);
+        setSubmitted(true);
+      } catch (error) {
+        console.error("ChatGPT error:", error);
+        alert("ChatGPT error occurred.");
+      }
+    };
+    
+    //Flips cards
+    const toggleFlip = (index: number) => {
+      const updated = [...flipped];
+      updated[index] = !updated[index];
+      setFlipped(updated);
     };
 
 
@@ -68,6 +127,8 @@ const DetailedCareer =() => {
         <br></br>
         </div>
         <div style={{ padding: '15px', textAlign: 'center'}}>
+          {!submitted ? (
+          <>
           <div style={{ textAlign: 'center', 
                         backgroundColor: '#5591A9', 
                         marginTop: '40px', 
@@ -141,27 +202,49 @@ const DetailedCareer =() => {
             animated
             style={{ marginTop: '30px', marginBottom: '20px', height: '20px' }}
         />
+      </>
+    ) : (
+      <>
+            {/*Displays the career recommendations post submission*/}
+            <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif' }}>
+              Your Recommended Careers:
+            </h2>
+            {/* Flipping cards for each recommendation */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '40px',
+              marginBottom: '40px'
+            }}>
+              {careerSuggestions.map((suggestion, index) => {
+                const [title, ...descLines] = suggestion.split('\n');
+                const description = descLines.join('\n').trim();
 
-        </div>
-        <br></br>
-                    <br></br>
-                    <br></br>
-                    <div hidden={false}>
-                            <Card id="Results" style={{marginLeft:"250px",marginRight:"250px" }}>
-                                <br></br>
-                                <h3 style={{fontWeight:'bold', fontFamily:'Garamond, serif'}}>Results</h3>
-                                <hr style={{color:'black', marginLeft:450,marginRight:450}}></hr>
-        
-                                <p>Some results here. </p>
-                            </Card>
-                            <br></br>
-                            <br></br>
-                            <br></br>
-        </div>
-        </div>
-        
-      );
-      
-    };
-    
+                return (
+                  <div
+                    key={index}
+                    className={`flip-card ${flipped[index] ? "flipped" : ""}`}
+                    onClick={() => toggleFlip(index)}
+                  >
+                    <div className="flip-card-inner">
+                      <div className="flip-card-front card-face">
+                        <h5>{title}</h5>
+                      </div>
+                      <div className="flip-card-back card-face">
+                        <p>{description}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 export default DetailedCareer;
