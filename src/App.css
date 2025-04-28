@@ -76,7 +76,7 @@
   align-self: center;
   font-family:'Franklin Gothic', sans-serif;
   font-size: 100%;
-  border-radius:50%
+
 }
 
 #APIKeyButton {
@@ -108,11 +108,14 @@
 #ResultHome {
   background-color:#9CCDDC; 
   color:'black';
-  font-family:'Garamond';
+  font-family:'Franklin Gothic', sans-serif;
   padding:5%;
   height: 110%
 }
 
 #ResultList {
   color: #5591A9;
+  font-family:'Franklin Gothic', sans-serif;
+  border-style:inset;
+  border-width: 5px
 }

@@ -1,6 +1,6 @@
 import React, { useState, createElement } from 'react';
 import './App.css';
-import { Row, Col, Card, ListGroup, Tab, TabContainer, ListGroupItem } from 'react-bootstrap';
+import { Row, Col, ListGroup, Tab } from 'react-bootstrap';
 import {results} from "./App"
 
 
@@ -9,39 +9,43 @@ import {results} from "./App"
 
 export function resultList():React.JSX.Element{
 
-    let x = createElement('h1', 'TextHere')
+    let testResults = [["Career 1", "Text of Career 1","1"], ["Career 2", "Text of Career 2","2"],["Career 3", "Text of Career 3","3"]]
 
+    function createListStuff(titleStuff: string, textStuff:string, num:string):React.JSX.Element{
+      return(
 
-      
+        <ListGroup.Item action href={"#link"+num} variant='light' style={{borderStyle:'inset', borderWidth:"5px"}}>
+            <h4>{titleStuff}</h4> 
+            </ListGroup.Item>
+
+      )
+    }
+
+    function createPaneStuff(titleStuff: string, textStuff:string, num:string):React.JSX.Element{
+      return(
+            <Tab.Pane eventKey={"#link"+num}>
+            <h3>{titleStuff}</h3> 
+            <hr></hr>
+            <p>{textStuff}</p>
+            </Tab.Pane>
+      )
+    }
 
     return (
         
-        <div>
-    <Tab.Container id="list-group-tabs-example" /*defaultActiveKey="#link1"*/>
+        <div hidden={!results.length}>
+    <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
       <Row>
+
         <Col sm={4}>
           <ListGroup variant='info'>
-            <ListGroup.Item action href="#link1" variant='dark' >
-              {results[0][0]}
-            </ListGroup.Item>
-            <ListGroup.Item action href="#link2" variant='dark'>
-            {results[1][0]}
+            {testResults.map((r:string[])=>createListStuff(r[0],r[1],r[2]))}
             
-            </ListGroup.Item>
           </ListGroup>
         </Col>
         <Col sm={8}>
           <Tab.Content id='ResultHome'>
-            <Tab.Pane eventKey="#link1">
-                <h3>{results[0][0]}</h3>
-                <p>{results[0][1]}</p>
-                {x}
-
-            </Tab.Pane>
-            <Tab.Pane eventKey="#link2">
-            <h3>{results[1][0]}</h3>
-            <p>{results[1][1]}</p>
-            </Tab.Pane>
+          {testResults.map((r:string[])=>createPaneStuff(r[0],r[1],r[2]))}
           </Tab.Content>
         </Col>
       </Row>

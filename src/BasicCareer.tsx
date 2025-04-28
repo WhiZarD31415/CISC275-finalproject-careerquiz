@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Carousel } from "react-bootstrap";
-import { Form, Card, ProgressBar } from "react-bootstrap";
+import { Button} from "react-bootstrap";
+import { Form, ProgressBar } from "react-bootstrap";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 
 

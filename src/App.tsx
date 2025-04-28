@@ -1,6 +1,6 @@
-import React, { useState, createElement } from 'react';
+import React, { useState} from 'react';
 import './App.css';
-import { Button, Form, Row, Col, Card, ListGroup, Tab, TabContainer, ListGroupItem } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
@@ -43,9 +43,7 @@ function App() {
               //width: '100vw',
               height:'100%',
               maxWidth:'100vw',
-              //minHeight: '100vh', 
-               
-                        
+              //minHeight: '100vh'      
             }}
           >
            
@@ -138,7 +136,7 @@ function App() {
               
             </Row>
             
-           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
+           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%', fontFamily:'Franklin Gothic, sans-serif'}}>
             {resultList()}
            </Row>
             
