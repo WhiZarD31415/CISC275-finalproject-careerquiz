@@ -122,7 +122,7 @@
 }
 
 
-.list-group-item:focus,  .list-group-item:hover, .list-group-item:active  {
+.list-group-item:focus, .list-group-item:hover, .list-group-item:active  {
   background-color: #9CCDDC;
   border: #9CCDDC 5px inset;
   color:black;

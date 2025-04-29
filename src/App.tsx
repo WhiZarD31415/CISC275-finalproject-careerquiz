@@ -14,7 +14,7 @@ if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
 
-export var results:string[][] = [['Career 1', 'Here be some text regarding Career 1'], ['Career 2','Here be some text regarding Career 2']]
+export var results:string[][] = []
 
 //Color Pallet:
 // #062C43
@@ -104,6 +104,8 @@ function App() {
               </Col>
               <Col>
               <Row>
+
+                {/*Basic Career Assessment Card and Button: */}
               <Col style={{color:'white', marginLeft:'10%'}}>
               <Card id='QuizCard'>
                 The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
@@ -118,6 +120,8 @@ function App() {
               </Button>
               </Card>
               </Col>
+
+              {/*Detailed Career Assessment Card and Button: */}
                 <Col style={{color:'white'}}>
                 <Card id='QuizCard'>
                 The Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you!
@@ -135,12 +139,15 @@ function App() {
               </Col>
               
             </Row>
-            
+
+            {/*Past Results Display*/}
            <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
             <h2 style={{fontFamily:'Garamond, serif', color:'white', textShadow:'2px 2px 2px black'}}>Past Results:</h2>
                 <hr style={{color:'white'}}></hr>
                 <br></br>
                 <br></br>
+                {/*Placeholder text appears here if the user has not yet taken a quiz*/}
+                <p hidden={results.length>0} style={{fontFamily:'Franklin Gothic, sans-serif', color:'white'}}>You can review your results here once you've taken at least one quiz</p>
             {resultLists()}
            </Row>
             

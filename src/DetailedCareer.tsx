@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {Button, Form, ProgressBar} from 'react-bootstrap'
 import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
+import { results } from './App';
+
+
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
@@ -59,6 +62,8 @@ const DetailedCareer =() => {
         return;
       }
 
+      const quizData=detailedQuestions.map((q, i) => `Q${i + 1}: ${q}`).join('\n');
+
       const prompt = `
       Based on these scores from the Basic Career quiz, suggest 3 specific career paths and explain why each one is a good match. 
       
@@ -75,7 +80,7 @@ const DetailedCareer =() => {
       
       Here is the quiz data:
 
-      ${detailedQuestions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
+      ${quizData}
       `;
 
       try {
@@ -105,7 +110,6 @@ const DetailedCareer =() => {
 
 
     const progress = (detailedQuestions.filter(ans => ans.trim() !== '').length / detailedQuestions.length) * 100;
-
 
     return (
         <div>
@@ -219,9 +223,15 @@ const DetailedCareer =() => {
               gap: '40px',
               marginBottom: '40px'
             }}>
-              {careerSuggestions.map((suggestion, index) => {
+        {
+
+              careerSuggestions.map((suggestion, index) => {
                 const [title, ...descLines] = suggestion.split('\n');
                 const description = descLines.join('\n').trim();
+                //additing the title, the results, and an index to the results arrary for use on the homepage results display
+                results.push([title, description, (results.length+1).toString()])
+                
+                
 
                 return (
                   <div
