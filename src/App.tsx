@@ -5,7 +5,7 @@ import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
 //import sphinxIcon from './assets/sphinxIcon.png';
-import { resultList } from './resultLists';
+import { resultLists } from './resultLists';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -29,7 +29,6 @@ function App() {
 
   const [key, setKey] = useState<string>(keyData);
   const [currentPage, setCurrentPage] = useState<string>('home');
-
 
   const renderPage = () => {
     switch (currentPage) {
@@ -137,8 +136,12 @@ function App() {
               
             </Row>
             
-           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%', fontFamily:'Franklin Gothic, sans-serif'}}>
-            {resultList()}
+           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
+            <h2 style={{fontFamily:'Garamond, serif', color:'white', textShadow:'2px 2px 2px black'}}>Past Results:</h2>
+                <hr style={{color:'white'}}></hr>
+                <br></br>
+                <br></br>
+            {resultLists()}
            </Row>
             
           

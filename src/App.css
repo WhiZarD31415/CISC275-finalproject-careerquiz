@@ -3,8 +3,6 @@
 
 .App {
   text-align: center;
-  /*To fix: This got rid of the vertical and horizontal scrollbars,
-   but now there's a white bar on the left side*/
   /* max-width: 1520px; */
   overflow-y: auto;
   overflow-x: auto;
@@ -108,14 +106,44 @@
 #ResultHome {
   background-color:#9CCDDC; 
   color:'black';
-  font-family:'Franklin Gothic', sans-serif;
+  font-family:'Garamond, serif';
   padding:5%;
-  height: 110%
+  height: 110%;
+  border-color: #9CCDDC;
+  border-width:5px;
+  border-style:inset
 }
 
-#ResultList {
-  color: #5591A9;
+
+.list-group-item{
+  background-color: #5591A9;
+  border-color:#61dafb;
+  font-family:'Franklin Gothic', sans-serif;
+  border-style:outset;
+  border-width: 5px;
+  
+}
+
+.list-group-item:active {
+  background-color: #9CCDDC;
+  border-color:#61dafb;
   font-family:'Franklin Gothic', sans-serif;
   border-style:inset;
-  border-width: 5px
+  border-width: 5px;
+}
+
+.list-group-item:focus {
+  background-color: #9CCDDC;
+  border-color:#61dafb;
+  font-family:'Franklin Gothic', sans-serif;
+  border-style:inset;
+  border-width: 5px;
+}
+
+.list-group-item:hover {
+  background-color: #5591A9;
+  font-family:'Franklin Gothic', sans-serif;
+  border-style:inset;
+  border-color:#61dafb;
+  border-width: 5px;
 }
