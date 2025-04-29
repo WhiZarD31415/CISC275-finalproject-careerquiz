@@ -152,7 +152,7 @@ export function BasicCareer(): React.JSX.Element {
                 </div>
                 ))}
             </div>
-            <Button  onClick={()=>{submitQuestions()}} variant="success" disabled={progress >= questionBank.length}>Submit Answer</Button>
+            <Button  onClick={()=>{submitQuestions()}} id="submitButton" disabled={progress >= questionBank.length}>Submit Answer</Button>
             <br></br>
             <br></br>
             <ProgressBar

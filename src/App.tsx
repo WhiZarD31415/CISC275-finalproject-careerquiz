@@ -78,7 +78,7 @@ function App() {
                   
                 }}
               >
-                SPHINX CAREER QUIZ
+                Sphinx Career Quiz
               </h1>
               <hr style={{color:'white', marginTop:10, marginLeft:30, marginRight:30}}></hr>
               <h2

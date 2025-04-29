@@ -1,6 +1,3 @@
-
-
-
 .App {
   text-align: center;
   /* max-width: 1520px; */
@@ -50,9 +47,7 @@
   font-family:'Franklin Gothic', sans-serif;
   font-weight: bold;
   color: white;
-  outline-style: outset;
-  outline-color: #062C43;
-  outline-width: 1vh;
+  outline: #062C43 1vh outset;
 }
 
 #detailQuestText {
@@ -65,11 +60,9 @@
 #PageButton {
   color:white;
   background-color: #5591A9;
-  outline-color: #61dafb;
-  outline-width: 1vh;
-  outline-style:outset;
-  border-color: #062C43;
-  height: 13%;
+  border: #5591A9 1vh outset;
+  /* border-color: #062C43; */
+  height: 17%;
   width: 95%;
   align-self: center;
   font-family:'Franklin Gothic', sans-serif;
@@ -77,13 +70,19 @@
 
 }
 
+
+
+#PageButton:hover {
+  color:black;
+  border-style: inset;
+  background-color: #9CCDDC;
+}
+
+
 #APIKeyButton {
   color:white;
   background-color: #5591A9;
-  outline-color: #61dafb;
-  outline-width: 0.5vh;
-  outline-style:outset;
-  border-color: #062C43;
+  border: #61dafb 0.5vh outset;
   align-self: center;
 }
 
@@ -93,9 +92,7 @@
   height: 110%;
   width:90%;
   padding: 5%;
-  border: #062C43;
-  border-width: 5px;
-  border-style: inset;
+  border: #062C43 5px inset;
 }
 
 #Results {
@@ -103,47 +100,46 @@
   color:'black';
   font-family:Helvetica, sans-serif;}
 
+
+
+/*The following are for results displayed on the home page*/
+
 #ResultHome {
   background-color:#9CCDDC; 
   color:'black';
   font-family:'Garamond, serif';
   padding:5%;
   height: 110%;
-  border-color: #9CCDDC;
-  border-width:5px;
-  border-style:inset
+  border: #062C43 5px inset;
 }
 
-
-.list-group-item{
-  background-color: #5591A9;
-  border-color:#61dafb;
-  font-family:'Franklin Gothic', sans-serif;
-  border-style:outset;
-  border-width: 5px;
-  
-}
-
-.list-group-item:active {
-  background-color: #9CCDDC;
-  border-color:#61dafb;
-  font-family:'Franklin Gothic', sans-serif;
-  border-style:inset;
-  border-width: 5px;
-}
-
-.list-group-item:focus {
-  background-color: #9CCDDC;
-  border-color:#61dafb;
-  font-family:'Franklin Gothic', sans-serif;
-  border-style:inset;
-  border-width: 5px;
-}
-
-.list-group-item:hover {
+.list-group-item, .list-group-item:defined {
   background-color: #5591A9;
   font-family:'Franklin Gothic', sans-serif;
-  border-style:inset;
-  border-color:#61dafb;
-  border-width: 5px;
+  border: #5591A9 5px outset;
+  color:white; 
+  vertical-align:middle; 
+}
+
+
+.list-group-item:focus,  .list-group-item:hover, .list-group-item:active  {
+  background-color: #9CCDDC;
+  border: #9CCDDC 5px inset;
+  color:black;
+}
+
+
+
+/*The following are for the submit button located in each of the quizzes*/
+#submitButton {
+  color:white;
+  background-color: #209b64;
+  border: #209b64 3px outset;
+  font-family:'Franklin Gothic', sans-serif;
+}
+
+#submitButton:hover {
+  background-color: #92dcbb;
+  border:#92dcbb 3px inset;
+  color:black;
 }

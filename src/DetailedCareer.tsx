@@ -186,9 +186,10 @@ const DetailedCareer =() => {
               </Button>
             ) : (
               <Button
-                variant="success"
+                //variant="success"
                 onClick={handleSubmit}
                 disabled={!allAnswered}
+                id='submitButton'
               >
                 Submit
               </Button>

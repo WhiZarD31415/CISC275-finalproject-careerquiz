@@ -51,7 +51,7 @@ export function resultLists():React.JSX.Element{
           </ListGroup>
         </Col>
         <Col sm={8}>
-          <Tab.Content id='ResultHome' >
+          <Tab.Content id='ResultHome'>
           {testResults.map((r:string[])=>createPaneStuff(r[0],r[1],r[2]))}
           </Tab.Content>
         </Col>
