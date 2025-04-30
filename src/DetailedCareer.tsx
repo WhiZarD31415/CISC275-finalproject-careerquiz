@@ -169,27 +169,17 @@ const DetailedCareer =() => {
     
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px', justifyContent: 'center' }}>
             {currentIndex > 0 && (
-              <Button variant="secondary" onClick={goToPrev} 
-              style={{
-                fontFamily:'Franklin Gothic, sans-serif',
-                outlineWidth: '0.5vh',
-                outlineStyle:'outset'
-        }}>
+              <Button  id="backButton" onClick={goToPrev} 
+              >
                 ← Back
               </Button>
             )}
     
             {currentIndex < detailedQuestions.length - 1 ? (
               <Button
-                variant="primary"
+                id='nextButton'
                 onClick={goToNext}
                 disabled={detailedQuestions[currentIndex].trim() === ''}
-                style={{backgroundColor: '#5591A9',
-                        fontFamily:'Franklin Gothic, sans-serif',
-                        outlineColor: '#61dafb',
-                        outlineWidth: '0.5vh',
-                        outlineStyle:'outset'
-                }}
                 
               >
                 Next →
@@ -239,7 +229,7 @@ const DetailedCareer =() => {
               careerSuggestions.map((suggestion, index) => {
                 const [title, ...descLines] = suggestion.split('\n');
                 const description = descLines.join('\n').trim();
-                
+
                 //adding the title, the results, and an index to the results arrary for use on the homepage results display
                 results.push([title, description, (results.length+1).toString()])
                 
