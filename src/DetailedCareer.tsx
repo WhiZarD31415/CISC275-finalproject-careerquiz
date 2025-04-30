@@ -120,14 +120,14 @@ const DetailedCareer =() => {
             <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
             <br></br> 
         </div>
-        <div style={{color:'white'}}>
+        {!submitted && (<div style={{color:'white'}}>
         <br></br>
         <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
         <br></br>
         <br></br>
-        </div>
+        </div>)}
         <div style={{ padding: '15px', textAlign: 'center'}}>
-          {!submitted ? (
+          {!submitted ? ((currentIndex !== detailedQuestions.length) ? (
           <>
           <div style={{ textAlign: 'center', 
                         backgroundColor: '#5591A9', 
@@ -204,6 +204,8 @@ const DetailedCareer =() => {
         />
       </>
     ) : (
+      <h1>hi</h1>
+    )) : (
       <>
             {/*Displays the career recommendations post submission*/}
             <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif' }}>
