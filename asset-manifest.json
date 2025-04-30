@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/CISC275-finalproject-careerquiz/static/css/main.0553f5d8.css",
-    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.c779791b.js",
+    "main.css": "/CISC275-finalproject-careerquiz/static/css/main.4b51dc5b.css",
+    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.99b11e0f.js",
     "static/js/453.bad6c33a.chunk.js": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js",
     "static/media/moon.png": "/CISC275-finalproject-careerquiz/static/media/moon.d794d512b95960f6fc40.png",
     "index.html": "/CISC275-finalproject-careerquiz/index.html",
-    "main.0553f5d8.css.map": "/CISC275-finalproject-careerquiz/static/css/main.0553f5d8.css.map",
-    "main.c779791b.js.map": "/CISC275-finalproject-careerquiz/static/js/main.c779791b.js.map",
+    "main.4b51dc5b.css.map": "/CISC275-finalproject-careerquiz/static/css/main.4b51dc5b.css.map",
+    "main.99b11e0f.js.map": "/CISC275-finalproject-careerquiz/static/js/main.99b11e0f.js.map",
     "453.bad6c33a.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0553f5d8.css",
-    "static/js/main.c779791b.js"
+    "static/css/main.4b51dc5b.css",
+    "static/js/main.99b11e0f.js"
   ]
 }
