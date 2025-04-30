@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form, ProgressBar} from 'react-bootstrap'
+import { PulseLoader } from "react-spinners";
 import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
 import { results } from './App';
@@ -52,9 +53,8 @@ const DetailedCareer =() => {
         
     const allAnswered = detailedQuestions.every(answer => answer.trim() !== '');
     
-    
-    //Handles form submission and ChatGPT recommendations
-    const handleSubmit = async () => {
+    //Sends final answers to ChatGPT and shows results
+    async function generate_results() {
       const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
 
       if (!apiKey) {
@@ -99,6 +99,12 @@ const DetailedCareer =() => {
         console.error("ChatGPT error:", error);
         alert("ChatGPT error occurred.");
       }
+    }
+
+    //Handles form submission and ChatGPT recommendations
+    const handleSubmit = () => {
+      setCurrentIndex(currentIndex + 1);
+      generate_results();
     };
     
     //Flips cards
@@ -124,14 +130,14 @@ const DetailedCareer =() => {
             <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
             <br></br> 
         </div>
-        <div style={{color:'white'}}>
+        {(currentIndex !== detailedQuestions.length) && (<div style={{color:'white'}}>
         <br></br>
         <h6 style={{color:'white'}}>Instructions: Please answer each of these questions by typing your response in the box located under each question.</h6>
         <br></br>
         <br></br>
-        </div>
+        </div>)}
         <div style={{ padding: '15px', textAlign: 'center'}}>
-          {!submitted ? (
+          {!submitted ? ((currentIndex !== detailedQuestions.length) ? (
           <>
           <div style={{ textAlign: 'center', 
                         backgroundColor: '#5591A9', 
@@ -209,6 +215,11 @@ const DetailedCareer =() => {
         />
       </>
     ) : (
+      <PulseLoader 
+                    color="#5591A9"
+                    cssOverride={{paddingTop: '10%'}}
+                />
+    )) : (
       <>
             {/*Displays the career recommendations post submission*/}
             <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif' }}>

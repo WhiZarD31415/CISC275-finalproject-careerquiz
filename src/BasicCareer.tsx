@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Form, ProgressBar } from "react-bootstrap";
+import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 import { getChatGPTResponse } from "./ChatgptAPI";
 import './BasicCareer.css'
@@ -46,12 +47,9 @@ export function BasicCareer(): React.JSX.Element {
         setQuestion2({...question2, sliders: new_sliders2}); 
     }
 
-    //Handles final submissions, sends to ChatGPT and shows results
-    async function submitQuestions() {
-        updateQuestionBank();
-        //generates results once the last pair of questions are answered
-        if(progress +2 >= questionBank.length) {
-            const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+    //Sends final answers to ChatGPT and shows results
+    async function generate_results() {
+        const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
             if(!apiKey) {
                 alert("Please provide yout API key");
                 return;
@@ -95,8 +93,15 @@ export function BasicCareer(): React.JSX.Element {
             console.error("ChatGPT error:", err);
             alert("ChatGPT error occurred.");
         }
-        }
+    }
 
+    // Handles question submissions
+    function submitQuestions() {
+        updateQuestionBank();
+        //generates results once the last pair of questions are answered
+        if(progress +2 >= questionBank.length) {
+            generate_results()
+        }
         setProgress(progress + 2);
     }
 
@@ -120,7 +125,7 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </div>
             
-            {!submitted ? (
+            {!submitted ? ((progress !== questionBank.length) ? (
             <>
             {/* Slider questions */}
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
@@ -165,6 +170,11 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </>
             ) : (
+                <PulseLoader 
+                    color="#5591A9"
+                    cssOverride={{paddingTop: '10%'}}
+                />
+            )) : (
                 <>
                  {/* Career suggestion results after submission */}
                   <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', textAlign: 'center' }}>
