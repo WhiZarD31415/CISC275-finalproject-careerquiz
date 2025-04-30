@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
 //import sphinxIcon from './assets/sphinxIcon.png';
+import { resultLists } from './resultLists';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -12,6 +13,8 @@ const prevKey = localStorage.getItem(saveKeyData);
 if (prevKey !== null) {
   keyData = JSON.parse(prevKey);
 }
+
+export var results:string[][] = []
 
 //Color Pallet:
 // #062C43
@@ -23,6 +26,7 @@ if (prevKey !== null) {
 
 
 function App() {
+
   const [key, setKey] = useState<string>(keyData);
   const [currentPage, setCurrentPage] = useState<string>('home');
 
@@ -33,13 +37,13 @@ function App() {
           
           <div
             style={{
-              position: 'fixed',
-              overflowX: 'auto',
-              width: '100vw',
+              //position: 'fixed',
+              overflowX: 'clip',
+              //overflowY:'scroll',
+              //width: '100vw',
               height:'100%',
-              //minHeight: '100vh', 
-               
-                        
+              maxWidth:'100vw',
+              //minHeight: '100vh'      
             }}
           >
            
@@ -57,7 +61,7 @@ function App() {
             <br></br>
             <br></br>
             <br></br>
-          <Row style={{width:'100vw'}}>
+          <Row style={{marginBottom:'10%'}}>
               
 
               <Col>
@@ -74,7 +78,7 @@ function App() {
                   
                 }}
               >
-                SPHINX CAREER QUIZ
+                Sphinx Career Quiz
               </h1>
               <hr style={{color:'white', marginTop:10, marginLeft:30, marginRight:30}}></hr>
               <h2
@@ -100,6 +104,8 @@ function App() {
               </Col>
               <Col>
               <Row>
+
+                {/*Basic Career Assessment Card and Button: */}
               <Col style={{color:'white', marginLeft:'10%'}}>
               <Card id='QuizCard'>
                 The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
@@ -114,6 +120,8 @@ function App() {
               </Button>
               </Card>
               </Col>
+
+              {/*Detailed Career Assessment Card and Button: */}
                 <Col style={{color:'white'}}>
                 <Card id='QuizCard'>
                 The Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you!
@@ -129,10 +137,21 @@ function App() {
                 
               </Row>
               </Col>
-            
               
             </Row>
+
+            {/*Past Results Display*/}
+           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
+            <h2 style={{fontFamily:'Garamond, serif', color:'white', textShadow:'2px 2px 2px black'}}>Past Results:</h2>
+                <hr style={{color:'white'}}></hr>
+                <br></br>
+                <br></br>
+                {/*Placeholder text appears here if the user has not yet taken a quiz*/}
+                <p hidden={results.length>0} style={{fontFamily:'Franklin Gothic, sans-serif', color:'white'}}>You can review your results here once you've taken at least one quiz</p>
+            {resultLists()}
+           </Row>
             
+          
           </div>
           
       
