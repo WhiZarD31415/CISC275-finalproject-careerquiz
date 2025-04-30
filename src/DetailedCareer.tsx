@@ -239,7 +239,8 @@ const DetailedCareer =() => {
               careerSuggestions.map((suggestion, index) => {
                 const [title, ...descLines] = suggestion.split('\n');
                 const description = descLines.join('\n').trim();
-                //additing the title, the results, and an index to the results arrary for use on the homepage results display
+                
+                //adding the title, the results, and an index to the results arrary for use on the homepage results display
                 results.push([title, description, (results.length+1).toString()])
                 
                 

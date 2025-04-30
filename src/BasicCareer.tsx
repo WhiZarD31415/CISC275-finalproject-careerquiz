@@ -5,6 +5,7 @@ import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 import { getChatGPTResponse } from "./ChatgptAPI";
 import './BasicCareer.css'
+import { results } from './App';
 
 
 
@@ -192,6 +193,12 @@ export function BasicCareer(): React.JSX.Element {
             {careerSuggestions.map((suggestion, index) => {
               const [title, ...descLines] = suggestion.split('\n');
               const description = descLines.join('\n').trim();
+
+              //adding the title, the results, and an index to the results arrary for use on the homepage results display
+              results.push([title, description, (results.length+1).toString()])
+                              
+
+              
 
               return (
                 <div
