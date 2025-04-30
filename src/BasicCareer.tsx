@@ -170,7 +170,10 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </>
             ) : (
-                <PulseLoader></PulseLoader>
+                <PulseLoader 
+                    color="#5591A9"
+                    cssOverride={{paddingTop: '10%'}}
+                />
             )) : (
                 <>
                  {/* Career suggestion results after submission */}
