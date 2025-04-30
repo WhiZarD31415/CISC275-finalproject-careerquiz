@@ -1,226 +1,282 @@
-import React, { useState} from 'react';
+/*  src/App.tsx  */
+
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
-import moon from './assets/moon.png';
-//import sphinxIcon from './assets/sphinxIcon.png';
 import { resultLists } from './resultLists';
 
-let keyData = "";
-const saveKeyData = "MYKEY";
-const prevKey = localStorage.getItem(saveKeyData);
-if (prevKey !== null) {
-  keyData = JSON.parse(prevKey);
+import sky         from './assets/1_sky.png';
+import hills       from './assets/2_hills.png';
+import groundBack  from './assets/3_ground.png';
+import sphinxImg   from './assets/4_sphinx.png';
+import groundFront from './assets/5_ground.png';
+
+const LAYERS = [
+  { src: sky,         speed: 0, z: 1, zoom: 1.0 },
+  { src: hills,       speed: 0.30, z: 2, zoom: 1.1 },
+  { src: groundBack,  speed: 0.55, z: 3, zoom: 1.1 },
+  { src: sphinxImg,   speed: 0.75, z: 4, zoom: 1.1 },
+  { src: groundFront, speed: 2.0, z: 5, zoom: 1.1 }
+];
+
+const BOTTOM_COLOR = '#010122';
+export const results: string[][] = [];
+type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
+
+function useScrollY() {
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setY(window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return y;
 }
 
-export var results:string[][] = []
+function useMouseOffset() {
+  const [offset, setOffset] = useState(0); // −0.5 … +0.5 of viewport
+  useEffect(() => {
+    const onMove = (e: MouseEvent) =>
+      setOffset((e.clientX - window.innerWidth / 2) / window.innerWidth);
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
+  }, []);
+  return offset;
+}
 
-//Color Pallet:
-// #062C43
-// #054569
-// #5591A9
-// #9CCDDC
-// #CED7E0
-//
+function ParallaxBackdrop({ scrollY, mouseX }: { scrollY: number; mouseX: number }) {
+  return (
+    <div className="parallax-wrapper" style={{ backgroundColor: BOTTOM_COLOR }}>
+      {LAYERS.map(({ src, speed, z, zoom }, i) => (
+        <img
+          key={src}
+          src={src}
+          className={`parallax-layer ${i === 0 ? 'sky' : ''}`}
+          style={{
+            transform: `
+              translateX(${-(mouseX * speed) * 30}vw)
+              translateY(-${scrollY * speed}px)
+              scale(${zoom})
+            `,
+            zIndex: z,
+            width: `${zoom * 100}vw`,
+            left: `-${(zoom - 1) * 50}vw`   /* keep centered while zoomed */
+          }}
+          alt=""
+        />
+      ))}
+    </div>
+  );
+}
 
+function BlueSphinxTitle({
+  scrollY,
+  mouseX
+}: {
+  scrollY: number;
+  mouseX: number;               // −0.5 … +0.5 (useMouseOffset hook)
+}) {
+  const depth = 0.75;           // same as sphinx layer
+  const y = -scrollY * depth;
+  const xVW = -(mouseX * depth) * 60;   // 60 vw max shift, opposite cursor
+
+  return (
+    <div
+      className="bluesphinx-title-wrapper"
+      style={{
+        position: 'absolute',
+        top: '5vh',
+        right: '5%',
+        transform: `translate(${xVW}vw, ${y}px)`,
+        textAlign: 'right',
+        pointerEvents: 'none',
+        zIndex: 30
+      }}
+    >
+      <h1
+        style={{
+          fontWeight: 'bold',
+          fontSize: '3.5vw',
+          color: 'white',
+          fontFamily: 'Garamond, serif',
+          textShadow: '2px 2px 2px black',
+          margin: 0
+        }}
+      >
+        the CAREER&nbsp;SPHINX
+      </h1>
+
+      <h2
+        style={{
+          fontStyle: 'italic',
+          fontWeight: 400,
+          color: 'white',
+          fontFamily: 'sans-serif',
+          fontSize: '1.3vw',
+          marginTop: '0.3em',
+          lineHeight: 1.25
+        }}
+      >
+        Unearth the career buried in your future<br /><br />
+        Scroll down<br />
+        ▼
+      </h2>
+    </div>
+  );
+}
+
+
+function AssessmentSection({
+  scrollY,
+  goto,
+  apiKeyUI
+}: {
+  scrollY: number;
+  goto: (p: Page) => void;
+  apiKeyUI: React.ReactNode;
+}) {
+  const offset = -scrollY * 0.75;
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: '120vh',
+        left: '50%',
+        transform: `translate(-50%, ${offset}px)`,
+        width: '80vw',
+        zIndex: 25
+      }}
+    >
+      <Row>
+        <Col style={{ color: 'white', marginLeft: '10%' }}>
+          <Card id="QuizCard">
+            The Basic Career assessment asks you to rate yourself on various
+            skills and interests, giving a broad estimate of fitting careers.
+            <br />
+            <Button onClick={() => goto('basic-career')} id="PageButton">
+              Take Basic Quiz
+            </Button>
+          </Card>
+        </Col>
+
+        <Col style={{ color: 'white' }}>
+          <Card id="QuizCard">
+            The Detailed Career assessment asks free-form questions about your
+            personality and aspirations, returning tailored career paths – plus
+            the reasoning behind each pick!
+            <br />
+            <Button onClick={() => goto('detailed-career')} id="PageButton">
+              Take Detailed Quiz
+            </Button>
+          </Card>
+        </Col>
+      </Row>
+
+      {/* API Key form now sits under the cards */}
+      <div style={{ marginTop: '2rem' }}>{apiKeyUI}</div>
+    </div>
+  );
+}
 
 function App() {
+  const scrollY = useScrollY();
+  const mouseX  = useMouseOffset();
 
-  const [key, setKey] = useState<string>(keyData);
-  const [currentPage, setCurrentPage] = useState<string>('home');
+  /* API-key & route state */
+  const [key, setKey] = useState<string>(() => {
+    const raw = localStorage.getItem('MYKEY');
+    return raw ? JSON.parse(raw) : '';
+  });
+  const [currentPage, setCurrentPage] = useState<Page>('home');
+
+  const handleSubmit = () => {
+    localStorage.setItem('MYKEY', JSON.stringify(key));
+    window.location.reload();
+  };
+
+  /* re-usable key form node */
+  const apiKeyForm = (
+    <Form style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      <Form.Label style={{ color: 'white', margin: 0 }}>API Key:</Form.Label>
+      <Form.Control
+        type="password"
+        placeholder="Insert API Key"
+        onChange={e => setKey(e.target.value)}
+        style={{ maxWidth: 200 }}
+      />
+      <Button onClick={handleSubmit} id="APIKeyButton">
+        Submit
+      </Button>
+    </Form>
+  );
 
   const renderPage = () => {
-    switch (currentPage) {
-      case 'home':
-        return (
-          
-          <div
+    if (currentPage !== 'home') {
+      if (currentPage === 'detailed-career') return <DetailedCareer />;
+      if (currentPage === 'basic-career')    return <BasicCareer />;
+      if (currentPage === 'about')           return <div>About Page</div>;
+      if (currentPage === 'contact')         return <div>Contact Page</div>;
+    }
+
+    return (
+      <>
+      <ParallaxBackdrop scrollY={scrollY} mouseX={mouseX} />
+<BlueSphinxTitle  scrollY={scrollY} mouseX={mouseX} />  {/* ← add mouseX */}
+
+
+        <AssessmentSection
+          scrollY={scrollY}
+          goto={setCurrentPage}
+          apiKeyUI={apiKeyForm}
+        />
+
+        {/* past results (static) */}
+        <Row style={{ marginTop: '230vh', marginLeft: '10%', marginRight: '10%' }}>
+          <h2
             style={{
-              //position: 'fixed',
-              overflowX: 'clip',
-              //overflowY:'scroll',
-              //width: '100vw',
-              height:'100%',
-              maxWidth:'100vw',
-              //minHeight: '100vh'      
+              fontFamily: 'Garamond, serif',
+              color: 'white',
+              textShadow: '2px 2px 2px black'
             }}
           >
-           
-            <img
-              src={moon}
-              alt="moon"
-              style={{
-                top: 'fixed',
-                bottom: 0,
-                left: 0,
-                width:'100vw',
-               
-              }}
-            />
-            <br></br>
-            <br></br>
-            <br></br>
-          <Row style={{marginBottom:'10%'}}>
-              
-
-              <Col>
-              <div style={{ color: 'white', display:'block'}}></div>
-              
-              <h1
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: '3.5vw',
-                  color: 'white',
-                  fontFamily: 'Garamond, serif',
-                  textShadow: '2px 2px 2px black',
-                  marginTop: '10%',
-                  
-                }}
-              >
-                Sphinx Career Quiz
-              </h1>
-              <hr style={{color:'white', marginTop:10, marginLeft:30, marginRight:30}}></hr>
-              <h2
-                style={{
-                  fontStyle: 'italic',
-                  color: 'white',
-                  fontFamily: 'Franklin Gothic, Arial, sans-serif',
-                  fontSize: '1.4vw'
-                }}
-              >
-                The best place to discover your dream job, today
-              </h2>
-              <p
-                style={{
-                  color: 'white',
-                  fontFamily: 'Helvetica, Arial, sans-serif',
-                  fontSize:'1vw'
-                }}
-              >
-                Developed by Connor Vitz, Pari Shah, Grace Setzler, and Andre Babik.
-              </p>
-
-              </Col>
-              <Col>
-              <Row>
-
-                {/*Basic Career Assessment Card and Button: */}
-              <Col style={{color:'white', marginLeft:'10%'}}>
-              <Card id='QuizCard'>
-                The Basic Career assesment asks you to rate yourself on various skills and interests, gives a broad estimation of fitting career paths.
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-              <Button onClick={() => setCurrentPage('basic-career')} id="PageButton">
-                Take Basic Quiz
-              </Button>
-              </Card>
-              </Col>
-
-              {/*Detailed Career Assessment Card and Button: */}
-                <Col style={{color:'white'}}>
-                <Card id='QuizCard'>
-                The Detailed Career assesment asks you to write answers to several questions about your personality and aspirations, gives a specific set of fitting career paths and why they will work for you!
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-              <Button onClick={() => setCurrentPage('detailed-career')} id="PageButton"> 
-                Take Detailed Quiz
-              </Button>
-              </Card>
-              </Col>
-                
-              </Row>
-              </Col>
-              
-            </Row>
-
-            {/*Past Results Display*/}
-           <Row style={{marginBottom:'10%', marginLeft:'10%', marginRight:'10%'}}>
-            <h2 style={{fontFamily:'Garamond, serif', color:'white', textShadow:'2px 2px 2px black'}}>Past Results:</h2>
-                <hr style={{color:'white'}}></hr>
-                <br></br>
-                <br></br>
-                {/*Placeholder text appears here if the user has not yet taken a quiz*/}
-                <p hidden={results.length>0} style={{fontFamily:'Franklin Gothic, sans-serif', color:'white'}}>You can review your results here once you've taken at least one quiz</p>
-            {resultLists()}
-           </Row>
-            
-          
-          </div>
-          
-      
-        );
-      case 'about':
-        return <div>About Page</div>;
-      case 'contact':
-        return <div>Contact Page</div>;
-      case 'detailed-career':
-        return <DetailedCareer />;
-      case 'basic-career':
-        return <BasicCareer />;
-      default:
-        return <div>404 Page Not Found</div>;
-    }
+            Past Results:
+          </h2>
+          <p
+            hidden={results.length > 0}
+            style={{ fontFamily: 'Franklin Gothic, sans-serif', color: 'white' }}
+          >
+            You can review your results here once you've taken at least one quiz.
+          </p>
+          {resultLists()}
+        </Row>
+      </>
+    );
   };
-  
-
-  function handleSubmit() {
-    localStorage.setItem(saveKeyData, JSON.stringify(key));
-    window.location.reload();
-  }
-
-  function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
-    setKey(event.target.value);
-  }
 
   return (
     <div
       className="App"
       style={{
-        margin: '0%',
-        padding: "0%",
-        backgroundColor: '#062C43',
+        margin: 0,
+        padding: 0,
+        backgroundColor: 'transparent',
         minHeight: '100vh',
-        position: 'relative',
-        
+        position: 'relative'
       }}
     >
-      
-      <header
-        style={{
-          display: 'flex',
-          gap: '10px',
-          position: 'absolute',
-          top: '10px',
-          left: '10px',
-          zIndex: 10,
-          alignItems: 'center',
-        }}
-      >
-        {currentPage !== 'home' && (
-          <button onClick={() => setCurrentPage('home')}>🏠</button>
-        )}
-        <Form style={{ display: 'flex', alignItems: 'center', marginLeft: '10px' }}>
-          <Form.Label style={{ color: 'white', marginRight: '5px' }}>API Key:</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insert API Key Here"
-            onChange={changeKey}
-            style={{ maxWidth: '200px', marginRight: '5px' }}
-          />
-          <Button className="Submit-Button" onClick={handleSubmit} id='APIKeyButton'>
-            Submit
-          </Button>
-        </Form>
-      </header>
+      {/* Tiny in-page nav only when not on home */}
+      {currentPage !== 'home' && (
+        <button
+          style={{ position: 'absolute', top: 10, left: 10, zIndex: 40 }}
+          onClick={() => setCurrentPage('home')}
+        >
+          🏠
+        </button>
+      )}
 
-      <div>{renderPage()}</div>
+      {renderPage()}
     </div>
   );
 }
