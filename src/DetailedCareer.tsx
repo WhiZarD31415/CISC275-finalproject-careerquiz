@@ -49,9 +49,8 @@ const DetailedCareer =() => {
         
     const allAnswered = detailedQuestions.every(answer => answer.trim() !== '');
     
-    
-    //Handles form submission and ChatGPT recommendations
-    const handleSubmit = async () => {
+    //Sends final answers to ChatGPT and shows results
+    async function generate_results() {
       const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
 
       if (!apiKey) {
@@ -94,6 +93,11 @@ const DetailedCareer =() => {
         console.error("ChatGPT error:", error);
         alert("ChatGPT error occurred.");
       }
+    }
+
+    //Handles form submission and ChatGPT recommendations
+    const handleSubmit = () => {
+      generate_results();
     };
     
     //Flips cards
@@ -127,7 +131,7 @@ const DetailedCareer =() => {
         <br></br>
         </div>)}
         <div style={{ padding: '15px', textAlign: 'center'}}>
-          {!submitted ? ((currentIndex !== detailedQuestions.length) ? (
+          {!submitted ? /* ((currentIndex !== detailedQuestions.length) ? */ (
           <>
           <div style={{ textAlign: 'center', 
                         backgroundColor: '#5591A9', 
@@ -204,8 +208,8 @@ const DetailedCareer =() => {
         />
       </>
     ) : (
-      <h1>hi</h1>
-    )) : (
+  /*     <h1>hi</h1>
+    )) : ( */
       <>
             {/*Displays the career recommendations post submission*/}
             <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif' }}>
