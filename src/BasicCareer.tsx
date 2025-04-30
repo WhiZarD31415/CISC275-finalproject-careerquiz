@@ -46,12 +46,9 @@ export function BasicCareer(): React.JSX.Element {
         setQuestion2({...question2, sliders: new_sliders2}); 
     }
 
-    //Handles final submissions, sends to ChatGPT and shows results
-    async function submitQuestions() {
-        updateQuestionBank();
-        //generates results once the last pair of questions are answered
-        if(progress +2 >= questionBank.length) {
-            const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+    //Sends final answers to ChatGPT and shows results
+    async function generate_results() {
+        const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
             if(!apiKey) {
                 alert("Please provide yout API key");
                 return;
@@ -95,8 +92,15 @@ export function BasicCareer(): React.JSX.Element {
             console.error("ChatGPT error:", err);
             alert("ChatGPT error occurred.");
         }
-        }
+    }
 
+    // Handles question submissions
+    function submitQuestions() {
+        updateQuestionBank();
+        //generates results once the last pair of questions are answered
+        if(progress +2 >= questionBank.length) {
+            generate_results()
+        }
         setProgress(progress + 2);
     }
 
