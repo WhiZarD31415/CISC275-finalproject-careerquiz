@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form, ProgressBar} from 'react-bootstrap'
+import { PulseLoader } from "react-spinners";
 import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
 
@@ -209,7 +210,10 @@ const DetailedCareer =() => {
         />
       </>
     ) : (
-      <h1>hi</h1>
+      <PulseLoader 
+                    color="#5591A9"
+                    cssOverride={{paddingTop: '10%'}}
+                />
     )) : (
       <>
             {/*Displays the career recommendations post submission*/}
