@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Form, ProgressBar } from "react-bootstrap";
+import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 import { getChatGPTResponse } from "./ChatgptAPI";
 import './BasicCareer.css'
@@ -124,7 +125,7 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </div>
             
-            {!submitted ? (
+            {!submitted ? ((progress !== questionBank.length) ? (
             <>
             {/* Slider questions */}
             <div style={{display: "flex", padding: "20px", justifyContent: "center"}}>
@@ -169,6 +170,8 @@ export function BasicCareer(): React.JSX.Element {
             <br></br>
             </>
             ) : (
+                <PulseLoader></PulseLoader>
+            )) : (
                 <>
                  {/* Career suggestion results after submission */}
                   <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', textAlign: 'center' }}>
