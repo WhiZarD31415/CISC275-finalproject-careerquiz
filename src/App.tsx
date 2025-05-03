@@ -121,8 +121,8 @@ function BlueSphinxTitle({
       >
         Unearth the career buried in your future<br /><br />
         Scroll down<br />
-        ▼
       </h2>
+      <div className="scroll-cue" aria-hidden="true">▼</div>
     </div>
   );
 }
