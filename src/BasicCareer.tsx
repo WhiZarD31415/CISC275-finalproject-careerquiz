@@ -80,12 +80,19 @@ export function BasicCareer(): React.JSX.Element {
 
         try {
             const result = await getChatGPTResponse(prompt, apiKey);
-
+            //const result = "1. [Career 1]\nDescription 1...\n\n2. [Career 2]\nDescription 2...\n\n3. [Career 3]\nDescription 3..."
             //Splits results into 3 card sections
             const parts = result
                 .split(/\n(?=\d\.\s)/g)
                 .map((p: string) => p.trim())
                 .filter((p: string) => p.length > 0);
+            
+                (parts.slice(0, 3)).map((suggestion:string) => {
+                  const [title, ...descLines] = suggestion.split('\n');
+                  const description = descLines.join('\n').trim();
+    
+                  //adding the title, the results, and an index to the results arrary for use on the homepage results display
+                  results.push([title, description, (results.length+1).toString()])})
 
             setCareerSuggestions(parts.slice(0, 3));
             setFlipped([false, false, false]);
@@ -195,7 +202,7 @@ export function BasicCareer(): React.JSX.Element {
               const description = descLines.join('\n').trim();
 
               //adding the title, the results, and an index to the results arrary for use on the homepage results display
-              results.push([title, description, (results.length+1).toString()])
+              //results.push([title, description, (results.length+1).toString()])
                               
 
               

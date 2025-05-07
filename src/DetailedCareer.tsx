@@ -84,13 +84,20 @@ const DetailedCareer =() => {
       `;
 
       try {
-        const response = await getChatGPTResponse(prompt, apiKey);
-        
-        // Splits the response into 3 suggestion blocks
-        const parts = response
-          .split(/\n(?=\d\.\s)/g)
-          .map((p: string) => p.trim())
-          .filter((p: string) => p.length > 0);
+      const result = await getChatGPTResponse(prompt, apiKey);
+        //const result = "1. [Career 4]\nDescription 4...\n\n2. [Career 5]\nDescription 5...\n\n3. [Career 6]\nDescription 6..."
+        //Splits results into 3 card sections
+        const parts = result
+            .split(/\n(?=\d\.\s)/g)
+            .map((p: string) => p.trim())
+            .filter((p: string) => p.length > 0);
+                    
+        (parts.slice(0, 3)).map((suggestion:string) => {
+            const [title, ...descLines] = suggestion.split('\n');
+            const description = descLines.join('\n').trim();
+            
+        //adding the title, the results, and an index to the results arrary for use on the homepage results display
+        results.push([title, description, (results.length+1).toString()])})
   
         setCareerSuggestions(parts.slice(0, 3));
         setFlipped([false, false, false]);
@@ -229,10 +236,6 @@ const DetailedCareer =() => {
               careerSuggestions.map((suggestion, index) => {
                 const [title, ...descLines] = suggestion.split('\n');
                 const description = descLines.join('\n').trim();
-
-                //adding the title, the results, and an index to the results arrary for use on the homepage results display
-                results.push([title, description, (results.length+1).toString()])
-                
                 
 
                 return (
