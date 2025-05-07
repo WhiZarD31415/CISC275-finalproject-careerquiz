@@ -6,6 +6,7 @@ import { BasicCareer } from './BasicCareer';
 import moon from './assets/moon.png';
 //import sphinxIcon from './assets/sphinxIcon.png';
 import { resultLists } from './resultLists';
+import { create_login } from './login';
 
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -219,7 +220,9 @@ function App() {
           </Button>
         </Form>
       </header>
-
+      <Button onClick={() => create_login("connor","1234")}>
+        Create User
+      </Button>
       <div>{renderPage()}</div>
     </div>
   );
