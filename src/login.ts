@@ -1,12 +1,12 @@
 type User = {username: string, password: string} | undefined;
 
 export function create_login(username: string, password: string) {
-    /* let login_data: User[] = read_login_data();
+    let login_data: User[] = read_login_data();
 
     if (find_username(login_data,username)) {
         alert("Username is taken");
         return;
-    } */
+    }
 
     let user_login: User = {
         username: username,
@@ -21,7 +21,7 @@ export function create_login(username: string, password: string) {
         alert("User signup was invalid");
     }
     
-    localStorage.setItem("USER",userJson)
+    localStorage.setItem("LOGINS",userJson)
     /* fs.writeFile('login.json', userJson, (err) => {
         if (err) {
             console.log('Error writing file:', err);
@@ -31,15 +31,23 @@ export function create_login(username: string, password: string) {
     }); */
 }
 
-/* function read_login_data(): User[] {
-    let data: string = "";
+export function clear_logins() {
+    localStorage.removeItem("LOGINS");
+}
+
+function read_login_data(): User[] {
+    let data: string | null = null;
+    let login_data: User[] = [];
     try {
-        localStorage.getItem()
+        data = localStorage.getItem("LOGINS")
     } catch (error) {
-        console.error('Error reading input2.txt:', error);
+        console.error('Error reading logins:', error);
     }
-    let data_array: string[] = data.split("}");
-    let login_data: User[] = data_array.map(string => JSON.parse(string + "}"));
+    if (data) {
+        let data_array: string[] = data.split("}");
+        console.log(data_array)
+        login_data = data_array.map(string => JSON.parse(string + "}"));
+    }
     return login_data;
 }
 
@@ -47,4 +55,4 @@ function find_username(login_data: User[], username: string): User {
     let user: User = undefined;
     user = login_data.find(login => (login) ? login.username === username : false);
     return user
-} */
+}
