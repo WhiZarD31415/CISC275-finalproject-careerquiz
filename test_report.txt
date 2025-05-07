@@ -43,7 +43,7 @@ FAIL src/App.test.tsx
       at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1728:14)
       at Object.<anonymous> (src/ChatgptAPI.ts:2:1)
       at Object.<anonymous> (src/DetailedCareer.tsx:4:1)
-      at Object.<anonymous> (src/App.tsx:4:1)
+      at Object.<anonymous> (src/App.tsx:6:1)
       at Object.<anonymous> (src/App.test.tsx:3:1)
       at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
       at runJest (node_modules/@jest/core/build/runJest.js:404:19)
@@ -66,7 +66,7 @@ go away.[0m
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
 All files           |       0 |        0 |       0 |       0 |                   
- App.tsx            |       0 |        0 |       0 |       0 | 10-207            
+ App.tsx            |       0 |        0 |       0 |       0 | 16-273            
  BasicCareer.tsx    |       0 |        0 |       0 |       0 | 14-207            
  BasicQuestions.ts  |       0 |      100 |     100 |       0 | 11                
  ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 7-23              
@@ -78,5 +78,5 @@ All files           |       0 |        0 |       0 |       0 |
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        3.627 s
+Time:        3.859 s
 Ran all test suites.
