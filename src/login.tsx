@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 
 type User = {username: string, password: string} | undefined;
 
@@ -85,11 +85,14 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
                 minWidth: '300px',
                 boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
             }}>
-                <div className="popup-content">
+                <div>
                     {children}
-                    <Button className="popup-close" onClick={onClose}>
-                        Close
-                    </Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '5px'}}>
+                        <Button onClick={() => clear_logins()}>Clear Users</Button>
+                        <Button onClick={onClose}>
+                            Close
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,6 +101,8 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
   
 export function LoginPanel(): React.JSX.Element {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
   
     return (
         <Form>
@@ -105,16 +110,42 @@ export function LoginPanel(): React.JSX.Element {
                 backgroundColor: '#5591A9', 
                 border: '#61dafb 0.5vh outset'
             }}>
-                Open Popup    
+                Login    
             </Button>
             <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
-            <h2>Popup Content</h2>
-            <p>This is the content of the popup.</p>
-            <div style={{ display: 'flex'}}>
-                <Button onClick={() => create_login("connor", "1234")}>Signup</Button>
+            <h2>Login Panel</h2>
+            <p>Enter a username and password to locally create a user or login.<br></br>Hit "Clear Users" to empty local storage.</p>
+            <div style={{ paddingBottom: '15px'}}>
+                <Form.Group as={Row}>
+                    <Form.Label column xs="3">Username:</Form.Label>
+                    <Col xs="9">
+                        <Form.Control
+                            as="textarea"
+                            rows={1}
+                            placeholder='Username'
+                            onChange={(e) => setUsername(e.target.value)}
+                            style={{ maxWidth: '90%', resize: 'none'}}
+                        />
+                    </Col>
+                </Form.Group>
+                <Form.Group as={Row}>
+                    <Form.Label column xs="3">Password:</Form.Label>
+                    <Col xs="9">
+                        <Form.Control
+                            as="textarea"
+                            rows={1}
+                            placeholder='Password'
+                            onChange={(e) => setPassword(e.target.value)}
+                            style={{ maxWidth: '90%', resize: 'none'}}
+                        />
+                    </Col>
+                </Form.Group>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
+                <Button onClick={() => create_login(username, password)}>Create User</Button>
+                <div>&nbsp;</div>
                 <Button onClick={() => null}>Login</Button>
             </div>
-            <Button onClick={() => clear_logins()}>Clear Users</Button>
             </Popup>
         </Form>
     );
