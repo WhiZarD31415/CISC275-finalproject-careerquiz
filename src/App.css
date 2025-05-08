@@ -1,9 +1,11 @@
+/*  src/App.css  */
+
+/* ——— Base app shell ——————————————————————————————— */
 .App {
   text-align: center;
-  /* max-width: 1520px; */
   overflow-y: auto;
   overflow-x: auto;
-  width:100%
+  width: 100%;
 }
 
 .App-logo {
@@ -17,8 +19,13 @@
   }
 }
 
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 .App-header {
-  background-color: #282c34;
+  background-color: transparent;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,118 +35,149 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
+.App-link { color: #61dafb; }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* ——— Question / quiz utility styles ——————————————— */
 #questionHeader {
   background-color: #5591A9;
   text-align: left;
-  font-family:'Franklin Gothic', sans-serif;
+  font-family: 'Franklin Gothic', sans-serif;
   font-weight: bold;
   color: white;
   outline: #062C43 1vh outset;
 }
 
 #detailQuestText {
-  color:white;
+  color: white;
   text-align: left;
-  padding-left:50px;
+  padding-left: 50px;
 }
 
+/* ——— Assessment card & button (muted blues) ——————————— */
+#QuizCard {
+  background-color: #23497d;          /* deep desaturated blue */
+  color: white;
+  height: 110%;
+  width: 90%;
+  padding: 5%;
+  border: #4e6fa5 4px inset;          /* mid-blue frame */
+  box-shadow: 0 0 10px 2px rgba(78, 111, 165, 0.35);
+  font-family: 'Franklin Gothic', sans-serif;
+}
 
 #PageButton {
-  color:white;
-  background-color: #5591A9;
-  border: #5591A9 1vh outset;
-  /* border-color: #062C43; */
-  height: 17%;
-  width: 95%;
-  align-self: center;
-  font-family:'Franklin Gothic', sans-serif;
-  font-size: 100%;
-
+  color: white;
+  background-color: #4e6fa5;          /* medium muted blue */
+  border: #4e6fa5 3px outset;
+  font-family: 'Franklin Gothic', sans-serif;
 }
-
-
 
 #PageButton:hover {
-  color:black;
-  border-style: inset;
-  background-color: #9CCDDC;
+  color: black;
+  background-color: #7d9bca;          /* lighter low-sat blue */
+  border: #7d9bca 3px inset;
 }
 
-
+/* ——— API key button (keep teal for contrast) —————————— */
 #APIKeyButton {
-  color:white;
+  color: white;
   background-color: #5591A9;
   border: #61dafb 0.5vh outset;
   align-self: center;
 }
 
-#QuizCard {
-  color:white;
-  background-color:#054569;
-  height: 110%;
-  width:90%;
-  padding: 5%;
-  border: #062C43 5px inset;
-}
-
+/* ——— Results & misc cards ———————————————————————— */
 #Results {
-  background-color:#9CCDDC; 
-  color:'black';
-  font-family:Helvetica, sans-serif;}
-
-
-
-/*The following are for results displayed on the home page*/
+  background-color: #9CCDDC;
+  color: black;
+  font-family: Helvetica, sans-serif;
+}
 
 #ResultHome {
-  background-color:#9CCDDC; 
-  color:'black';
-  font-family:'Garamond, serif';
-  padding:5%;
+  background-color: #9CCDDC;
+  color: black;
+  font-family: 'Garamond, serif';
+  padding: 5%;
   height: 110%;
   border: #062C43 5px inset;
 }
 
-.list-group-item, .list-group-item:defined {
+/* List-group colouring */
+.list-group-item,
+.list-group-item:defined {
   background-color: #5591A9;
-  font-family:'Franklin Gothic', sans-serif;
+  font-family: 'Franklin Gothic', sans-serif;
   border: #5591A9 5px outset;
-  color:white; 
-  vertical-align:middle; 
+  color: white;
+  vertical-align: middle;
 }
 
-
-.list-group-item:focus, .list-group-item:hover, .list-group-item:active  {
+.list-group-item:focus,
+.list-group-item:hover,
+.list-group-item:active {
   background-color: #9CCDDC;
   border: #9CCDDC 5px inset;
-  color:black;
+  color: black;
 }
 
-
-
-/*The following are for the submit button located in each of the quizzes*/
+/* Submit buttons in other quizzes */
 #submitButton {
-  color:white;
+  color: white;
   background-color: #209b64;
   border: #209b64 3px outset;
-  font-family:'Franklin Gothic', sans-serif;
+  font-family: 'Franklin Gothic', sans-serif;
 }
 
 #submitButton:hover {
   background-color: #92dcbb;
-  border:#92dcbb 3px inset;
-  color:black;
+  border: #92dcbb 3px inset;
+  color: black;
+}
+
+/* ——— Parallax scaffolding ——————————————— */
+.parallax-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;    /* clicks pass through */
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;            /* scale to viewport width */
+  height: auto;
+  will-change: transform;  /* hint for smoother scrolling */
+}
+
+/* Extra mask on sky layer (class “sky” set in TSX) */
+.sky {
+  -webkit-mask-image: linear-gradient(
+    to bottom, white 0%, white 60%, transparent 100%);
+          mask-image: linear-gradient(
+    to bottom, white 0%, white 60%, transparent 100%);
+}
+
+/* Global backdrop colour (matches bottom of ground) */
+body {
+  margin: 0;
+  background: #010122;
+}
+
+@keyframes cueBounce {
+  0%, 100% { transform: translateY(0);    opacity: 0.9; }
+  50%      { transform: translateY(0.6rem); opacity: 0.4; }
+}
+
+.scroll-cue {
+  font-size: 1.6vw;          /* scales with viewport */
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(0,0,0,.6);
+  animation: cueBounce 2s infinite ease-in-out;
+  margin-top: 0.3rem;
+  pointer-events: none;      /* clicks pass through */
 }
