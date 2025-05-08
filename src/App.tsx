@@ -21,6 +21,8 @@ const LAYERS = [
   { src: groundFront, speed: 2.0, z: 5, zoom: 1.1 }
 ];
 
+//Ground Front: #010122
+
 const BOTTOM_COLOR = '#010122';
 export const results: string[][] = [];
 type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
@@ -155,6 +157,7 @@ function AssessmentSection({
             The Basic Career assessment asks you to rate yourself on various
             skills and interests, giving a broad estimate of fitting careers.
             <br />
+            <br/>
             <Button onClick={() => goto('basic-career')} id="PageButton">
               Take Basic Quiz
             </Button>
@@ -166,7 +169,8 @@ function AssessmentSection({
             The Detailed Career assessment asks free-form questions about your
             personality and aspirations, returning tailored career paths – plus
             the reasoning behind each pick!
-            <br />
+            <br/>
+            <br/>
             <Button onClick={() => goto('detailed-career')} id="PageButton">
               Take Detailed Quiz
             </Button>
@@ -176,7 +180,12 @@ function AssessmentSection({
 
       {/* API Key form now sits under the cards */}
       <div style={{ marginTop: '2rem' }}>{apiKeyUI}</div>
+    <br/>
+
+    
     </div>
+
+    
   );
 }
 
@@ -233,7 +242,7 @@ function App() {
         />
 
         {/* past results (static) */}
-        <Row style={{ marginTop: '230vh', marginLeft: '10%', marginRight: '10%' }}>
+        <Row style={{ marginTop: '230vh', marginLeft: '10%', marginRight: '10%' , position:'relative', backgroundColor:'#010122'}}>
           <h2
             style={{
               fontFamily: 'Garamond, serif',
@@ -251,6 +260,7 @@ function App() {
           </p>
           {resultLists()}
         </Row>
+        <br/>
       </>
     );
   };

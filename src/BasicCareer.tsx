@@ -9,6 +9,7 @@ import { results } from './App';
 
 
 
+
 export function BasicCareer(): React.JSX.Element {
     //Tracks progress
     const [progress, setProgress] = useState<number>(0);
@@ -50,11 +51,11 @@ export function BasicCareer(): React.JSX.Element {
 
     //Sends final answers to ChatGPT and shows results
     async function generate_results() {
-        const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
-            if(!apiKey) {
-                alert("Please provide yout API key");
-                return;
-            }
+        // const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+        //     if(!apiKey) {
+        //         alert("Please provide yout API key");
+        //         return;
+        //     }
         const scores = questionBank.map((q, i) => {
             const sliders = q.sliders.map(s => `${s.option}: ${s.value}`).join(", ");
             return `Q${i + 1} (${q.description}): ${sliders}`;
@@ -79,8 +80,8 @@ export function BasicCareer(): React.JSX.Element {
         `;
 
         try {
-            const result = await getChatGPTResponse(prompt, apiKey);
-            //const result = "1. [Career 1]\nDescription 1...\n\n2. [Career 2]\nDescription 2...\n\n3. [Career 3]\nDescription 3..."
+            //const result = await getChatGPTResponse(prompt, apiKey);
+            const result = "1. [Career 1]\nDescription 1...\n\n2. [Career 2]\nDescription 2...\n\n3. [Career 3]\nDescription 3..."
             //Splits results into 3 card sections
             const parts = result
                 .split(/\n(?=\d\.\s)/g)
@@ -123,14 +124,14 @@ export function BasicCareer(): React.JSX.Element {
     return (
         <div>
             <div style={{
-                backgroundColor:'#054569', 
+                backgroundColor:'#4e6fa5', 
                 color: 'white', 
                 fontFamily:'Garamond, serif',
                 textShadow: '2px 2px 2px black',}}>
-            <br></br>
+            <br/>
             <h1>Basic Career Assessment</h1>
             <hr style={{color:'white', marginLeft:450,marginRight:450}}></hr>
-            <br></br>
+            <br/>
             </div>
             
             {!submitted ? ((progress !== questionBank.length) ? (
@@ -185,7 +186,8 @@ export function BasicCareer(): React.JSX.Element {
             )) : (
                 <>
                  {/* Career suggestion results after submission */}
-                  <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', textAlign: 'center' }}>
+                 <br/>
+                  <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', fontSize: "25px", textAlign: 'center' }}>
                  Your Recommended Careers:
             </h2>
              {/* Flip card layout */}
@@ -195,7 +197,7 @@ export function BasicCareer(): React.JSX.Element {
              alignItems: 'flex-start',
              flexWrap: 'wrap',
              gap: '40px',
-             marginBottom: '40px'
+             marginBottom: '40px',
           }}>
             {careerSuggestions.map((suggestion, index) => {
               const [title, ...descLines] = suggestion.split('\n');
@@ -215,7 +217,7 @@ export function BasicCareer(): React.JSX.Element {
                 >
                   <div className="flip-card-inner">
                     <div className="flip-card-front card-face">
-                      <h5>{title}</h5>
+                      <h5 style={{fontSize:"150%", fontFamily:"Century, serif", textShadow: '2px 2px 2px black'}}>{title}</h5>
                     </div>
                     <div className="flip-card-back card-face">
                       <p>{description}</p>

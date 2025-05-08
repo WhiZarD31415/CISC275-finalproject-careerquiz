@@ -68,22 +68,28 @@
 #PageButton {
   color: white;
   background-color: #4e6fa5;          /* medium muted blue */
-  border: #4e6fa5 3px outset;
+  border: #4e6fa5 5px outset;
   font-family: 'Franklin Gothic', sans-serif;
 }
 
 #PageButton:hover {
   color: black;
   background-color: #7d9bca;          /* lighter low-sat blue */
-  border: #7d9bca 3px inset;
+  border: #7d9bca 5px inset;
 }
 
 /* ——— API key button (keep teal for contrast) —————————— */
 #APIKeyButton {
   color: white;
-  background-color: #5591A9;
-  border: #61dafb 0.5vh outset;
+  background-color: #7d9bca;
+  border: #7d9bca 5px outset;
   align-self: center;
+}
+
+#APIKeyButton:hover {
+  color: black;
+  background-color: #96aacc;
+  border: #96aacc 5px inset;
 }
 
 /* ——— Results & misc cards ———————————————————————— */
@@ -94,20 +100,21 @@
 }
 
 #ResultHome {
-  background-color: #9CCDDC;
+  background-color: #96aacc;
   color: black;
   font-family: 'Garamond, serif';
   padding: 5%;
   height: 110%;
   border: #062C43 5px inset;
+  max-height: fit-content;
 }
 
 /* List-group colouring */
 .list-group-item,
 .list-group-item:defined {
-  background-color: #5591A9;
+  background-color: #4e6fa5;
   font-family: 'Franklin Gothic', sans-serif;
-  border: #5591A9 5px outset;
+  border: #4e6fa5 5px outset;
   color: white;
   vertical-align: middle;
 }
@@ -115,8 +122,8 @@
 .list-group-item:focus,
 .list-group-item:hover,
 .list-group-item:active {
-  background-color: #9CCDDC;
-  border: #9CCDDC 5px inset;
+  background-color: #7d9bca;
+  border: #7d9bca 5px inset;
   color: black;
 }
 

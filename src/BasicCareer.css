@@ -1,7 +1,9 @@
+
+
 .flip-card {
     background-color: transparent;
-    width: 320px;
-    height: 480px; /* Taller for playing card look */
+    width: 20vw;
+    height: 65vh; /* Taller for playing card look */
     perspective: 1000px;
     cursor: pointer;
   }
@@ -22,8 +24,10 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #CED7E0;
-    color: #062C43;
+    background-color: #8eafe5;
+    background-image: url('./assets/1_sky.png');
+    border: #4e6fa5, 15px, ridge;
+    color: white;
     border-radius: 16px;
     font-family: 'Garamond, serif';
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -39,5 +43,8 @@
   
   .flip-card-back {
     transform: rotateY(180deg);
+    font-family: "Franklin Gothic", sans-serif;
+    background-image: none;
+    color:black;
   }
   
