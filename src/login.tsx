@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 
 type User = {username: string, password: string} | undefined;
@@ -120,8 +120,8 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
                 <div>
                     {children}
                     <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '5px'}}>
-                        <Button onClick={() => clear_logins()}>Clear Users</Button>
-                        <Button onClick={onClose}>
+                        <Button id="button" onClick={() => clear_logins()}>Clear Users</Button>
+                        <Button id="button" onClick={onClose}>
                             Close
                         </Button>
                     </div>
@@ -152,7 +152,7 @@ export function LoginPanel(): React.JSX.Element {
                 backgroundColor: '#5591A9', 
                 border: '#61dafb 0.5vh outset'
             }}>
-                Login    
+                Login Panel 
             </Button>
             <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
             <h2>Login Panel</h2>
@@ -184,9 +184,9 @@ export function LoginPanel(): React.JSX.Element {
                 </Form.Group>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
-                <Button onClick={() => CreateUser()}>Create User</Button>
+                <Button id="button" onClick={() => CreateUser()}>Create User</Button>
                 <div>&nbsp;</div>
-                <Button onClick={() => SignIn()}>Login</Button>
+                <Button id="button" onClick={() => SignIn()}>Login</Button>
             </div>
             </Popup>
         </Form>
