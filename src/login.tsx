@@ -23,13 +23,16 @@ function create_login(username: string, password: string) {
     } catch (error) {
         console.log(error);
         alert("User signup was invalid");
+        return;
     }
     
     let loginsJson: string | null = "";
     try {
         loginsJson = localStorage.getItem("LOGINS")
     } catch (error) {
-        console.error('Error reading logins:', error);
+        console.log(error);
+        alert('Error reading logins');
+        return;
     }
 
     if (loginsJson === null) {
@@ -38,8 +41,35 @@ function create_login(username: string, password: string) {
     localStorage.setItem("LOGINS",loginsJson+userJson)
 }
 
+function sign_in(username: string, password: string) {
+    let login_data: User[] = read_login_data();
+    let user: User = find_username(login_data,username);
+
+    if (!user) {
+        alert("Username not found");
+        return;
+    }
+
+    if (user.password !== password) {
+        alert("Incorrect password");
+        return;
+    }
+
+    let userJson: string = "";
+    try {
+        userJson = JSON.stringify(user);
+    } catch (error) {
+        console.log(error);
+        alert("User was invalid JSON");
+        return;
+    }
+
+    localStorage.setItem("USER",userJson)
+}
+
 function clear_logins() {
     localStorage.removeItem("LOGINS");
+    localStorage.removeItem("USER");
 }
 
 function read_login_data(): User[] {
@@ -146,7 +176,7 @@ export function LoginPanel(): React.JSX.Element {
             <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
                 <Button onClick={() => create_login(username, password)}>Create User</Button>
                 <div>&nbsp;</div>
-                <Button onClick={() => null}>Login</Button>
+                <Button onClick={() => sign_in(username, password)}>Login</Button>
             </div>
             </Popup>
         </Form>
