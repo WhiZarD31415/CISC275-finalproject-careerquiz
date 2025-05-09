@@ -6,6 +6,7 @@ import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { BasicCareer } from './BasicCareer';
 import { resultLists } from './resultLists';
+import { LoginPanel} from './login'
 
 import sky         from './assets/1_sky.png';
 import hills       from './assets/2_hills.png';
@@ -175,7 +176,10 @@ function AssessmentSection({
       </Row>
 
       {/* API Key form now sits under the cards */}
-      <div style={{ marginTop: '2rem' }}>{apiKeyUI}</div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
+        {apiKeyUI}
+        <LoginPanel ></LoginPanel>
+      </div>
     </div>
   );
 }
@@ -223,7 +227,7 @@ function App() {
     return (
       <>
       <ParallaxBackdrop scrollY={scrollY} mouseX={mouseX} />
-<BlueSphinxTitle  scrollY={scrollY} mouseX={mouseX} />  {/* ← add mouseX */}
+      <BlueSphinxTitle  scrollY={scrollY} mouseX={mouseX} />  {/* ← add mouseX */}
 
 
         <AssessmentSection

@@ -1,0 +1,10 @@
+#button {
+    background-color: #4e6fa5;
+  border: #4e6fa5 3px outset;
+}
+
+#button:hover {
+    color: black;
+    background-color: #7d9bca;          /* lighter low-sat blue */
+    border: #7d9bca 3px inset;
+  }
