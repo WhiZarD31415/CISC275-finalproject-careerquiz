@@ -17,7 +17,7 @@ function create_login(username: string, password: string) {
         password: password
     };
 
-    let userJson: string = ""
+    let userJson: string = "";
     try {
         userJson = JSON.stringify(user_login);
     } catch (error) {
@@ -25,14 +25,17 @@ function create_login(username: string, password: string) {
         alert("User signup was invalid");
     }
     
-    localStorage.setItem("LOGINS",userJson)
-    /* fs.writeFile('login.json', userJson, (err) => {
-        if (err) {
-            console.log('Error writing file:', err);
-        } else {
-            console.log('Successfully wrote file');
-        }
-    }); */
+    let loginsJson: string | null = "";
+    try {
+        loginsJson = localStorage.getItem("LOGINS")
+    } catch (error) {
+        console.error('Error reading logins:', error);
+    }
+
+    if (loginsJson === null) {
+        loginsJson = "";
+    }
+    localStorage.setItem("LOGINS",loginsJson+userJson)
 }
 
 function clear_logins() {
@@ -49,8 +52,7 @@ function read_login_data(): User[] {
     }
     if (data) {
         let data_array: string[] = data.split("}");
-        console.log(data_array)
-        login_data = data_array.map(string => JSON.parse(string + "}"));
+        login_data = data_array.slice(0, -1).map(string => JSON.parse(string + "}"));
     }
     return login_data;
 }
