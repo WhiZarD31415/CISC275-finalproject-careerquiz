@@ -135,7 +135,17 @@ export function LoginPanel(): React.JSX.Element {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-  
+
+    function CreateUser() {
+        create_login(username, password);
+        setIsPopupOpen(false);
+    }
+
+    function SignIn() {
+        sign_in(username, password);
+        setIsPopupOpen(false);
+    }
+
     return (
         <Form>
             <Button onClick={() => setIsPopupOpen(true)} style={{
@@ -174,9 +184,9 @@ export function LoginPanel(): React.JSX.Element {
                 </Form.Group>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
-                <Button onClick={() => create_login(username, password)}>Create User</Button>
+                <Button onClick={() => CreateUser()}>Create User</Button>
                 <div>&nbsp;</div>
-                <Button onClick={() => sign_in(username, password)}>Login</Button>
+                <Button onClick={() => SignIn()}>Login</Button>
             </div>
             </Popup>
         </Form>
