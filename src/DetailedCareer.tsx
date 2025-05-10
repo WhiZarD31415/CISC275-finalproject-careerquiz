@@ -3,9 +3,10 @@ import {Button, Form, ProgressBar} from 'react-bootstrap'
 import { PulseLoader } from "react-spinners";
 import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
-import { results } from './App';
+import { results} from './App';
 
 
+export var detailProgress = 0;
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
@@ -123,7 +124,7 @@ const DetailedCareer =() => {
 
 
     const progress = (detailedQuestions.filter(ans => ans.trim() !== '').length / detailedQuestions.length) * 100;
-
+    detailProgress = progress;
     return (
         <div>
         <div style={{
@@ -246,7 +247,7 @@ const DetailedCareer =() => {
                   >
                     <div className="flip-card-inner">
                       <div className="flip-card-front card-face">
-                        <h5>{title}</h5>
+                        <h5>{title.substring(2)}</h5>
                       </div>
                       <div className="flip-card-back card-face">
                         <p>{description}</p>

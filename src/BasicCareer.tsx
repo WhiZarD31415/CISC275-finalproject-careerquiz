@@ -5,14 +5,15 @@ import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 import { getChatGPTResponse } from "./ChatgptAPI";
 import './BasicCareer.css'
-import { results } from './App';
+import  { results} from './App';
 
 
-
+export var basicProgress  = 0;
 
 export function BasicCareer(): React.JSX.Element {
     //Tracks progress
     const [progress, setProgress] = useState<number>(0);
+    basicProgress =progress;
     //Holds all the questions
     const [questionBank, setQuestionBank] = useState<BasicQuestionType[]>(BasicQuestionSet);
     //Pair of questions being shown
@@ -190,6 +191,7 @@ export function BasicCareer(): React.JSX.Element {
                   <h2 style={{ color: 'white', marginBottom: '20px', fontFamily: 'Garamond, serif', fontSize: "25px", textAlign: 'center' }}>
                  Your Recommended Careers:
             </h2>
+            <div>
              {/* Flip card layout */}
              <div style={{
              display: 'flex',
@@ -217,7 +219,7 @@ export function BasicCareer(): React.JSX.Element {
                 >
                   <div className="flip-card-inner">
                     <div className="flip-card-front card-face">
-                      <h5 style={{fontSize:"150%", fontFamily:"Century, serif", textShadow: '2px 2px 2px black'}}>{title}</h5>
+                      <h5 style={{fontSize:"150%", fontFamily:"Century, serif", textShadow: '2px 2px 2px black'}}>{title.substring(2)}</h5>
                     </div>
                     <div className="flip-card-back card-face">
                       <p>{description}</p>
@@ -226,6 +228,9 @@ export function BasicCareer(): React.JSX.Element {
                 </div>
               );
             })}
+            
+          </div>
+
           </div>
         </>
       )}

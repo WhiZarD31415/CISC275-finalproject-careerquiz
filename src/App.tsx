@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
-import { BasicCareer } from './BasicCareer';
+import { detailProgress } from './DetailedCareer';
+import { basicProgress, BasicCareer } from './BasicCareer';
 import { resultLists } from './resultLists';
 
 import sky         from './assets/1_sky.png';
@@ -36,6 +37,8 @@ function useScrollY() {
   }, []);
   return y;
 }
+
+
 
 function useMouseOffset() {
   const [offset, setOffset] = useState(0); // −0.5 … +0.5 of viewport
@@ -189,6 +192,7 @@ function AssessmentSection({
   );
 }
 
+
 function App() {
   const scrollY = useScrollY();
   const mouseX  = useMouseOffset();
@@ -199,6 +203,13 @@ function App() {
     return raw ? JSON.parse(raw) : '';
   });
   const [currentPage, setCurrentPage] = useState<Page>('home');
+
+  function rerender(pg:Page){
+    setCurrentPage('about');
+    setTimeout(() => {
+      setCurrentPage(pg);
+    }, 100);
+  }
 
   const handleSubmit = () => {
     localStorage.setItem('MYKEY', JSON.stringify(key));
@@ -221,6 +232,7 @@ function App() {
     </Form>
   );
 
+
   const renderPage = () => {
     if (currentPage !== 'home') {
       if (currentPage === 'detailed-career') return <DetailedCareer />;
@@ -228,7 +240,7 @@ function App() {
       if (currentPage === 'about')           return <div>About Page</div>;
       if (currentPage === 'contact')         return <div>Contact Page</div>;
     }
-
+  
     return (
       <>
       <ParallaxBackdrop scrollY={scrollY} mouseX={mouseX} />
@@ -260,6 +272,7 @@ function App() {
           </p>
           {resultLists()}
         </Row>
+        
         <br/>
       </>
     );
@@ -276,17 +289,33 @@ function App() {
         position: 'relative'
       }}
     >
+      
       {/* Tiny in-page nav only when not on home */}
       {currentPage !== 'home' && (
         <button
           style={{ position: 'absolute', top: 10, left: 10, zIndex: 40 }}
           onClick={() => setCurrentPage('home')}
-        >
+        > 
           🏠
         </button>
-      )}
+         
+      )} 
 
       {renderPage()}
+      {currentPage === 'basic-career' && (
+        <div hidden={basicProgress<8}>
+         <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>
+        <Button id="PageButton" style={{margin:'7px'}} onClick={() => rerender('basic-career')}>Take Quiz Again?</Button>
+        </div> 
+      )}
+  
+      {currentPage === 'detailed-career' && (
+        <div hidden={detailProgress<8}>
+          <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>
+          <Button id="PageButton" style={{margin:'7px'}} onClick={() => rerender('detailed-career')}>Take Quiz Again?</Button>
+        </div> 
+      )}
+      <br/>
     </div>
   );
 }
