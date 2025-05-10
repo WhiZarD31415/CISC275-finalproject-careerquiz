@@ -57,12 +57,13 @@
 #QuizCard {
   background-color: #23497d;          /* deep desaturated blue */
   color: white;
-  height: 110%;
+  height: 120%;
   width: 90%;
   padding: 5%;
   border: #4e6fa5 4px inset;          /* mid-blue frame */
   box-shadow: 0 0 10px 2px rgba(78, 111, 165, 0.35);
   font-family: 'Franklin Gothic', sans-serif;
+  font-size:100%;
 }
 
 #PageButton {
@@ -70,6 +71,8 @@
   background-color: #4e6fa5;          /* medium muted blue */
   border: #4e6fa5 5px outset;
   font-family: 'Franklin Gothic', sans-serif;
+  font-size:110%;
+
 }
 
 #PageButton:hover {

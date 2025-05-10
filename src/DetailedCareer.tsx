@@ -148,7 +148,7 @@ const DetailedCareer =() => {
           {!submitted ? ((currentIndex !== detailedQuestions.length) ? (
           <>
           <div style={{ textAlign: 'center', 
-                        backgroundColor: '#5591A9', 
+                        backgroundColor: '#96ADCC', 
                         marginTop: '40px', 
                         marginBottom: '20px', 
                         marginLeft:'300px',
@@ -177,7 +177,7 @@ const DetailedCareer =() => {
     
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px', justifyContent: 'center' }}>
             {currentIndex > 0 && (
-              <Button  id="backButton" onClick={goToPrev} 
+              <Button  id="backButton" onClick={goToPrev}
               >
                 ← Back
               </Button>

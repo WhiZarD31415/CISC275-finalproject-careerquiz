@@ -118,16 +118,16 @@ function BlueSphinxTitle({
           fontStyle: 'italic',
           fontWeight: 400,
           color: 'white',
-          fontFamily: 'sans-serif',
+          fontFamily: 'Viner Hand ITC, sans-serif',
           fontSize: '1.3vw',
           marginTop: '0.3em',
-          lineHeight: 1.25
+          lineHeight: 1.25,
         }}
       >
-        Unearth the career buried in your future<br /><br />
-        Scroll down<br />
+        Unearth the career buried in your future.<br />
+        
       </h2>
-      <div className="scroll-cue" aria-hidden="true">▼</div>
+      <div className="scroll-cue" aria-hidden="true" style={{color:'white', fontSize: '1vw',fontFamily:"Franklin Gothic, sans-serif"}}>Scroll Down ▼</div>
     </div>
   );
 }
@@ -182,7 +182,7 @@ function AssessmentSection({
       </Row>
 
       {/* API Key form now sits under the cards */}
-      <div style={{ marginTop: '2rem' }}>{apiKeyUI}</div>
+      <div style={{ marginTop: '5rem' }}>{apiKeyUI}</div>
     <br/>
 
     
@@ -208,7 +208,7 @@ function App() {
     setCurrentPage('about');
     setTimeout(() => {
       setCurrentPage(pg);
-    }, 100);
+    }, 10);
   }
 
   const handleSubmit = () => {

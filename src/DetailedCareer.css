@@ -43,13 +43,12 @@
   
   #nextButton {
     background-color: #5591A9;
-    font-family:'Franklin Gothic, sans-serif';
+    font-family:'Franklin Gothic', sans-serif;
     border: #61dafb 5px outset;
   }
 
   #nextButton:hover {
     background-color: #9CCDDC;
-    font-family:'Franklin Gothic, sans-serif';
     border: #9CCDDC 5px inset;
   }
 
@@ -57,7 +56,7 @@
   #backButton {
     color: black;
     background-color: #CED7E0;
-    font-family:'Franklin Gothic, sans-serif';
+    font-family:'Franklin Gothic', sans-serif;
     border: #CED7E0 5px outset;
   }
 
