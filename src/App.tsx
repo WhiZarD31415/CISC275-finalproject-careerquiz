@@ -85,7 +85,7 @@ function BlueSphinxTitle({
 }) {
   const depth = 0.75;           // same as sphinx layer
   const y = -scrollY * depth;
-  const xVW = -(mouseX * depth) * 60;   // 60 vw max shift, opposite cursor
+  const xVW = -(mouseX * depth) * 30;   // 60 vw max shift, opposite cursor
 
   return (
     <div
@@ -254,7 +254,7 @@ function App() {
         />
 
         {/* past results (static) */}
-        <Row style={{ marginTop: '230vh', marginLeft: '10%', marginRight: '10%' , position:'relative', backgroundColor:'#010122'}}>
+        <Row style={{ marginTop: '150vh'/*was 230vh*/, marginLeft: '10%', marginRight: '10%' , position:'relative', backgroundColor:'#010122'}}>
           <h2
             style={{
               fontFamily: 'Garamond, serif',
@@ -310,7 +310,7 @@ function App() {
       )}
   
       {currentPage === 'detailed-career' && (
-        <div hidden={detailProgress<8}>
+        <div hidden={detailProgress<100}>
           <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>
           <Button id="PageButton" style={{margin:'7px'}} onClick={() => rerender('detailed-career')}>Take Quiz Again?</Button>
         </div> 
