@@ -66,17 +66,18 @@ go away.[0m
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
 All files           |       0 |        0 |       0 |       0 |                   
- App.tsx            |       0 |        0 |       0 |       0 | 16-273            
+ App.tsx            |       0 |        0 |       0 |       0 | 17-277            
  BasicCareer.tsx    |       0 |        0 |       0 |       0 | 14-207            
  BasicQuestions.ts  |       0 |      100 |     100 |       0 | 11                
  ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 7-23              
  DetailedCareer.tsx |       0 |        0 |       0 |       0 | 10-242            
  index.tsx          |       0 |      100 |     100 |       0 | 7-19              
+ login.tsx          |       0 |        0 |       0 |       0 | 8-189             
  reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
  resultLists.tsx    |       0 |      100 |       0 |       0 | 21-65             
 --------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       0 total
 Snapshots:   0 total
-Time:        3.859 s
+Time:        3.857 s
 Ran all test suites.
