@@ -87,6 +87,7 @@
   background-color: #7d9bca;
   border: #7d9bca 5px outset;
   align-self: center;
+  font-family: 'Franklin Gothic', sans-serif;
 }
 
 #APIKeyButton:hover {

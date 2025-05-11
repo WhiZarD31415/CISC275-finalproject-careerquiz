@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Overlay } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Form, ProgressBar } from "react-bootstrap";
 import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
@@ -52,11 +52,11 @@ export function BasicCareer(): React.JSX.Element {
 
     //Sends final answers to ChatGPT and shows results
     async function generate_results() {
-        // const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
-        //     if(!apiKey) {
-        //         alert("Please provide yout API key");
-        //         return;
-        //     }
+        const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+            if(!apiKey) {
+                alert("Please provide yout API key");
+                return;
+            }
         const scores = questionBank.map((q, i) => {
             const sliders = q.sliders.map(s => `${s.option}: ${s.value}`).join(", ");
             return `Q${i + 1} (${q.description}): ${sliders}`;
@@ -81,8 +81,9 @@ export function BasicCareer(): React.JSX.Element {
         `;
 
         try {
-            //const result = await getChatGPTResponse(prompt, apiKey);
-            const result = "1. [Career 1]\nDescription 1...\n\n2. [Career 2]\nDescription 2...\n\n3. [Career 3]\nDescription 3..."
+            const result = await getChatGPTResponse(prompt, apiKey);
+            //Line below used for the purpose of testing:
+            //const result = "1. [Career 1]\nDescription 1...\n\n2. [Career 2]\nDescription 2...\n\n3. [Career 3]\nDescription 3..."
             //Splits results into 3 card sections
             const parts = result
                 .split(/\n(?=\d\.\s)/g)
@@ -94,7 +95,9 @@ export function BasicCareer(): React.JSX.Element {
                   const description = descLines.join('\n').trim();
     
                   //adding the title, the results, and an index to the results arrary for use on the homepage results display
-                  results.push([title, description, (results.length+1).toString()])})
+                  results.push([title, description, (results.length+1).toString()])
+                  return null;
+                });
 
             setCareerSuggestions(parts.slice(0, 3));
             setFlipped([false, false, false]);

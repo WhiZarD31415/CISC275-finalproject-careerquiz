@@ -56,12 +56,12 @@ const DetailedCareer =() => {
     
     //Sends final answers to ChatGPT and shows results
     async function generate_results() {
-      // const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
+      const apiKey = localStorage.getItem("MYKEY")?.replace(/"/g, '');
 
-      // if (!apiKey) {
-      //   alert("Please provide your API key.");
-      //   return;
-      // }
+      if (!apiKey) {
+        alert("Please provide your API key.");
+        return;
+      }
 
       const quizData=detailedQuestions.map((q, i) => `Q${i + 1}: ${q}`).join('\n');
 
@@ -85,8 +85,9 @@ const DetailedCareer =() => {
       `;
 
       try {
-      //const result = await getChatGPTResponse(prompt, apiKey);
-      const result = "1. [Career 4]\nDescription 4...\n\n2. [Career 5]\nDescription 5...\n\n3. [Career 6]\nDescription 6..."
+      const result = await getChatGPTResponse(prompt, apiKey);
+      //Line below used for the purpose of testing:
+      //const result = "1. [Career 4]\nDescription 4...\n\n2. [Career 5]\nDescription 5...\n\n3. [Career 6]\nDescription 6..."
         //Splits results into 3 card sections
         const parts = result
             .split(/\n(?=\d\.\s)/g)
@@ -98,7 +99,8 @@ const DetailedCareer =() => {
             const description = descLines.join('\n').trim();
             
         //adding the title, the results, and an index to the results arrary for use on the homepage results display
-        results.push([title, description, (results.length+1).toString()])})
+        results.push([title, description, (results.length+1).toString()])
+        return null});
   
         setCareerSuggestions(parts.slice(0, 3));
         setFlipped([false, false, false]);

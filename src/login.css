@@ -1,10 +1,13 @@
-#button {
-    background-color: #4e6fa5;
-  border: #4e6fa5 3px outset;
+#loginPopupButton {
+  color: white;
+  background-color: #7d9bca;
+  border: #7d9bca 5px outset;
+  align-self: center;
+  font-family: 'Franklin Gothic', sans-serif
 }
 
-#button:hover {
+#loginPopupButton:hover {
     color: black;
-    background-color: #7d9bca;          /* lighter low-sat blue */
-    border: #7d9bca 3px inset;
+  background-color: #96aacc;
+  border: #96aacc 5px inset;
   }

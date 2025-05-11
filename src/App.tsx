@@ -181,7 +181,8 @@ function AssessmentSection({
           </Card>
         </Col>
       </Row>
-
+      <br/>
+      <br/>
       {/* API Key form now sits under the cards */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
         {apiKeyUI}
