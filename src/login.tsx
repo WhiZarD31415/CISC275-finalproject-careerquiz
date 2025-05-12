@@ -148,10 +148,7 @@ export function LoginPanel(): React.JSX.Element {
 
     return (
         <Form>
-            <Button onClick={() => setIsPopupOpen(true)} style={{
-                backgroundColor: '#5591A9', 
-                border: '#61dafb 0.5vh outset'
-            }}>
+            <Button onClick={() => setIsPopupOpen(true)} id="loginPopupButton">
                 Login Panel 
             </Button>
             <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
@@ -177,6 +174,7 @@ export function LoginPanel(): React.JSX.Element {
                             as="textarea"
                             rows={1}
                             placeholder='Password'
+                            type='password'
                             onChange={(e) => setPassword(e.target.value)}
                             style={{ maxWidth: '90%', resize: 'none'}}
                         />

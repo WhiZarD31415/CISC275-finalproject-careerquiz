@@ -3,9 +3,10 @@ import {Button, Form, ProgressBar} from 'react-bootstrap'
 import { PulseLoader } from "react-spinners";
 import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
-import { results } from './App';
+import { results} from './App';
 
 
+export var detailProgress = 0;
 
 const DetailedCareer =() => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
@@ -84,13 +85,22 @@ const DetailedCareer =() => {
       `;
 
       try {
-        const response = await getChatGPTResponse(prompt, apiKey);
-        
-        // Splits the response into 3 suggestion blocks
-        const parts = response
-          .split(/\n(?=\d\.\s)/g)
-          .map((p: string) => p.trim())
-          .filter((p: string) => p.length > 0);
+      const result = await getChatGPTResponse(prompt, apiKey);
+      //Line below used for the purpose of testing:
+      //const result = "1. [Career 4]\nDescription 4...\n\n2. [Career 5]\nDescription 5...\n\n3. [Career 6]\nDescription 6..."
+        //Splits results into 3 card sections
+        const parts = result
+            .split(/\n(?=\d\.\s)/g)
+            .map((p: string) => p.trim())
+            .filter((p: string) => p.length > 0);
+                    
+        (parts.slice(0, 3)).map((suggestion:string) => {
+            const [title, ...descLines] = suggestion.split('\n');
+            const description = descLines.join('\n').trim();
+            
+        //adding the title, the results, and an index to the results arrary for use on the homepage results display
+        results.push([title, description, (results.length+1).toString()])
+        return null});
   
         setCareerSuggestions(parts.slice(0, 3));
         setFlipped([false, false, false]);
@@ -116,11 +126,11 @@ const DetailedCareer =() => {
 
 
     const progress = (detailedQuestions.filter(ans => ans.trim() !== '').length / detailedQuestions.length) * 100;
-
+    detailProgress = progress;
     return (
         <div>
         <div style={{
-            backgroundColor:'#054569', 
+            backgroundColor: '#4e6fa5', 
             color: 'white', 
             verticalAlign:'center', 
             fontFamily:'Garamond, serif',
@@ -140,7 +150,7 @@ const DetailedCareer =() => {
           {!submitted ? ((currentIndex !== detailedQuestions.length) ? (
           <>
           <div style={{ textAlign: 'center', 
-                        backgroundColor: '#5591A9', 
+                        backgroundColor: '#96ADCC', 
                         marginTop: '40px', 
                         marginBottom: '20px', 
                         marginLeft:'300px',
@@ -169,7 +179,7 @@ const DetailedCareer =() => {
     
           <div style={{ display: 'flex', gap: '20px', marginTop: '20px', justifyContent: 'center' }}>
             {currentIndex > 0 && (
-              <Button  id="backButton" onClick={goToPrev} 
+              <Button  id="backButton" onClick={goToPrev}
               >
                 ← Back
               </Button>
@@ -229,10 +239,6 @@ const DetailedCareer =() => {
               careerSuggestions.map((suggestion, index) => {
                 const [title, ...descLines] = suggestion.split('\n');
                 const description = descLines.join('\n').trim();
-
-                //adding the title, the results, and an index to the results arrary for use on the homepage results display
-                results.push([title, description, (results.length+1).toString()])
-                
                 
 
                 return (
@@ -243,7 +249,7 @@ const DetailedCareer =() => {
                   >
                     <div className="flip-card-inner">
                       <div className="flip-card-front card-face">
-                        <h5>{title}</h5>
+                        <h5>{title.substring(2)}</h5>
                       </div>
                       <div className="flip-card-back card-face">
                         <p>{description}</p>

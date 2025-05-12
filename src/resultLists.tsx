@@ -21,7 +21,7 @@ export function resultLists():React.JSX.Element{
       return(
         <>
         <ListGroup.Item action href={"#link"+num}> 
-            <h4>{title}</h4> 
+            <h4>{title.substring(2)}</h4> 
             </ListGroup.Item>
 
             </>
@@ -36,7 +36,7 @@ export function resultLists():React.JSX.Element{
     function createPaneItem(title: string, text:string, num:string):React.JSX.Element{
       return(
             <Tab.Pane eventKey={"#link"+num}>
-            <h3 style={{fontWeight:"bold"}}>{title}</h3> 
+            <h3 style={{fontWeight:"bold"}}>{title.substring(2)}</h3> 
             <hr></hr>
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
                 {text}

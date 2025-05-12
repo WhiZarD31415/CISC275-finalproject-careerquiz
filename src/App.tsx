@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
-import { BasicCareer } from './BasicCareer';
+import { detailProgress } from './DetailedCareer';
+import { basicProgress, BasicCareer } from './BasicCareer';
 import { resultLists } from './resultLists';
 import { LoginPanel} from './login'
 
@@ -22,6 +23,8 @@ const LAYERS = [
   { src: groundFront, speed: 2.0, z: 5, zoom: 1.1 }
 ];
 
+//Ground Front: #010122
+
 const BOTTOM_COLOR = '#010122';
 export const results: string[][] = [];
 type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
@@ -35,6 +38,8 @@ function useScrollY() {
   }, []);
   return y;
 }
+
+
 
 function useMouseOffset() {
   const [offset, setOffset] = useState(0); // −0.5 … +0.5 of viewport
@@ -81,7 +86,7 @@ function BlueSphinxTitle({
 }) {
   const depth = 0.75;           // same as sphinx layer
   const y = -scrollY * depth;
-  const xVW = -(mouseX * depth) * 60;   // 60 vw max shift, opposite cursor
+  const xVW = -(mouseX * depth) * 30;   // 60 vw max shift, opposite cursor
 
   return (
     <div
@@ -114,16 +119,16 @@ function BlueSphinxTitle({
           fontStyle: 'italic',
           fontWeight: 400,
           color: 'white',
-          fontFamily: 'sans-serif',
+          fontFamily: 'Viner Hand ITC, sans-serif',
           fontSize: '1.3vw',
           marginTop: '0.3em',
-          lineHeight: 1.25
+          lineHeight: 1.25,
         }}
       >
-        Unearth the career buried in your future<br /><br />
-        Scroll down<br />
+        Unearth the career buried in your future.<br />
+        
       </h2>
-      <div className="scroll-cue" aria-hidden="true">▼</div>
+      <div className="scroll-cue" aria-hidden="true" style={{color:'white', fontSize: '1vw',fontFamily:"Franklin Gothic, sans-serif"}}>Scroll Down ▼</div>
     </div>
   );
 }
@@ -156,6 +161,7 @@ function AssessmentSection({
             The Basic Career assessment asks you to rate yourself on various
             skills and interests, giving a broad estimate of fitting careers.
             <br />
+            <br/>
             <Button onClick={() => goto('basic-career')} id="PageButton">
               Take Basic Quiz
             </Button>
@@ -167,22 +173,27 @@ function AssessmentSection({
             The Detailed Career assessment asks free-form questions about your
             personality and aspirations, returning tailored career paths – plus
             the reasoning behind each pick!
-            <br />
+            <br/>
+            <br/>
             <Button onClick={() => goto('detailed-career')} id="PageButton">
               Take Detailed Quiz
             </Button>
           </Card>
         </Col>
       </Row>
-
+      <br/>
+      <br/>
       {/* API Key form now sits under the cards */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
         {apiKeyUI}
         <LoginPanel ></LoginPanel>
       </div>
     </div>
+
+    
   );
 }
+
 
 function App() {
   const scrollY = useScrollY();
@@ -194,6 +205,13 @@ function App() {
     return raw ? JSON.parse(raw) : '';
   });
   const [currentPage, setCurrentPage] = useState<Page>('home');
+
+  function rerender(pg:Page){
+    setCurrentPage('about');
+    setTimeout(() => {
+      setCurrentPage(pg);
+    }, 10);
+  }
 
   const handleSubmit = () => {
     localStorage.setItem('MYKEY', JSON.stringify(key));
@@ -216,6 +234,7 @@ function App() {
     </Form>
   );
 
+
   const renderPage = () => {
     if (currentPage !== 'home') {
       if (currentPage === 'detailed-career') return <DetailedCareer />;
@@ -223,7 +242,7 @@ function App() {
       if (currentPage === 'about')           return <div>About Page</div>;
       if (currentPage === 'contact')         return <div>Contact Page</div>;
     }
-
+  
     return (
       <>
       <ParallaxBackdrop scrollY={scrollY} mouseX={mouseX} />
@@ -237,7 +256,7 @@ function App() {
         />
 
         {/* past results (static) */}
-        <Row style={{ marginTop: '230vh', marginLeft: '10%', marginRight: '10%' }}>
+        <Row style={{ marginTop: '150vh'/*was 230vh*/, marginLeft: '10%', marginRight: '10%' , position:'relative', backgroundColor:'#010122'}}>
           <h2
             style={{
               fontFamily: 'Garamond, serif',
@@ -255,6 +274,8 @@ function App() {
           </p>
           {resultLists()}
         </Row>
+        
+        <br/>
       </>
     );
   };
@@ -270,17 +291,33 @@ function App() {
         position: 'relative'
       }}
     >
+      
       {/* Tiny in-page nav only when not on home */}
       {currentPage !== 'home' && (
         <button
           style={{ position: 'absolute', top: 10, left: 10, zIndex: 40 }}
           onClick={() => setCurrentPage('home')}
-        >
+        > 
           🏠
         </button>
-      )}
+         
+      )} 
 
       {renderPage()}
+      {currentPage === 'basic-career' && (
+        <div hidden={basicProgress<8}>
+         <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>
+        <Button id="PageButton" style={{margin:'7px'}} onClick={() => rerender('basic-career')}>Take Quiz Again?</Button>
+        </div> 
+      )}
+  
+      {currentPage === 'detailed-career' && (
+        <div hidden={detailProgress<100}>
+          <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>
+          <Button id="PageButton" style={{margin:'7px'}} onClick={() => rerender('detailed-career')}>Take Quiz Again?</Button>
+        </div> 
+      )}
+      <br/>
     </div>
   );
 }
