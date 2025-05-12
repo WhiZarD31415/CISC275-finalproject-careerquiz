@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import { Form, ProgressBar } from "react-bootstrap";
 import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
-import { getChatGPTResponse } from "./ChatgptAPI";
 import './BasicCareer.css'
 import  { results} from './App';
 
@@ -57,6 +56,9 @@ export function BasicCareer(): React.JSX.Element {
                 alert("Please provide yout API key");
                 return;
             }
+
+        const { getChatGPTResponse } = await import('./ChatgptAPI');
+
         const scores = questionBank.map((q, i) => {
             const sliders = q.sliders.map(s => `${s.option}: ${s.value}`).join(", ");
             return `Q${i + 1} (${q.description}): ${sliders}`;

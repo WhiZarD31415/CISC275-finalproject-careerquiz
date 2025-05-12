@@ -1,4 +1,3 @@
-// src/chatgptAPI.ts
 import axios from 'axios';
 
 

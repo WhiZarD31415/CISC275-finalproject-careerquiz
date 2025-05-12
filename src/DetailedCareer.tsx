@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Form, ProgressBar} from 'react-bootstrap'
 import { PulseLoader } from "react-spinners";
-import { getChatGPTResponse } from './ChatgptAPI';
 import './DetailedCareer.css';
 import { results} from './App';
 
@@ -62,6 +61,9 @@ const DetailedCareer =() => {
         alert("Please provide your API key.");
         return;
       }
+
+      const { getChatGPTResponse } = await import('./ChatgptAPI');
+      
 
       const quizData=detailedQuestions.map((q, i) => `Q${i + 1}: ${q}`).join('\n');
 
