@@ -1,4 +1,3 @@
-// src/chatgptAPI.ts
 import axios from 'axios';
 
 
@@ -8,7 +7,7 @@ export async function getChatGPTResponse(prompt: string, apiKey: string) {
     'https://api.openai.com/v1/chat/completions',
     {
       //The ChatGPT model being used
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4',
       messages: [{ role: 'user', content: prompt }],
     },
     {
