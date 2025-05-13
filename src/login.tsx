@@ -5,7 +5,7 @@ import { Result } from './App';
 
 type User = {username: string, password: string, results: string};
 
-export function save_result(results: Result[]) {
+export function save_result(result: Result) {
     let login_data: User[] = read_login_data();
     let current_user: string = localStorage.getItem("USER") ?? ""
     let current_name: string = JSON.parse(current_user).username
@@ -13,7 +13,7 @@ export function save_result(results: Result[]) {
 
     let resultJson: string = "";
     try {
-        resultJson = JSON.stringify(results);
+        resultJson = JSON.stringify(result);
     } catch (error) {
         console.log(error);
         alert("Result was invalid JSON");
@@ -128,9 +128,11 @@ function read_login_data(): User[] {
         console.error('Error reading logins:', error);
     }
     if (data) {
-        let data_array: string[] = data.split("}");
-        login_data = data_array.slice(0, -1).map(string => JSON.parse(string + "}"));
+        let data_array: string[] = data.split(']"}');
+        console.log(data_array)
+        login_data = data_array.slice(0,-1).map(string => JSON.parse(string + ']"}'));
     }
+    console.log(login_data);
     return login_data;
 }
 

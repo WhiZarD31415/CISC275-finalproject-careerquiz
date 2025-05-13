@@ -33,15 +33,15 @@ export function resultLists({results} : {results: Result[]}):React.JSX.Element{
     //It contains both the name of the career (title) and the description (text)
     //It also requires the index in the results array to create the unique link that connects it to the corresponding listgroup
     //Only one pane item appears at a time
-    function createPaneItem(title: string, text:string, num:number):React.JSX.Element{
+    function createPaneItem(result: Result):React.JSX.Element{
       return(
-            <Tab.Pane eventKey={"#link"+num.toString()}>
-            <h3 style={{fontWeight:"bold"}}>{title.substring(2)}</h3> 
+            <Tab.Pane eventKey={"#link"+result.number.toString()}>
+            <h3 style={{fontWeight:"bold"}}>{result.title.substring(2)}</h3> 
             <hr></hr>
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
-                {text}
+                {result.text}
               </p>
-            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(results)}>Save</Button>}
+            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(result)}>Save</Button>}
             </Tab.Pane>
       )
     }
@@ -63,7 +63,7 @@ export function resultLists({results} : {results: Result[]}):React.JSX.Element{
         <Col sm={8}>
           <Tab.Content id='ResultHome'>
             {/*Dynamically create panes based on number of results*/}
-          {results.map((r:Result)=>createPaneItem(r.title,r.text,r.number))}
+          {results.map((r:Result)=>createPaneItem(r))}
           </Tab.Content>
         </Col>
       </Row>
