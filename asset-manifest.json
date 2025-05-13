@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/CISC275-finalproject-careerquiz/static/css/main.1243ad2d.css",
+    "main.css": "/CISC275-finalproject-careerquiz/static/css/main.c224c40b.css",
     "main.js": "/CISC275-finalproject-careerquiz/static/js/main.3e94fa8f.js",
     "static/js/297.a8683e8f.chunk.js": "/CISC275-finalproject-careerquiz/static/js/297.a8683e8f.chunk.js",
     "static/js/453.bad6c33a.chunk.js": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js",
@@ -11,14 +11,14 @@
     "static/media/5_ground.png": "/CISC275-finalproject-careerquiz/static/media/5_ground.21a7a658c9d5e5d8cea3.png",
     "static/media/3_ground.png": "/CISC275-finalproject-careerquiz/static/media/3_ground.200899b44667220f3a34.png",
     "index.html": "/CISC275-finalproject-careerquiz/index.html",
-    "main.1243ad2d.css.map": "/CISC275-finalproject-careerquiz/static/css/main.1243ad2d.css.map",
+    "main.c224c40b.css.map": "/CISC275-finalproject-careerquiz/static/css/main.c224c40b.css.map",
     "main.3e94fa8f.js.map": "/CISC275-finalproject-careerquiz/static/js/main.3e94fa8f.js.map",
     "297.a8683e8f.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/297.a8683e8f.chunk.js.map",
     "453.bad6c33a.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js.map",
     "213.54f32305.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/213.54f32305.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1243ad2d.css",
+    "static/css/main.c224c40b.css",
     "static/js/main.3e94fa8f.js"
   ]
 }
