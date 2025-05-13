@@ -1,8 +1,8 @@
 // import React, { useState } from 'react';
 import './App.css';
-import { Row, Col, ListGroup, Tab } from 'react-bootstrap';
+import { Row, Col, ListGroup, Tab, Button } from 'react-bootstrap';
 import {results} from "./App"
-
+import { save_result } from './login';
 
 
 
@@ -41,6 +41,7 @@ export function resultLists():React.JSX.Element{
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
                 {text}
               </p>
+            {(localStorage.getItem("USER")) && <Button onClick={() => save_result([title,text,num])}>Save</Button>}
             </Tab.Pane>
       )
     }

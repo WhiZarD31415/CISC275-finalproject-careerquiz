@@ -2,7 +2,45 @@ import React, { useState } from 'react';
 import './login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 
-type User = {username: string, password: string} | undefined;
+type User = {username: string, password: string, results: string};
+
+export function save_result(result: string[]) {
+    let login_data: User[] = read_login_data();
+    let current_user: string = localStorage.getItem("USER") ?? ""
+    let current_name: string = JSON.parse(current_user).username
+    let index: number = login_data.findIndex((user: User) => user.username === current_name)
+
+    let resultJson: string = "";
+    try {
+        resultJson = JSON.stringify(result);
+    } catch (error) {
+        console.log(error);
+        alert("Result was invalid JSON");
+        return;
+    }
+
+    login_data[index].results += "," + resultJson;
+    let loginsJson: string = "";
+    try {
+        loginsJson = (login_data.map((user: User) => JSON.stringify(user))).join();
+    } catch (error) {
+        console.log(error);
+        alert("Logins were invalid JSON");
+        return;
+    }
+
+    let userJson: string = "";
+    try {
+        userJson = JSON.stringify(login_data[index]);
+    } catch (error) {
+        console.log(error);
+        alert("User was invalid JSON");
+        return;
+    }
+
+    localStorage.setItem("USER", userJson);
+    localStorage.setItem("LOGINS", loginsJson);
+}
 
 function create_login(username: string, password: string) {
     let login_data: User[] = read_login_data();
@@ -14,7 +52,8 @@ function create_login(username: string, password: string) {
 
     let user_login: User = {
         username: username,
-        password: password
+        password: password,
+        results: ""
     };
 
     let userJson: string = "";
@@ -43,7 +82,7 @@ function create_login(username: string, password: string) {
 
 function sign_in(username: string, password: string) {
     let login_data: User[] = read_login_data();
-    let user: User = find_username(login_data,username);
+    let user: User | undefined = find_username(login_data,username);
 
     if (!user) {
         alert("Username not found");
@@ -87,10 +126,10 @@ function read_login_data(): User[] {
     return login_data;
 }
 
-function find_username(login_data: User[], username: string): User {
-    let user: User = undefined;
+function find_username(login_data: User[], username: string): User | undefined {
+    let user: User | undefined = undefined;
     user = login_data.find(login => (login) ? login.username === username : false);
-    return user
+    return user;
 }
 
 interface MyComponentProps {
