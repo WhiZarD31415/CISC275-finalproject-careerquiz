@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkstarter_helpi=self.webpackChunkstarter_helpi||[]).push([[297],{297:(e,t,a)=>{a.d(t,{getChatGPTResponse:()=>n});var s=a(213);async function n(e,t){return(await s.A.post("https://api.openai.com/v1/chat/completions",{model:"gpt-4",messages:[{role:"user",content:e}]},{headers:{"Content-Type":"application/json",Authorization:"Bearer ".concat(t)}})).data.choices[0].message.content}}}]);
+//# sourceMappingURL=297.a8683e8f.chunk.js.map

@@ -2,54 +2,9 @@
 > starter_helpi@0.1.0 test
 > react-scripts test --coverage
 
-FAIL src/App.test.tsx
-  ● Test suite failed to run
-
-    Jest encountered an unexpected token
-
-    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
-
-    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
-
-    By default "node_modules" folder is ignored by transformers.
-
-    Here's what you can do:
-     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
-     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
-     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
-     • If you need a custom transformation specify a "transform" option in your config.
-     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
-
-    You'll find more details and examples of these config options in the docs:
-    https://jestjs.io/docs/configuration
-    For information about custom transformations, see:
-    https://jestjs.io/docs/code-transformation
-
-    Details:
-
-    /home/runner/work/CISC275-finalproject-careerquiz/CISC275-finalproject-careerquiz/node_modules/axios/index.js:1
-    ({"Object.<anonymous>":function(module,exports,require,__dirname,__filename,jest){import axios from './lib/axios.js';
-                                                                                      ^^^^^^
-
-    SyntaxError: Cannot use import statement outside a module
-
-      1 | // src/chatgptAPI.ts
-    > 2 | import axios from 'axios';
-        | ^
-      3 |
-      4 |
-      5 | //sends the prompt to OpenAI's ChatGPT API and returns the response
-
-      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1728:14)
-      at Object.<anonymous> (src/ChatgptAPI.ts:2:1)
-      at Object.<anonymous> (src/DetailedCareer.tsx:4:1)
-      at Object.<anonymous> (src/App.tsx:6:1)
-      at Object.<anonymous> (src/App.test.tsx:3:1)
-      at TestScheduler.scheduleTests (node_modules/@jest/core/build/TestScheduler.js:333:13)
-      at runJest (node_modules/@jest/core/build/runJest.js:404:19)
-      at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
-      at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
-
+PASS src/Login.test.tsx
+PASS src/DetailedCareer.test.tsx
+PASS src/App.test.tsx
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -62,22 +17,48 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
---------------------|---------|----------|---------|---------|-------------------
-File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
---------------------|---------|----------|---------|---------|-------------------
-All files           |       0 |        0 |       0 |       0 |                   
- App.tsx            |       0 |        0 |       0 |       0 | 18-317            
- BasicCareer.tsx    |       0 |        0 |       0 |       0 | 11-221            
- BasicQuestions.ts  |       0 |      100 |     100 |       0 | 11                
- ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 7-23              
- DetailedCareer.tsx |       0 |        0 |       0 |       0 | 9-248             
- index.tsx          |       0 |      100 |     100 |       0 | 7-19              
- login.tsx          |       0 |        0 |       0 |       0 | 8-187             
- reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10              
- resultLists.tsx    |       0 |      100 |       0 |       0 | 21-65             
---------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 failed, 1 total
-Tests:       0 total
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+PASS src/BasicCareer.test.tsx
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+--------------------|---------|----------|---------|---------|--------------------------------------------------
+File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                
+--------------------|---------|----------|---------|---------|--------------------------------------------------
+All files           |   46.32 |    38.46 |   43.33 |   46.48 |                                                  
+ App.tsx            |   73.33 |       70 |   61.53 |   75.47 | 46,208-210,215-216,240-241,297-315               
+ BasicCareer.tsx    |   26.56 |    13.63 |   18.18 |   27.86 | 36-120,125-127,159-223                           
+ BasicQuestions.ts  |     100 |      100 |     100 |     100 |                                                  
+ ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 6-22                                             
+ DetailedCareer.tsx |   42.37 |    44.44 |    37.5 |   41.07 | 49-50,58-112,118-119,124-126,242-250             
+ index.tsx          |       0 |      100 |     100 |       0 | 7-19                                             
+ login.tsx          |   54.28 |    35.71 |   66.66 |   55.22 | 11-12,24-26,33-35,45-67,81,84-85,145-146,154,187 
+ reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10                                             
+ resultLists.tsx    |      20 |      100 |      20 |      20 | 21-37,58-65                                      
+--------------------|---------|----------|---------|---------|--------------------------------------------------
+
+Test Suites: 4 passed, 4 total
+Tests:       19 passed, 19 total
 Snapshots:   0 total
-Time:        3.933 s
+Time:        5.404 s
 Ran all test suites.

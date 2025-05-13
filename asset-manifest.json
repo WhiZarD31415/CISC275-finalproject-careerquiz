@@ -1,8 +1,10 @@
 {
   "files": {
     "main.css": "/CISC275-finalproject-careerquiz/static/css/main.1243ad2d.css",
-    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.e153f442.js",
+    "main.js": "/CISC275-finalproject-careerquiz/static/js/main.3e94fa8f.js",
+    "static/js/297.a8683e8f.chunk.js": "/CISC275-finalproject-careerquiz/static/js/297.a8683e8f.chunk.js",
     "static/js/453.bad6c33a.chunk.js": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js",
+    "static/js/213.54f32305.chunk.js": "/CISC275-finalproject-careerquiz/static/js/213.54f32305.chunk.js",
     "static/media/1_sky.png": "/CISC275-finalproject-careerquiz/static/media/1_sky.6f9212f548b709156538.png",
     "static/media/4_sphinx.png": "/CISC275-finalproject-careerquiz/static/media/4_sphinx.11fc0d7652dbb17a6994.png",
     "static/media/2_hills.png": "/CISC275-finalproject-careerquiz/static/media/2_hills.aaf00d87436039fae6b4.png",
@@ -10,11 +12,13 @@
     "static/media/3_ground.png": "/CISC275-finalproject-careerquiz/static/media/3_ground.200899b44667220f3a34.png",
     "index.html": "/CISC275-finalproject-careerquiz/index.html",
     "main.1243ad2d.css.map": "/CISC275-finalproject-careerquiz/static/css/main.1243ad2d.css.map",
-    "main.e153f442.js.map": "/CISC275-finalproject-careerquiz/static/js/main.e153f442.js.map",
-    "453.bad6c33a.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js.map"
+    "main.3e94fa8f.js.map": "/CISC275-finalproject-careerquiz/static/js/main.3e94fa8f.js.map",
+    "297.a8683e8f.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/297.a8683e8f.chunk.js.map",
+    "453.bad6c33a.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/453.bad6c33a.chunk.js.map",
+    "213.54f32305.chunk.js.map": "/CISC275-finalproject-careerquiz/static/js/213.54f32305.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1243ad2d.css",
-    "static/js/main.e153f442.js"
+    "static/js/main.3e94fa8f.js"
   ]
 }
