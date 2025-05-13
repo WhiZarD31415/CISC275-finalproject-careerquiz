@@ -24,7 +24,7 @@ const LAYERS = [
 //Ground Front: #010122
 
 const BOTTOM_COLOR = '#010122';
-export const results: string[][] = [];
+export let results: string[][] = JSON.parse(localStorage.getItem("RESULTS") ?? "[]");
 type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
 
 function useScrollY() {

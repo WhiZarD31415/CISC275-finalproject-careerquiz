@@ -45,6 +45,7 @@ export function save_result(result: string[]) {
 
     localStorage.setItem("USER", userJson);
     localStorage.setItem("LOGINS", loginsJson);
+    localStorage.setItem("RESULTS", login_data[index].results);
 }
 
 function create_login(username: string, password: string) {
@@ -114,6 +115,7 @@ function sign_in(username: string, password: string) {
 function clear_logins() {
     localStorage.removeItem("LOGINS");
     localStorage.removeItem("USER");
+    localStorage.removeItem("RESULTS");
 }
 
 function read_login_data(): User[] {
@@ -199,6 +201,7 @@ export function LoginPanel({
 
     function SignOut() {
         localStorage.removeItem("USER");
+        localStorage.removeItem("RESULTS");
         setUser(null);
     }
 
