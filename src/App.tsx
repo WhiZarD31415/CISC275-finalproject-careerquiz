@@ -24,7 +24,7 @@ const LAYERS = [
 //Ground Front: #010122
 
 const BOTTOM_COLOR = '#010122';
-export let results: string[][] = JSON.parse(localStorage.getItem("RESULTS") ?? "[]");
+export type Result = {title: string, text: string, number: number};
 type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
 
 function useScrollY() {
@@ -201,6 +201,7 @@ function App() {
   const scrollY = useScrollY();
   const mouseX  = useMouseOffset();
   const [user, setUser] = useState<string | null>(localStorage.getItem("USER"));
+  const [results, setResults] = useState<Result[]>(JSON.parse(localStorage.getItem("RESULTS") ?? "[]"));
 
   /* API-key & route state */
   const [key, setKey] = useState<string>(() => {
@@ -238,10 +239,10 @@ function App() {
   );
 
 
-  const renderPage = () => {
+  const renderPage = ({results} : {results: Result[];}) => {
     if (currentPage !== 'home') {
-      if (currentPage === 'detailed-career') return <DetailedCareer />;
-      if (currentPage === 'basic-career')    return <BasicCareer />;
+      if (currentPage === 'detailed-career') return <DetailedCareer results={results}/>;
+      if (currentPage === 'basic-career')    return <BasicCareer results={results}/>;
       if (currentPage === 'about')           return <div>About Page</div>;
       if (currentPage === 'contact')         return <div>Contact Page</div>;
     }
@@ -277,7 +278,7 @@ function App() {
           >
             You can review your results here once you've taken at least one quiz.
           </p>
-          {resultLists()}
+          {resultLists({results, setResults})}
         </Row>
         
         <br/>
@@ -308,7 +309,7 @@ function App() {
          
       )} 
 
-      {renderPage()}
+      {renderPage({results})}
       {currentPage === 'basic-career' && (
         <div hidden={basicProgress<8}>
          <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>

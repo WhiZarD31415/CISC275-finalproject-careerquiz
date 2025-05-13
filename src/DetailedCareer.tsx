@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Button, Form, ProgressBar} from 'react-bootstrap'
 import { PulseLoader } from "react-spinners";
 import './DetailedCareer.css';
-import { results} from './App';
+import { Result } from './App';
 
 
 export var detailProgress = 0;
 
-const DetailedCareer =() => {
+const DetailedCareer =({results} : {results: Result[];}) => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
     const [detailedQuestions, setDetailedQuestions] = useState<string[]>(['','','','','','','',''])
     //Tracks the current question index
@@ -101,7 +101,7 @@ const DetailedCareer =() => {
             const description = descLines.join('\n').trim();
             
         //adding the title, the results, and an index to the results arrary for use on the homepage results display
-        results.push([title, description, (results.length+1).toString()])
+        results.push({title: title, text: description, number: results.length+1})
         return null});
   
         setCareerSuggestions(parts.slice(0, 3));

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Result } from './App';
 
 type User = {username: string, password: string, results: string};
 
-export function save_result(result: string[]) {
+export function save_result(results: Result[], setResults: React.Dispatch<React.SetStateAction<Result[]>>) {
     let login_data: User[] = read_login_data();
     let current_user: string = localStorage.getItem("USER") ?? ""
     let current_name: string = JSON.parse(current_user).username
@@ -12,7 +13,7 @@ export function save_result(result: string[]) {
 
     let resultJson: string = "";
     try {
-        resultJson = JSON.stringify(result);
+        resultJson = JSON.stringify(results);
     } catch (error) {
         console.log(error);
         alert("Result was invalid JSON");
@@ -182,7 +183,7 @@ export function LoginPanel({
         setUser
     } : {
         user: string|null;
-        setUser: React.Dispatch<React.SetStateAction<string | null>>
+        setUser: React.Dispatch<React.SetStateAction<string | null>>;
     }): React.JSX.Element {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');

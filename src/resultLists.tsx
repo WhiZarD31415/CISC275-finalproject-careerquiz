@@ -1,12 +1,12 @@
 // import React, { useState } from 'react';
 import './App.css';
 import { Row, Col, ListGroup, Tab, Button } from 'react-bootstrap';
-import {results} from "./App"
 import { save_result } from './login';
+import { Result } from './App';
 
 
 
-export function resultLists():React.JSX.Element{
+export function resultLists({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}):React.JSX.Element{
 
     //These are sample results to test the functionality of the homepage result display
     //Uncomment the line below and replace instances of 'results' with 'testResults' in this file to use
@@ -16,11 +16,11 @@ export function resultLists():React.JSX.Element{
     //createListItem creates the clickable listgroup item that appears on the left side of the results section
     //It requires the career name (title) and the index in the results list (num)
     //This allows for dynamic creation of listgroup items
-    function createListItem(title: string, num:string):React.JSX.Element{
+    function createListItem(title: string, num:number):React.JSX.Element{
       
       return(
         <>
-        <ListGroup.Item action href={"#link"+num}> 
+        <ListGroup.Item action href={"#link"+num.toString()}> 
             <h4>{title.substring(2)}</h4> 
             </ListGroup.Item>
 
@@ -33,15 +33,15 @@ export function resultLists():React.JSX.Element{
     //It contains both the name of the career (title) and the description (text)
     //It also requires the index in the results array to create the unique link that connects it to the corresponding listgroup
     //Only one pane item appears at a time
-    function createPaneItem(title: string, text:string, num:string):React.JSX.Element{
+    function createPaneItem(title: string, text:string, num:number):React.JSX.Element{
       return(
-            <Tab.Pane eventKey={"#link"+num}>
+            <Tab.Pane eventKey={"#link"+num.toString()}>
             <h3 style={{fontWeight:"bold"}}>{title.substring(2)}</h3> 
             <hr></hr>
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
                 {text}
               </p>
-            {(localStorage.getItem("USER")) && <Button onClick={() => save_result([title,text,num])}>Save</Button>}
+            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(results, setResults)}>Save</Button>}
             </Tab.Pane>
       )
     }
@@ -56,14 +56,14 @@ export function resultLists():React.JSX.Element{
         <Col sm={4}>
           <ListGroup >
             {/*Dynamically create listgroup based on number of results*/}
-            {results.map((r:string[])=>createListItem(r[0],r[2])) }
+            {results.map((r:Result)=>createListItem(r.title,r.number)) }
             
           </ListGroup>
         </Col>
         <Col sm={8}>
           <Tab.Content id='ResultHome'>
             {/*Dynamically create panes based on number of results*/}
-          {results.map((r:string[])=>createPaneItem(r[0],r[1],r[2]))}
+          {results.map((r:Result)=>createPaneItem(r.title,r.text,r.number))}
           </Tab.Content>
         </Col>
       </Row>

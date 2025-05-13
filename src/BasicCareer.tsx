@@ -4,12 +4,12 @@ import { Form, ProgressBar } from "react-bootstrap";
 import { PulseLoader } from "react-spinners";
 import { Slider, BasicQuestionType, BasicQuestionSet } from "./BasicQuestions";
 import './BasicCareer.css'
-import  { results} from './App';
+import { Result } from "./App";
 
 
 export var basicProgress  = 0;
 
-export function BasicCareer(): React.JSX.Element {
+export function BasicCareer({results} : {results: Result[];}): React.JSX.Element {
     //Tracks progress
     const [progress, setProgress] = useState<number>(0);
     basicProgress =progress;
@@ -97,7 +97,7 @@ export function BasicCareer(): React.JSX.Element {
                   const description = descLines.join('\n').trim();
     
                   //adding the title, the results, and an index to the results arrary for use on the homepage results display
-                  results.push([title, description, (results.length+1).toString()])
+                  results.push({title: title, text: description, number: results.length+1})
                   return null;
                 });
 
