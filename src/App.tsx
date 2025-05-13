@@ -239,10 +239,10 @@ function App() {
   );
 
 
-  const renderPage = ({results} : {results: Result[];}) => {
+  const renderPage = ({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}) => {
     if (currentPage !== 'home') {
-      if (currentPage === 'detailed-career') return <DetailedCareer results={results}/>;
-      if (currentPage === 'basic-career')    return <BasicCareer results={results}/>;
+      if (currentPage === 'detailed-career') return <DetailedCareer results={results} setResults={setResults}/>;
+      if (currentPage === 'basic-career')    return <BasicCareer results={results} setResults={setResults}/>;
       if (currentPage === 'about')           return <div>About Page</div>;
       if (currentPage === 'contact')         return <div>Contact Page</div>;
     }
@@ -278,7 +278,7 @@ function App() {
           >
             You can review your results here once you've taken at least one quiz.
           </p>
-          {resultLists({results, setResults})}
+          {resultLists({results})}
         </Row>
         
         <br/>
@@ -309,7 +309,7 @@ function App() {
          
       )} 
 
-      {renderPage({results})}
+      {renderPage({results, setResults})}
       {currentPage === 'basic-career' && (
         <div hidden={basicProgress<8}>
          <Button id="PageButton" style={{margin:'7px'}} onClick={() => setCurrentPage('home')}>Return to Homepage</Button>

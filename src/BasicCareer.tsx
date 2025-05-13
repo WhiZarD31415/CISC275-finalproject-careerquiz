@@ -9,7 +9,7 @@ import { Result } from "./App";
 
 export var basicProgress  = 0;
 
-export function BasicCareer({results} : {results: Result[];}): React.JSX.Element {
+export function BasicCareer({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}): React.JSX.Element {
     //Tracks progress
     const [progress, setProgress] = useState<number>(0);
     basicProgress =progress;
@@ -98,6 +98,7 @@ export function BasicCareer({results} : {results: Result[];}): React.JSX.Element
     
                   //adding the title, the results, and an index to the results arrary for use on the homepage results display
                   results.push({title: title, text: description, number: results.length+1})
+                  setResults(results);
                   return null;
                 });
 

@@ -5,7 +5,7 @@ import { Result } from './App';
 
 type User = {username: string, password: string, results: string};
 
-export function save_result(results: Result[], setResults: React.Dispatch<React.SetStateAction<Result[]>>) {
+export function save_result(results: Result[]) {
     let login_data: User[] = read_login_data();
     let current_user: string = localStorage.getItem("USER") ?? ""
     let current_name: string = JSON.parse(current_user).username

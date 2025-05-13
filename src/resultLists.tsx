@@ -6,7 +6,7 @@ import { Result } from './App';
 
 
 
-export function resultLists({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}):React.JSX.Element{
+export function resultLists({results} : {results: Result[]}):React.JSX.Element{
 
     //These are sample results to test the functionality of the homepage result display
     //Uncomment the line below and replace instances of 'results' with 'testResults' in this file to use
@@ -41,7 +41,7 @@ export function resultLists({results, setResults} : {results: Result[]; setResul
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
                 {text}
               </p>
-            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(results, setResults)}>Save</Button>}
+            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(results)}>Save</Button>}
             </Tab.Pane>
       )
     }

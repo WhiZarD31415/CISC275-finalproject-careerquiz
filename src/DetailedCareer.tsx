@@ -7,7 +7,7 @@ import { Result } from './App';
 
 export var detailProgress = 0;
 
-const DetailedCareer =({results} : {results: Result[];}) => {
+const DetailedCareer =({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}) => {
     //detailedQuestions is the list of answers to the detailed questions, of which there are 8
     const [detailedQuestions, setDetailedQuestions] = useState<string[]>(['','','','','','','',''])
     //Tracks the current question index
@@ -102,6 +102,7 @@ const DetailedCareer =({results} : {results: Result[];}) => {
             
         //adding the title, the results, and an index to the results arrary for use on the homepage results display
         results.push({title: title, text: description, number: results.length+1})
+        setResults(results);
         return null});
   
         setCareerSuggestions(parts.slice(0, 3));
