@@ -19,7 +19,12 @@ export function save_result(result: string[]) {
         return;
     }
 
-    login_data[index].results += "," + resultJson;
+    const current_results: string = login_data[index].results;
+    if (current_results === "[]") {
+        login_data[index].results = "[" + resultJson + "]";
+    } else {
+        login_data[index].results = current_results.slice(0,-1) + "," + resultJson + "]";
+    }
     let loginsJson: string = "";
     try {
         loginsJson = (login_data.map((user: User) => JSON.stringify(user))).join();
@@ -53,7 +58,7 @@ function create_login(username: string, password: string) {
     let user_login: User = {
         username: username,
         password: password,
-        results: ""
+        results: "[]"
     };
 
     let userJson: string = "";
