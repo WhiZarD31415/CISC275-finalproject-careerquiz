@@ -1,23 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { LoginPanel } from './login';
 
 
 describe('LoginPanel Component', () => {
+  const [user, setUser] = useState<string | null>(null)
+
   beforeEach(() => {
     localStorage.clear();
   });
 
 
   test('opens the login popup when button is clicked', () => {
-    render(<LoginPanel />);
+    render(<LoginPanel user={user} setUser={setUser}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
     expect(screen.getByText(/Enter a username and password/i)).toBeInTheDocument();
   });
 
 
   test('renders input fields for username and password', () => {
-    render(<LoginPanel />);
+    render(<LoginPanel user={user} setUser={setUser}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
     expect(screen.getByPlaceholderText('Username')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
@@ -25,7 +27,7 @@ describe('LoginPanel Component', () => {
 
 
   test('creates user and saves in localStorage', () => {
-    render(<LoginPanel />);
+    render(<LoginPanel user={user} setUser={setUser}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
 
 
@@ -49,7 +51,7 @@ describe('LoginPanel Component', () => {
   localStorage.setItem('LOGINS', fakeLoginData);
 
 
-  render(<LoginPanel />);
+  render(<LoginPanel user={user} setUser={setUser}/>);
   fireEvent.click(screen.getByText(/Login Panel/i));
 
 
@@ -77,7 +79,7 @@ describe('LoginPanel Component', () => {
     localStorage.setItem('USER', 'dummy');
 
 
-    render(<LoginPanel />);
+    render(<LoginPanel user={user} setUser={setUser}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
 
 

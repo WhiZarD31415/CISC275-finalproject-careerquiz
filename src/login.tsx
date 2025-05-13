@@ -131,7 +131,13 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
     );
   }
   
-export function LoginPanel(): React.JSX.Element {
+export function LoginPanel({
+        user, 
+        setUser
+    } : {
+        user: string|null;
+        setUser: React.Dispatch<React.SetStateAction<string | null>>
+    }): React.JSX.Element {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -143,14 +149,22 @@ export function LoginPanel(): React.JSX.Element {
 
     function SignIn() {
         sign_in(username, password);
+        setUser(localStorage.getItem("USER"));
         setIsPopupOpen(false);
+    }
+
+    function SignOut() {
+        localStorage.removeItem("USER");
+        setUser(null);
     }
 
     return (
         <Form>
-            <Button onClick={() => setIsPopupOpen(true)} id="loginPopupButton">
-                Login Panel 
-            </Button>
+            {(!user) ? (<Button onClick={() => setIsPopupOpen(true)} id="loginPopupButton">
+                Login 
+            </Button>) : (<Button onClick={() => SignOut()} id="loginPopupButton">
+                Logout 
+            </Button>)}
             <Popup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)}>
             <h2>Login Panel</h2>
             <p>Enter a username and password to locally create a user or login.<br></br>Hit "Clear Users" to empty local storage.</p>

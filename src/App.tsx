@@ -135,11 +135,15 @@ function BlueSphinxTitle({
 function AssessmentSection({
   scrollY,
   goto,
-  apiKeyUI
+  apiKeyUI,
+  user, 
+  setUser
 }: {
   scrollY: number;
   goto: (p: Page) => void;
   apiKeyUI: React.ReactNode;
+  user: string|null;
+  setUser: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const offset = -scrollY * 0.75;
   return (
@@ -184,7 +188,7 @@ function AssessmentSection({
       {/* API Key form now sits under the cards */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
         {apiKeyUI}
-        <LoginPanel ></LoginPanel>
+        <LoginPanel user={user} setUser={setUser}></LoginPanel>
       </div>
     </div>
 
@@ -196,6 +200,7 @@ function AssessmentSection({
 function App() {
   const scrollY = useScrollY();
   const mouseX  = useMouseOffset();
+  const [user, setUser] = useState<string | null>(localStorage.getItem("USER"));
 
   /* API-key & route state */
   const [key, setKey] = useState<string>(() => {
@@ -251,6 +256,8 @@ function App() {
           scrollY={scrollY}
           goto={setCurrentPage}
           apiKeyUI={apiKeyForm}
+          user={user}
+          setUser={setUser}
         />
 
         {/* past results (static) */}
