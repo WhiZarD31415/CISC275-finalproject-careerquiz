@@ -6,7 +6,14 @@ import { Result } from './App';
 
 
 
-export function resultLists({results} : {results: Result[]}):React.JSX.Element{
+export function ResultLists({results} : {results: Result[]}):React.JSX.Element{
+
+  let defaultLink: string = "";
+  try {
+    defaultLink = "#link"+results[0].title.slice(0,10)
+  } catch {
+    defaultLink = "";
+  }
 
     //These are sample results to test the functionality of the homepage result display
     //Uncomment the line below and replace instances of 'results' with 'testResults' in this file to use
@@ -20,7 +27,7 @@ export function resultLists({results} : {results: Result[]}):React.JSX.Element{
       
       return(
         <>
-        <ListGroup.Item action href={"#link"+num.toString()}> 
+        <ListGroup.Item action href={"#link"+title.slice(0,10)}> 
             <h4>{title.substring(2)}</h4> 
             </ListGroup.Item>
 
@@ -35,7 +42,7 @@ export function resultLists({results} : {results: Result[]}):React.JSX.Element{
     //Only one pane item appears at a time
     function createPaneItem(result: Result):React.JSX.Element{
       return(
-            <Tab.Pane eventKey={"#link"+result.number.toString()}>
+            <Tab.Pane eventKey={"#link"+result.title.slice(0,10)}>
             <h3 style={{fontWeight:"bold"}}>{result.title.substring(2)}</h3> 
             <hr></hr>
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
@@ -50,7 +57,7 @@ export function resultLists({results} : {results: Result[]}):React.JSX.Element{
         //This section is hidden if the results array is empty. Placeholder text (seen in App.tsx) 
         // replaces it with instructions for the user
         <div hidden={!results.length}>
-    <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
+    <Tab.Container id="list-group-tabs-example" defaultActiveKey={defaultLink}>
       <Row>
 
         <Col sm={4}>

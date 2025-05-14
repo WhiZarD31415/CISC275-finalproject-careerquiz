@@ -102,7 +102,7 @@ const DetailedCareer =({results, setResults} : {results: Result[]; setResults: R
             
         //adding the title, the results, and an index to the results arrary for use on the homepage results display
         results.push({title: title, text: description, number: results.length+1})
-        setResults(results);
+        setResults(result);
         return null});
   
         setCareerSuggestions(parts.slice(0, 3));

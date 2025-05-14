@@ -4,7 +4,7 @@ import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer from './DetailedCareer';
 import { detailProgress } from './DetailedCareer';
 import { basicProgress, BasicCareer } from './BasicCareer';
-import { resultLists } from './resultLists';
+import { ResultLists } from './resultLists';
 import { LoginPanel} from './login'
 
 import sky         from './assets/1_sky.png';
@@ -137,13 +137,15 @@ function AssessmentSection({
   goto,
   apiKeyUI,
   user, 
-  setUser
+  setUser,
+  setResults
 }: {
   scrollY: number;
   goto: (p: Page) => void;
   apiKeyUI: React.ReactNode;
   user: string|null;
   setUser: React.Dispatch<React.SetStateAction<string | null>>;
+  setResults: React.Dispatch<React.SetStateAction<Result[]>>;
 }) {
   const offset = -scrollY * 0.75;
   return (
@@ -188,7 +190,7 @@ function AssessmentSection({
       {/* API Key form now sits under the cards */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
         {apiKeyUI}
-        <LoginPanel user={user} setUser={setUser}></LoginPanel>
+        <LoginPanel user={user} setUser={setUser} setResults={setResults}></LoginPanel>
       </div>
     </div>
 
@@ -259,6 +261,7 @@ function App() {
           apiKeyUI={apiKeyForm}
           user={user}
           setUser={setUser}
+          setResults={setResults}
         />
 
         {/* past results (static) */}
@@ -278,7 +281,7 @@ function App() {
           >
             You can review your results here once you've taken at least one quiz.
           </p>
-          {resultLists({results})}
+          {ResultLists({results})}
         </Row>
         
         <br/>

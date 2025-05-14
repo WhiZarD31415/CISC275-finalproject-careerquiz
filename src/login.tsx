@@ -87,7 +87,7 @@ function create_login(username: string, password: string) {
     localStorage.setItem("LOGINS",loginsJson+userJson)
 }
 
-function sign_in(username: string, password: string) {
+function sign_in(username: string, password: string, setResults: React.Dispatch<React.SetStateAction<Result[]>>) {
     let login_data: User[] = read_login_data();
     let user: User | undefined = find_username(login_data,username);
 
@@ -111,6 +111,8 @@ function sign_in(username: string, password: string) {
     }
 
     localStorage.setItem("USER",userJson)
+    localStorage.setItem("RESULTS",user.results)
+    setResults(JSON.parse(user.results));
 }
 
 function clear_logins() {
@@ -129,10 +131,8 @@ function read_login_data(): User[] {
     }
     if (data) {
         let data_array: string[] = data.split(']"}');
-        console.log(data_array)
         login_data = data_array.slice(0,-1).map(string => JSON.parse(string + ']"}'));
     }
-    console.log(login_data);
     return login_data;
 }
 
@@ -169,8 +169,8 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
                 <div>
                     {children}
                     <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '5px'}}>
-                        <Button id="button" onClick={() => clear_logins()}>Clear Users</Button>
-                        <Button id="button" onClick={onClose}>
+                        <Button id="loginPopupButton" onClick={() => clear_logins()}>Clear Users</Button>
+                        <Button id="loginPopupButton" onClick={onClose}>
                             Close
                         </Button>
                     </div>
@@ -182,10 +182,12 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
   
 export function LoginPanel({
         user, 
-        setUser
+        setUser,
+        setResults
     } : {
         user: string|null;
         setUser: React.Dispatch<React.SetStateAction<string | null>>;
+        setResults: React.Dispatch<React.SetStateAction<Result[]>>;
     }): React.JSX.Element {
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
@@ -193,11 +195,12 @@ export function LoginPanel({
 
     function CreateUser() {
         create_login(username, password);
+        SignIn()
         setIsPopupOpen(false);
     }
 
     function SignIn() {
-        sign_in(username, password);
+        sign_in(username, password, setResults);
         setUser(localStorage.getItem("USER"));
         setIsPopupOpen(false);
     }
@@ -206,6 +209,7 @@ export function LoginPanel({
         localStorage.removeItem("USER");
         localStorage.removeItem("RESULTS");
         setUser(null);
+        setResults([]);
     }
 
     return (
@@ -246,9 +250,9 @@ export function LoginPanel({
                 </Form.Group>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
-                <Button id="button" onClick={() => CreateUser()}>Create User</Button>
+                <Button id="loginPopupButton" onClick={() => CreateUser()}>Create User</Button>
                 <div>&nbsp;</div>
-                <Button id="button" onClick={() => SignIn()}>Login</Button>
+                <Button id="loginPopupButton" onClick={() => SignIn()}>Login</Button>
             </div>
             </Popup>
         </Form>

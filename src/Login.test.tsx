@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { LoginPanel } from './login';
+import { Result } from './App';
 
 
 describe('LoginPanel Component', () => {
   const [user, setUser] = useState<string | null>(null)
+  const [, setResults] = useState<Result[]>([])
 
   beforeEach(() => {
     localStorage.clear();
@@ -12,14 +14,14 @@ describe('LoginPanel Component', () => {
 
 
   test('opens the login popup when button is clicked', () => {
-    render(<LoginPanel user={user} setUser={setUser}/>);
+    render(<LoginPanel user={user} setUser={setUser} setResults={setResults}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
     expect(screen.getByText(/Enter a username and password/i)).toBeInTheDocument();
   });
 
 
   test('renders input fields for username and password', () => {
-    render(<LoginPanel user={user} setUser={setUser}/>);
+    render(<LoginPanel user={user} setUser={setUser} setResults={setResults}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
     expect(screen.getByPlaceholderText('Username')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Password')).toBeInTheDocument();
@@ -27,7 +29,7 @@ describe('LoginPanel Component', () => {
 
 
   test('creates user and saves in localStorage', () => {
-    render(<LoginPanel user={user} setUser={setUser}/>);
+    render(<LoginPanel user={user} setUser={setUser} setResults={setResults}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
 
 
@@ -51,7 +53,7 @@ describe('LoginPanel Component', () => {
   localStorage.setItem('LOGINS', fakeLoginData);
 
 
-  render(<LoginPanel user={user} setUser={setUser}/>);
+  render(<LoginPanel user={user} setUser={setUser} setResults={setResults}/>);
   fireEvent.click(screen.getByText(/Login Panel/i));
 
 
@@ -79,7 +81,7 @@ describe('LoginPanel Component', () => {
     localStorage.setItem('USER', 'dummy');
 
 
-    render(<LoginPanel user={user} setUser={setUser}/>);
+    render(<LoginPanel user={user} setUser={setUser} setResults={setResults}/>);
     fireEvent.click(screen.getByText(/Login Panel/i));
 
 
