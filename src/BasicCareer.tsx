@@ -167,6 +167,7 @@ export function BasicCareer({results, setResults} : {results: Result[]; setResul
                         outlineColor: "#054569"
                       }}
                     />
+                    {slider.value}
                   </div>
                 ))}
                     </div>
