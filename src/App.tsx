@@ -6,7 +6,7 @@ import { detailProgress } from './DetailedCareer';
 import { basicProgress, BasicCareer } from './BasicCareer';
 import { resultLists } from './resultLists';
 import { LoginPanel} from './login'
-
+import Fireflies from './Fireflies';
 import sky         from './assets/1_sky.png';
 import hills       from './assets/2_hills.png';
 import groundBack  from './assets/3_ground.png';
@@ -244,6 +244,7 @@ function App() {
     return (
       <>
       <ParallaxBackdrop scrollY={scrollY} mouseX={mouseX} />
+      <Fireflies />
       <BlueSphinxTitle  scrollY={scrollY} mouseX={mouseX} />  {/* ← add mouseX */}
 
 
