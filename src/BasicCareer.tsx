@@ -188,7 +188,7 @@ export function BasicCareer({results, setResults} : {results: Result[]; setResul
             ) : (
                 <PulseLoader 
                     color="#5591A9"
-                    cssOverride={{paddingTop: '10%'}}
+                    cssOverride={{paddingTop: '10%', paddingBottom: '10%'}}
                 />
             )) : (
                 <>

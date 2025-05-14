@@ -220,7 +220,7 @@ const DetailedCareer =({results, setResults} : {results: Result[]; setResults: R
     ) : (
       <PulseLoader 
                     color="#5591A9"
-                    cssOverride={{paddingTop: '10%'}}
+                    cssOverride={{paddingTop: '10%', paddingBottom: '10%'}}
                 />
     )) : (
       <>
