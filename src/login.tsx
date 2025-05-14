@@ -131,7 +131,7 @@ function read_login_data(): User[] {
     }
     if (data) {
         let data_array: string[] = data.split(']"}');
-        login_data = data_array.slice(0,-1).map(string => JSON.parse(string + ']"}'));
+        login_data = data_array.slice(0,-1).map(string => (string === data_array[0]) ? JSON.parse(string + ']"}') : JSON.parse(string.slice(1) + ']"}'));
     }
     return login_data;
 }
