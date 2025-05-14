@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import DetailedCareer, { detailProgress } from './DetailedCareer';
-import { BasicCareer, basicProgress } from './BasicCareer';
-import { resultLists } from './resultLists';
-import { LoginPanel } from './login';
+import { basicProgress, BasicCareer } from './BasicCareer';
+import { ResultLists } from './resultLists';
+import { LoginPanel} from './login'
 import Fireflies from './Fireflies';
 
 import sky from './assets/1_sky.png';
@@ -24,7 +24,7 @@ const LAYERS = [
 ];
 
 const BOTTOM_COLOR = '#010122';
-export const results: string[][] = [];
+export type Result = {title: string, text: string, number: number};
 type Page = 'home' | 'about' | 'contact' | 'detailed-career' | 'basic-career';
 
 /* ─── hooks ────────────────────────────────────────────────── */
@@ -157,11 +157,17 @@ function BlueSphinxTitle({
 function AssessmentSection({
   scrollY,
   goto,
-  apiKeyUI
+  apiKeyUI,
+  user, 
+  setUser,
+  setResults
 }: {
   scrollY: number;
   goto: (p: Page) => void;
   apiKeyUI: React.ReactNode;
+  user: string|null;
+  setUser: React.Dispatch<React.SetStateAction<string | null>>;
+  setResults: React.Dispatch<React.SetStateAction<Result[]>>;
 }) {
   const offset = -scrollY * 0.75;
   return (
@@ -213,7 +219,7 @@ function AssessmentSection({
         }}
       >
         {apiKeyUI}
-        <LoginPanel />
+        <LoginPanel user={user} setUser={setUser} setResults={setResults}></LoginPanel>
       </div>
     </div>
   );
@@ -222,7 +228,9 @@ function AssessmentSection({
 /* ─── main app ─────────────────────────────────────────────── */
 function App() {
   const scrollY = useScrollY();
-  const mouseX = useMouseOffset();
+  const mouseX  = useMouseOffset();
+  const [user, setUser] = useState<string | null>(localStorage.getItem("USER"));
+  const [results, setResults] = useState<Result[]>(JSON.parse(localStorage.getItem("RESULTS") ?? "[]"));
 
   // hide fireflies when groundFront has climbed ~75 % of viewport
   const showFireflies = scrollY < window.innerHeight * 0.75;
@@ -261,12 +269,12 @@ function App() {
     </Form>
   );
 
-  const renderPage = () => {
+  const renderPage = ({results, setResults} : {results: Result[]; setResults: React.Dispatch<React.SetStateAction<Result[]>>}) => {
     if (currentPage !== 'home') {
-      if (currentPage === 'detailed-career') return <DetailedCareer />;
-      if (currentPage === 'basic-career') return <BasicCareer />;
-      if (currentPage === 'about') return <div>About Page</div>;
-      if (currentPage === 'contact') return <div>Contact Page</div>;
+      if (currentPage === 'detailed-career') return <DetailedCareer results={results} setResults={setResults}/>;
+      if (currentPage === 'basic-career')    return <BasicCareer results={results} setResults={setResults}/>;
+      if (currentPage === 'about')           return <div>About Page</div>;
+      if (currentPage === 'contact')         return <div>Contact Page</div>;
     }
 
     return (
@@ -279,6 +287,9 @@ function App() {
           scrollY={scrollY}
           goto={setCurrentPage}
           apiKeyUI={apiKeyForm}
+          user={user}
+          setUser={setUser}
+          setResults={setResults}
         />
 
         <Row
@@ -309,7 +320,7 @@ function App() {
             You can review your results here once you've taken at least one
             quiz.
           </p>
-          {resultLists()}
+          {ResultLists({results})}
         </Row>
         <br />
       </>
@@ -346,8 +357,8 @@ function App() {
         </button>
       )}
 
-      {renderPage()}
-
+      {renderPage({results, setResults})}
+        
       {/* quiz return buttons */}
       {currentPage === 'basic-career' && (
         <div hidden={basicProgress < 8}>
