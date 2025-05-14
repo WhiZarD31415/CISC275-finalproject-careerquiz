@@ -2,10 +2,57 @@
 > starter_helpi@0.1.0 test
 > react-scripts test --coverage
 
-PASS src/Login.test.tsx
-PASS src/DetailedCareer.test.tsx
-PASS src/App.test.tsx
-PASS src/BasicCareer.test.tsx
+FAIL src/DetailedCareer.test.tsx
+  ● Test suite failed to run
+
+    TypeError: Cannot read properties of null (reading 'useState')
+
+       7 |
+       8 | describe('DetailedCareer Component', () => {
+    >  9 |   const [result, setResults] = useState<Result[]>([])
+         |                                        ^
+      10 |   test('renders Detailed Career Assessment title', () => {
+      11 |     render(<DetailedCareer results = {result} setResults={setResults}/>);
+      12 |     expect(screen.getByText(/Detailed Career Assessment/i)).toBeInTheDocument();
+
+      at useState (node_modules/react/cjs/react.development.js:1622:21)
+      at src/DetailedCareer.test.tsx:9:40
+      at Object.<anonymous> (src/DetailedCareer.test.tsx:8:1)
+
+FAIL src/Login.test.tsx
+  ● Test suite failed to run
+
+    TypeError: Cannot read properties of null (reading 'useState')
+
+       6 |
+       7 | describe('LoginPanel Component', () => {
+    >  8 |   const [user, setUser] = useState<string | null>(null)
+         |                                   ^
+       9 |   const [, setResults] = useState<Result[]>([])
+      10 |
+      11 |   beforeEach(() => {
+
+      at useState (node_modules/react/cjs/react.development.js:1622:21)
+      at src/Login.test.tsx:8:35
+      at Object.<anonymous> (src/Login.test.tsx:7:1)
+
+FAIL src/BasicCareer.test.tsx
+  ● Test suite failed to run
+
+    TypeError: Cannot read properties of null (reading 'useState')
+
+       6 |
+       7 | describe('BasicCareer Component', () => {
+    >  8 |   const [results, setResults] = useState<Result[]>([])
+         |                                         ^
+       9 |   test('renders Basic Career Assessment title', () => {
+      10 |     render(<BasicCareer results = {results} setResults={setResults}/>);
+      11 |     expect(screen.getByText(/Basic Career Assessment/i)).toBeInTheDocument();
+
+      at useState (node_modules/react/cjs/react.development.js:1622:21)
+      at src/BasicCareer.test.tsx:8:41
+      at Object.<anonymous> (src/BasicCareer.test.tsx:7:1)
+
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -18,6 +65,7 @@ ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
 your devDependencies to work around this error. This will make this message
 go away.[0m
   
+PASS src/App.test.tsx
 [0;33mOne of your dependencies, babel-preset-react-app, is importing the
 "@babel/plugin-proposal-private-property-in-object" package without
 declaring it in its dependencies. This is currently working because
@@ -45,21 +93,21 @@ go away.[0m
 --------------------|---------|----------|---------|---------|--------------------------------------------------
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                
 --------------------|---------|----------|---------|---------|--------------------------------------------------
-All files           |   47.67 |    40.74 |   45.74 |    47.7 |                                                  
- App.tsx            |   74.19 |    72.72 |   61.53 |   76.36 | 45,238-240,245-246,268-269,343-383               
- BasicCareer.tsx    |   26.56 |    13.63 |   18.18 |   27.86 | 36-120,125-127,159-223                           
+All files           |   30.51 |    31.57 |      30 |    29.8 |                                                  
+ App.tsx            |    74.6 |       75 |   61.53 |   76.78 | 45,246-248,253-254,276-277,354-394               
+ BasicCareer.tsx    |   26.15 |    13.63 |   18.18 |   27.41 | 36-121,126-128,160-224                           
  BasicQuestions.ts  |     100 |      100 |     100 |     100 |                                                  
  ChatgptAPI.ts      |       0 |      100 |       0 |       0 | 6-22                                             
- DetailedCareer.tsx |   42.37 |    44.44 |    37.5 |   41.07 | 49-50,58-112,118-119,124-126,242-250             
+ DetailedCareer.tsx |   31.66 |    33.33 |   18.75 |   29.82 | 37-39,43-44,49-50,58-113,119-120,125-127,178-251 
  Fireflies.tsx      |     100 |      100 |     100 |     100 |                                                  
  index.tsx          |       0 |      100 |     100 |       0 | 7-19                                             
- login.tsx          |   54.28 |    35.71 |   66.66 |   55.22 | 11-12,24-26,33-35,45-67,81,84-85,145-146,154,187 
+ login.tsx          |    6.14 |     8.33 |    8.69 |     5.5 | 9-146,158-176,203-218,223-261                    
  reportWebVitals.ts |       0 |        0 |       0 |       0 | 3-10                                             
- resultLists.tsx    |      20 |      100 |      20 |      20 | 21-37,58-65                                      
+ resultLists.tsx    |      50 |        0 |   16.66 |      50 | 28-51,66-73                                      
 --------------------|---------|----------|---------|---------|--------------------------------------------------
 
-Test Suites: 4 passed, 4 total
-Tests:       19 passed, 19 total
+Test Suites: 3 failed, 1 passed, 4 total
+Tests:       4 passed, 4 total
 Snapshots:   0 total
-Time:        5.395 s
+Time:        5.464 s
 Ran all test suites.
