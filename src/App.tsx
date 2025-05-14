@@ -20,7 +20,7 @@ const LAYERS = [
   { src: hills, speed: 0.3, z: 2, zoom: 1.1 },
   { src: groundBack, speed: 0.55, z: 3, zoom: 1.1 },
   { src: sphinxImg, speed: 0.75, z: 4, zoom: 1.1 },
-  { src: groundFront, speed: 2, z: 5, zoom: 1.1 }
+  { src: groundFront, speed: 2, z: 5, zoom: 1.27 }
 ];
 
 const BOTTOM_COLOR = '#010122';
@@ -50,6 +50,7 @@ function useMouseOffset() {
 }
 
 /* ─── parallax backdrop ────────────────────────────────────── */
+/* ─── parallax backdrop ────────────────────────────────────── */
 function ParallaxBackdrop({
   scrollY,
   mouseX
@@ -59,23 +60,28 @@ function ParallaxBackdrop({
 }) {
   return (
     <div className="parallax-wrapper" style={{ backgroundColor: BOTTOM_COLOR }}>
-      {LAYERS.map(({ src, speed, z, zoom }, i) => (
-        <img
-          key={src}
-          src={src}
-          className={`parallax-layer ${i === 0 ? 'sky' : ''}`}
-          style={{
-            transform: `
-              translateX(${-(mouseX * speed) * 30}vw)
-              translateY(-${scrollY * speed}px)
-              scale(${zoom})`,
-            zIndex: z,
-            width: `${zoom * 100}vw`,
-            left: `-${(zoom - 1) * 50}vw`
-          }}
-          alt=""
-        />
-      ))}
+      {LAYERS.map(({ src, speed, z, zoom }) => {
+        // push the 5‑ground layer down by 15 vh
+        const extraTop = src === groundFront ? '15vh' : '0';
+        return (
+          <img
+            key={src}
+            src={src}
+            className="parallax-layer"
+            style={{
+              top: extraTop,
+              transform: `
+                translateX(${-(mouseX * speed) * 30}vw)
+                translateY(-${scrollY * speed}px)
+                scale(${zoom})`,
+              zIndex: z,
+              width: `${zoom * 100}vw`,
+              left: `-${(zoom - 1) * 50}vw`
+            }}
+            alt=""
+          />
+        );
+      })}
     </div>
   );
 }
@@ -219,7 +225,7 @@ function App() {
   const mouseX = useMouseOffset();
 
   // hide fireflies when groundFront has climbed ~75 % of viewport
-  const showFireflies = scrollY < window.innerHeight * 0.4;
+  const showFireflies = scrollY < window.innerHeight * 0.75;
 
   /* API-key & route state */
   const [key, setKey] = useState<string>(() => {
