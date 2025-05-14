@@ -48,7 +48,7 @@ export function ResultLists({results} : {results: Result[]}):React.JSX.Element{
             <p style={{fontFamily:'Franklin Gothic, sans-serif', fontSize:'120%'}}>
                 {result.text}
               </p>
-            {(localStorage.getItem("USER")) && <Button onClick={() => save_result(result)}>Save</Button>}
+            {(localStorage.getItem("USER")) && <Button id="PageButton" onClick={() => save_result(result)}>Save</Button>}
             </Tab.Pane>
       )
     }

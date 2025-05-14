@@ -21,6 +21,10 @@ export function save_result(result: Result) {
     }
 
     const current_results: string = login_data[index].results;
+    if (current_results.includes(resultJson)) {
+        alert("Already saved");
+        return;
+    }
     if (current_results === "[]") {
         login_data[index].results = "[" + resultJson + "]";
     } else {
@@ -169,8 +173,10 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
                 <div>
                     {children}
                     <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '5px'}}>
-                        <Button id="loginPopupButton" onClick={() => clear_logins()}>Clear Users</Button>
-                        <Button id="loginPopupButton" onClick={onClose}>
+                        <Button id="PageButton" onClick={() => clear_logins()} disabled={!localStorage.getItem("LOGINS")}>
+                            Clear Users
+                        </Button>
+                        <Button id="PageButton" onClick={onClose}>
                             Close
                         </Button>
                     </div>
@@ -250,9 +256,9 @@ export function LoginPanel({
                 </Form.Group>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '5px'}}>
-                <Button id="loginPopupButton" onClick={() => CreateUser()}>Create User</Button>
+                <Button id="PageButton" onClick={() => CreateUser()}>Create User</Button>
                 <div>&nbsp;</div>
-                <Button id="loginPopupButton" onClick={() => SignIn()}>Login</Button>
+                <Button id="PageButton" onClick={() => SignIn()}>Login</Button>
             </div>
             </Popup>
         </Form>
