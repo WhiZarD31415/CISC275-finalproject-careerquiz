@@ -32,6 +32,7 @@ export function BasicCareer({results, setResults} : {results: Result[]; setResul
         }
     },[questionBank, progress])
 
+    //Updates the question bank with any changes to the current shown questions
     function updateQuestionBank() {
         const newQuestionSet: BasicQuestionType[] = questionBank.map((question) =>
             (question === questionBank[progress]) ? {...question1} : 
@@ -187,6 +188,7 @@ export function BasicCareer({results, setResults} : {results: Result[]; setResul
             <br></br>
             </>
             ) : (
+                /* Is visible only between quiz submission and GPT results */
                 <PulseLoader 
                     color="#5591A9"
                     cssOverride={{paddingTop: '10%', paddingBottom: '10%'}}
@@ -211,12 +213,6 @@ export function BasicCareer({results, setResults} : {results: Result[]; setResul
             {careerSuggestions.map((suggestion, index) => {
               const [title, ...descLines] = suggestion.split('\n');
               const description = descLines.join('\n').trim();
-
-              //adding the title, the results, and an index to the results arrary for use on the homepage results display
-              //results.push([title, description, (results.length+1).toString()])
-                              
-
-              
 
               return (
                 <div
