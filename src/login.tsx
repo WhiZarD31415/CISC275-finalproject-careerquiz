@@ -3,14 +3,18 @@ import './login.css';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Result } from './App';
 
+// General purpose object to store user information
+// Is converted to JSON and back between local storage
 type User = {username: string, password: string, results: string};
 
+// takes in a Result and saves that to logged in USER (and LOGINS/RESULTS) local storage
 export function save_result(result: Result) {
     let login_data: User[] = read_login_data();
     let current_user: string = localStorage.getItem("USER") ?? ""
     let current_name: string = JSON.parse(current_user).username
     let index: number = login_data.findIndex((user: User) => user.username === current_name)
 
+    // convert result to JSON
     let resultJson: string = "";
     try {
         resultJson = JSON.stringify(result);
@@ -25,11 +29,13 @@ export function save_result(result: Result) {
         alert("Already saved");
         return;
     }
+    // update results for user
     if (current_results === "[]") {
         login_data[index].results = "[" + resultJson + "]";
     } else {
         login_data[index].results = current_results.slice(0,-1) + "," + resultJson + "]";
     }
+    // convert login data (User[]) back to JSON
     let loginsJson: string = "";
     try {
         loginsJson = (login_data.map((user: User) => JSON.stringify(user))).join();
@@ -39,6 +45,7 @@ export function save_result(result: Result) {
         return;
     }
 
+    // convert user data to JSON
     let userJson: string = "";
     try {
         userJson = JSON.stringify(login_data[index]);
@@ -48,11 +55,13 @@ export function save_result(result: Result) {
         return;
     }
 
+    // update relevant items in local storage
     localStorage.setItem("USER", userJson);
     localStorage.setItem("LOGINS", loginsJson);
     localStorage.setItem("RESULTS", login_data[index].results);
 }
 
+// takes in a username and password and adds the User to LOGINS local storage
 function create_login(username: string, password: string) {
     let login_data: User[] = read_login_data();
 
@@ -67,6 +76,7 @@ function create_login(username: string, password: string) {
         results: "[]"
     };
 
+    // convert User to JSON
     let userJson: string = "";
     try {
         userJson = JSON.stringify(user_login);
@@ -76,6 +86,7 @@ function create_login(username: string, password: string) {
         return;
     }
     
+    // read in LOGINS
     let loginsJson: string | null = "";
     try {
         loginsJson = localStorage.getItem("LOGINS")
@@ -88,9 +99,13 @@ function create_login(username: string, password: string) {
     if (loginsJson === null) {
         loginsJson = "";
     }
+
+    // update LOGINS local storage
     localStorage.setItem("LOGINS",loginsJson+userJson)
 }
 
+// Takes in a username and password and signs that User in
+// This updates the results state of App.tsx and USER/RESULTS local storage
 function sign_in(username: string, password: string, setResults: React.Dispatch<React.SetStateAction<Result[]>>) {
     let login_data: User[] = read_login_data();
     let user: User | undefined = find_username(login_data,username);
@@ -105,6 +120,7 @@ function sign_in(username: string, password: string, setResults: React.Dispatch<
         return;
     }
 
+    // convert User to JSON
     let userJson: string = "";
     try {
         userJson = JSON.stringify(user);
@@ -114,25 +130,30 @@ function sign_in(username: string, password: string, setResults: React.Dispatch<
         return;
     }
 
+    // set USER/RESULTS local storage and results state of App.tsx
     localStorage.setItem("USER",userJson)
     localStorage.setItem("RESULTS",user.results)
     setResults(JSON.parse(user.results));
 }
 
+// Clears all login, user, and result data from local storage
 function clear_logins() {
     localStorage.removeItem("LOGINS");
     localStorage.removeItem("USER");
     localStorage.removeItem("RESULTS");
 }
 
+// Reads LOGINS from local storage and returns that formatted to User[]
 function read_login_data(): User[] {
     let data: string | null = null;
     let login_data: User[] = [];
+    // read LOGINS
     try {
         data = localStorage.getItem("LOGINS")
     } catch (error) {
         console.error('Error reading logins:', error);
     }
+    // convert to User[]
     if (data) {
         let data_array: string[] = data.split(']"}');
         login_data = data_array.slice(0,-1).map(string => (string === data_array[0]) ? JSON.parse(string + ']"}') : JSON.parse(string.slice(1) + ']"}'));
@@ -140,6 +161,7 @@ function read_login_data(): User[] {
     return login_data;
 }
 
+// Finds and returns a User with the given username from given login data
 function find_username(login_data: User[], username: string): User | undefined {
     let user: User | undefined = undefined;
     user = login_data.find(login => (login) ? login.username === username : false);
@@ -152,6 +174,7 @@ interface MyComponentProps {
     children: React.ReactNode;
 }
 
+// Child component to Login Panel that handles the Popup visual
 const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
     if (!isOpen) return <div></div>;
   
@@ -186,6 +209,7 @@ const Popup: React.FC<MyComponentProps> = ({ isOpen, onClose, children}) => {
     );
   }
   
+// A major component that allows the user to create user, sign-in, and clear users from local storage
 export function LoginPanel({
         user, 
         setUser,
@@ -195,22 +219,27 @@ export function LoginPanel({
         setUser: React.Dispatch<React.SetStateAction<string | null>>;
         setResults: React.Dispatch<React.SetStateAction<Result[]>>;
     }): React.JSX.Element {
+    // controls if popup is shown
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    // keeps track of the username and password that is typed in the inputs
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
+    // Creates a user in local storage
     function CreateUser() {
         create_login(username, password);
         SignIn()
         setIsPopupOpen(false);
     }
 
+    // Signs in a user to local storage, and updates result state from App.tsx
     function SignIn() {
         sign_in(username, password, setResults);
         setUser(localStorage.getItem("USER"));
         setIsPopupOpen(false);
     }
 
+    // Signs user out. Involves resetting user and result states from App.tsx
     function SignOut() {
         localStorage.removeItem("USER");
         localStorage.removeItem("RESULTS");
@@ -229,6 +258,8 @@ export function LoginPanel({
             <h2>Login Panel</h2>
             <p>Enter a username and password to locally create a user or login.<br></br>Hit "Clear Users" to empty local storage.</p>
             <div style={{ paddingBottom: '15px'}}>
+
+                {/* username input */}
                 <Form.Group as={Row}>
                     <Form.Label column xs="3">Username:</Form.Label>
                     <Col xs="9">
@@ -241,6 +272,8 @@ export function LoginPanel({
                         />
                     </Col>
                 </Form.Group>
+
+                {/* password input */}
                 <Form.Group as={Row}>
                     <Form.Label column xs="3">Password:</Form.Label>
                     <Col xs="9">
